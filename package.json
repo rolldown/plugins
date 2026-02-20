@@ -1,0 +1,23 @@
+{
+  "name": "@rolldown/plugins-monorepo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "format": "oxfmt .",
+    "lint": "oxlint --type-aware --type-check .",
+    "test": "vitest",
+    "dev": "pnpm -r --parallel --filter=\"./packages/*\" run dev",
+    "build": "pnpm -r --filter=\"./packages/*\" run build"
+  },
+  "devDependencies": {
+    "@types/babel__core": "^7.20.5",
+    "@typescript/native-preview": "7.0.0-dev.20260220.1",
+    "oxfmt": "^0.34.0",
+    "oxlint": "^1.49.0",
+    "oxlint-tsgolint": "^0.14.1",
+    "tsdown": "^0.20.3",
+    "vitest": "^4.0.18"
+  },
+  "packageManager": "pnpm@10.29.2"
+}
