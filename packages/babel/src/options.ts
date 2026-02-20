@@ -40,6 +40,12 @@ export interface PluginOptions extends InnerTransformOptions {
   exclude?: InnerTransformOptions['exclude']
 
   /**
+   * If false, skips source map generation. This will improve performance.
+   * @default true
+   */
+  sourceMap?: boolean;
+
+  /**
    * Allows users to provide an array of options that will be merged into the current configuration one at a time.
    * This feature is best used alongside the "test"/"include"/"exclude" options to provide conditions for which an override should apply
    */

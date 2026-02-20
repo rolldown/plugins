@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
+    "@types/node": "^22.19.11",
     "rolldown": "1.0.0-rc.5"
   },
   "peerDependencies": {

@@ -13,12 +13,15 @@ function babelPlugin(options: PluginOptions): Plugin {
     name: '@rolldown/plugin-babel',
     transform: {
       // TODO: filter
-      async handler(code) {
-
+      async handler(code, id) {
         // TODO: filter
 
         const babel = await loadBabel()
-        const result = await babel.transformAsync(code, options)
+        const result = await babel.transformAsync(code, {
+          ...options,
+          sourceMaps: options.sourceMap,
+          filename: id,
+        })
         if (result) {
           return {
             code: result.code ?? undefined,
