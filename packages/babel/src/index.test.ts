@@ -1,8 +1,11 @@
-import { assert, expect, test } from 'vitest'
+import { assert, describe, expect, test } from 'vitest'
 import babelPlugin from './index.ts'
 import * as babel from '@babel/core'
 import { rolldown, type OutputChunk } from 'rolldown'
+import { build as viteBuild, createBuilder, type Rollup } from 'vite'
 import path from 'node:path'
+import type { PluginOptions } from './options.ts'
+import type { RolldownBabelPreset } from './rolldownPreset.ts'
 
 test('plugin works', async () => {
   const result = await build('foo.js', 'export const result = foo', {
@@ -12,7 +15,7 @@ test('plugin works', async () => {
 })
 
 test('presets option applies preset transformations', async () => {
-  const myPreset = (): babel.TransformOptions => ({
+  const myPreset = (): babel.InputOptions => ({
     plugins: [identifierReplaceBabelPlugin('foo', true)],
   })
   const result = await build('foo.js', 'export const result = foo', {
@@ -52,7 +55,7 @@ test('shouldPrintComment selectively filters comments', async () => {
 
 test('compact option is forwarded to babel', async () => {
   let receivedCompact: any
-  const checkPlugin: babel.PluginItem = (): babel.PluginObj => ({
+  const checkPlugin: babel.PluginItem = (): babel.PluginObject => ({
     visitor: {
       Program(_path, state) {
         receivedCompact = state.file.opts.compact
@@ -68,7 +71,7 @@ test('compact option is forwarded to babel', async () => {
 
 test('retainLines option is forwarded to babel', async () => {
   let receivedRetainLines: any
-  const checkPlugin: babel.PluginItem = (): babel.PluginObj => ({
+  const checkPlugin: babel.PluginItem = (): babel.PluginObject => ({
     visitor: {
       Program(_path, state) {
         receivedRetainLines = state.file.opts.retainLines
@@ -84,7 +87,7 @@ test('retainLines option is forwarded to babel', async () => {
 
 test('assumptions are accessible from plugins', async () => {
   let receivedAssumption: boolean | undefined
-  const checkPlugin: babel.PluginItem = (api: any): babel.PluginObj => {
+  const checkPlugin: babel.PluginItem = (api: any): babel.PluginObject => {
     receivedAssumption = api.assumption('setPublicClassFields')
     return { visitor: {} }
   }
@@ -98,7 +101,7 @@ test('assumptions are accessible from plugins', async () => {
 
 test('auxiliaryCommentBefore is forwarded to babel', async () => {
   let receivedValue: string | null | undefined
-  const checkPlugin: babel.PluginItem = (): babel.PluginObj => ({
+  const checkPlugin: babel.PluginItem = (): babel.PluginObject => ({
     visitor: {
       Program(_path, state) {
         receivedValue = state.file.opts.auxiliaryCommentBefore
@@ -114,7 +117,7 @@ test('auxiliaryCommentBefore is forwarded to babel', async () => {
 
 test('auxiliaryCommentAfter is forwarded to babel', async () => {
   let receivedValue: string | null | undefined
-  const checkPlugin: babel.PluginItem = (): babel.PluginObj => ({
+  const checkPlugin: babel.PluginItem = (): babel.PluginObject => ({
     visitor: {
       Program(_path, state) {
         receivedValue = state.file.opts.auxiliaryCommentAfter
@@ -130,7 +133,7 @@ test('auxiliaryCommentAfter is forwarded to babel', async () => {
 
 test('exclude skips transformation for matching files', async () => {
   const result = await build('foo.js', 'export const result = foo', {
-    exclude: /\.js$/,
+    exclude: [/\.js$/],
     plugins: [identifierReplaceBabelPlugin('foo', true)],
   })
   expect(result.code).not.toContain('const result = true')
@@ -138,7 +141,7 @@ test('exclude skips transformation for matching files', async () => {
 
 test('exclude allows transformation for non-matching files', async () => {
   const result = await build('foo.js', 'export const result = foo', {
-    exclude: /\.ts$/,
+    exclude: [/\.ts$/],
     plugins: [identifierReplaceBabelPlugin('foo', true)],
   })
   expect(result.code).toContain('const result = true')
@@ -146,7 +149,7 @@ test('exclude allows transformation for non-matching files', async () => {
 
 test('include activates config only for matching files', async () => {
   const result = await build('foo.js', 'export const result = foo', {
-    include: /\.js$/,
+    include: [/\.js$/],
     plugins: [identifierReplaceBabelPlugin('foo', true)],
   })
   expect(result.code).toContain('const result = true')
@@ -154,55 +157,7 @@ test('include activates config only for matching files', async () => {
 
 test('include skips transformation for non-matching files', async () => {
   const result = await build('foo.js', 'export const result = foo', {
-    include: /\.ts$/,
-    plugins: [identifierReplaceBabelPlugin('foo', true)],
-  })
-  expect(result.code).not.toContain('const result = true')
-})
-
-test('ignore skips transformation for matching files', async () => {
-  const result = await build('foo.js', 'export const result = foo', {
-    ignore: [/foo\.js$/],
-    plugins: [identifierReplaceBabelPlugin('foo', true)],
-  })
-  expect(result.code).not.toContain('const result = true')
-})
-
-test('ignore allows transformation for non-matching files', async () => {
-  const result = await build('foo.js', 'export const result = foo', {
-    ignore: [/\.ts$/],
-    plugins: [identifierReplaceBabelPlugin('foo', true)],
-  })
-  expect(result.code).toContain('const result = true')
-})
-
-test('only allows transformation for matching files', async () => {
-  const result = await build('foo.js', 'export const result = foo', {
-    only: [/\.js$/],
-    plugins: [identifierReplaceBabelPlugin('foo', true)],
-  })
-  expect(result.code).toContain('const result = true')
-})
-
-test('only skips transformation for non-matching files', async () => {
-  const result = await build('foo.js', 'export const result = foo', {
-    only: [/\.ts$/],
-    plugins: [identifierReplaceBabelPlugin('foo', true)],
-  })
-  expect(result.code).not.toContain('const result = true')
-})
-
-test('test activates config for matching files', async () => {
-  const result = await build('foo.js', 'export const result = foo', {
-    test: /\.js$/,
-    plugins: [identifierReplaceBabelPlugin('foo', true)],
-  })
-  expect(result.code).toContain('const result = true')
-})
-
-test('test skips transformation for non-matching files', async () => {
-  const result = await build('foo.js', 'export const result = foo', {
-    test: /\.ts$/,
+    include: [/\.ts$/],
     plugins: [identifierReplaceBabelPlugin('foo', true)],
   })
   expect(result.code).not.toContain('const result = true')
@@ -211,7 +166,7 @@ test('test skips transformation for non-matching files', async () => {
 test('cwd option sets working directory for babel', async () => {
   const customCwd = path.resolve(import.meta.dirname, 'custom-cwd')
   let receivedCwd: string | null | undefined
-  const checkPlugin: babel.PluginItem = (): babel.PluginObj => ({
+  const checkPlugin: babel.PluginItem = (): babel.PluginObject => ({
     visitor: {
       Program(_path, state) {
         receivedCwd = state.file.opts.cwd
@@ -226,8 +181,8 @@ test('cwd option sets working directory for babel', async () => {
 })
 
 test('targets option is forwarded to babel', async () => {
-  let receivedTargets: babel.TransformOptions['targets']
-  const checkPlugin: babel.PluginItem = (): babel.PluginObj => ({
+  let receivedTargets: babel.InputOptions['targets']
+  const checkPlugin: babel.PluginItem = (): babel.PluginObject => ({
     visitor: {
       Program(_path, state) {
         receivedTargets = state.file.opts.targets
@@ -242,8 +197,8 @@ test('targets option is forwarded to babel', async () => {
 })
 
 test('parserOpts are forwarded to babel parser', async () => {
-  let receivedParserOpts: babel.TransformOptions['parserOpts']
-  const checkPlugin: babel.PluginItem = (): babel.PluginObj => ({
+  let receivedParserOpts: babel.InputOptions['parserOpts']
+  const checkPlugin: babel.PluginItem = (): babel.PluginObject => ({
     visitor: {
       Program(_path, state) {
         receivedParserOpts = state.file.opts.parserOpts
@@ -270,10 +225,10 @@ test('wrapPluginVisitorMethod wraps visitor calls', async () => {
   let wrapCalled = false
   const result = await build('foo.js', 'export const result = foo', {
     plugins: [identifierReplaceBabelPlugin('foo', true)],
-    wrapPluginVisitorMethod(_pluginAlias: string, _visitorType: string, callback: Function) {
-      return function (this: any, ...args: any[]) {
+    wrapPluginVisitorMethod(_pluginAlias, _visitorType, callback) {
+      return function (this, p, state) {
         wrapCalled = true
-        return callback.apply(this, args)
+        return callback.call(this, p, state)
       }
     },
   })
@@ -281,11 +236,358 @@ test('wrapPluginVisitorMethod wraps visitor calls', async () => {
   expect(result.code).toContain('const result = true')
 })
 
-async function build(
+describe('configResolved hook', () => {
+  test('filters out presets whose configResolvedHook returns false', async () => {
+    let transformCalled = false
+    const removedPreset: RolldownBabelPreset = {
+      preset: (): babel.InputOptions => ({
+        plugins: [
+          (): babel.PluginObject => ({
+            visitor: {
+              Program() {
+                transformCalled = true
+              },
+            },
+          }),
+        ],
+      }),
+      rolldown: { configResolvedHook: () => false },
+    }
+    await buildWithVite('foo.js', 'export const result = 42', {
+      presets: [removedPreset],
+    })
+    expect(transformCalled).toBe(false)
+  })
+
+  test('keeps presets whose configResolvedHook returns true', async () => {
+    let transformCalled = false
+    const keptPreset: RolldownBabelPreset = {
+      preset: (): babel.InputOptions => ({
+        plugins: [
+          (): babel.PluginObject => ({
+            visitor: {
+              Program() {
+                transformCalled = true
+              },
+            },
+          }),
+        ],
+      }),
+      rolldown: { configResolvedHook: () => true },
+    }
+    await buildWithVite('foo.js', 'export const result = 42', {
+      presets: [keptPreset],
+    })
+    expect(transformCalled).toBe(true)
+  })
+
+  test('configResolvedHook receives the resolved config', async () => {
+    let receivedCommand: string | undefined
+    const preset: RolldownBabelPreset = {
+      preset: (): babel.InputOptions => ({
+        plugins: [identifierReplaceBabelPlugin('foo', true)],
+      }),
+      rolldown: {
+        configResolvedHook(config) {
+          receivedCommand = config.command
+          return true
+        },
+      },
+    }
+    await buildWithVite('foo.js', 'export const result = foo', {
+      presets: [preset],
+    })
+    expect(receivedCommand).toBe('build')
+  })
+})
+
+describe('applyToEnvironment hook', () => {
+  test('filters out presets whose applyToEnvironmentHook returns false', async () => {
+    let transformCalled = false
+    const removedPreset: RolldownBabelPreset = {
+      preset: (): babel.InputOptions => ({
+        plugins: [
+          (): babel.PluginObject => ({
+            visitor: {
+              Program() {
+                transformCalled = true
+              },
+            },
+          }),
+        ],
+      }),
+      rolldown: { applyToEnvironmentHook: () => false },
+    }
+    await buildWithVite('foo.js', 'export const result = 42', {
+      presets: [removedPreset],
+    })
+    expect(transformCalled).toBe(false)
+  })
+
+  test('keeps presets whose applyToEnvironmentHook returns true', async () => {
+    let transformCalled = false
+    const keptPreset: RolldownBabelPreset = {
+      preset: (): babel.InputOptions => ({
+        plugins: [
+          (): babel.PluginObject => ({
+            visitor: {
+              Program() {
+                transformCalled = true
+              },
+            },
+          }),
+        ],
+      }),
+      rolldown: { applyToEnvironmentHook: () => true },
+    }
+    await buildWithVite('foo.js', 'export const result = 42', {
+      presets: [keptPreset],
+    })
+    expect(transformCalled).toBe(true)
+  })
+
+  test('filters by environment name', async () => {
+    const ssrOnlyPreset: RolldownBabelPreset = {
+      preset: (): babel.InputOptions => ({
+        plugins: [identifierReplaceBabelPlugin('foo', true)],
+      }),
+      rolldown: {
+        applyToEnvironmentHook: (env) => env.name === 'ssr',
+      },
+    }
+    const result = await buildWithVite('foo.js', 'export const result = foo', {
+      presets: [ssrOnlyPreset],
+    })
+    // preset is SSR-only, so it should NOT transform in the client environment
+    expect(result.code).not.toContain('const result = true')
+  })
+})
+
+describe('configResolvedHook and applyToEnvironmentHook compose', () => {
+  test('preset passing configResolvedHook can still be filtered by applyToEnvironmentHook', async () => {
+    let transformCalled = false
+    const preset: RolldownBabelPreset = {
+      preset: (): babel.InputOptions => ({
+        plugins: [
+          (): babel.PluginObject => ({
+            visitor: {
+              Program() {
+                transformCalled = true
+              },
+            },
+          }),
+        ],
+      }),
+      rolldown: {
+        configResolvedHook: () => true,
+        applyToEnvironmentHook: (env) => env.name === 'ssr',
+      },
+    }
+    await buildWithVite('foo.js', 'export const result = 42', {
+      presets: [preset],
+    })
+    // passes configResolved but fails applyToEnvironment for client
+    expect(transformCalled).toBe(false)
+  })
+
+  test('preset removed by configResolvedHook is not seen by applyToEnvironmentHook', async () => {
+    let applyToEnvCalled = false
+    const preset: RolldownBabelPreset = {
+      preset: (): babel.InputOptions => ({
+        plugins: [identifierReplaceBabelPlugin('foo', true)],
+      }),
+      rolldown: {
+        configResolvedHook: () => false,
+        applyToEnvironmentHook: () => {
+          applyToEnvCalled = true
+          return true
+        },
+      },
+    }
+    const result = await buildWithVite('foo.js', 'export const result = foo', {
+      presets: [preset],
+    })
+    expect(result.code).not.toContain('const result = true')
+    expect(applyToEnvCalled).toBe(false)
+  })
+})
+
+describe('per-environment state isolation', () => {
+  test('each environment gets its own presets with shared plugins', async () => {
+    const clientOnlyPreset: RolldownBabelPreset = {
+      preset: (): babel.InputOptions => ({
+        plugins: [identifierReplaceBabelPlugin('CLIENT_MARKER', true)],
+      }),
+      rolldown: {
+        applyToEnvironmentHook: (env) => env.name === 'client',
+      },
+    }
+
+    const ssrOnlyPreset: RolldownBabelPreset = {
+      preset: (): babel.InputOptions => ({
+        plugins: [identifierReplaceBabelPlugin('SSR_MARKER', true)],
+      }),
+      rolldown: {
+        applyToEnvironmentHook: (env) => env.name === 'ssr',
+      },
+    }
+
+    const filename = 'foo.js'
+    const virtualId = `\0virtual:${filename}`
+    const code = 'console.log(CLIENT_MARKER, SSR_MARKER)'
+
+    const builder = await createBuilder({
+      configFile: false,
+      logLevel: 'silent',
+      plugins: [
+        {
+          name: 'virtual',
+          resolveId(id) {
+            if (id === filename) return virtualId
+          },
+          load(id) {
+            if (id === virtualId) return code
+          },
+        },
+        babelPlugin({
+          presets: [clientOnlyPreset, ssrOnlyPreset],
+        }),
+      ],
+      environments: {
+        client: {},
+        ssr: {},
+      },
+      builder: {
+        sharedPlugins: true,
+      },
+      build: {
+        write: false,
+        minify: false,
+        rollupOptions: { input: filename, treeshake: false },
+      },
+    })
+
+    // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+    const clientOutput = (await builder.build(
+      builder.environments.client,
+    )) as Rollup.RolldownOutput
+    const clientChunk = clientOutput.output.find((o) => o.type === 'chunk')
+    assert(clientChunk, 'expected a chunk in client output')
+    // client preset replaces CLIENT_MARKER → true, leaves SSR_MARKER alone
+    expect(clientChunk.code).not.toContain('CLIENT_MARKER')
+    expect(clientChunk.code).toContain('SSR_MARKER')
+
+    // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+    const ssrOutput = (await builder.build(
+      builder.environments.ssr,
+    )) as Rollup.RolldownOutput
+    const ssrChunk = ssrOutput.output.find((o) => o.type === 'chunk')
+    assert(ssrChunk, 'expected a chunk in ssr output')
+    // ssr preset replaces SSR_MARKER → true, leaves CLIENT_MARKER alone
+    expect(ssrChunk.code).toContain('CLIENT_MARKER')
+    expect(ssrChunk.code).not.toContain('SSR_MARKER')
+  })
+
+  test('environment with no matching presets is skipped entirely', async () => {
+    let ssrTransformCalled = false
+    const clientOnlyPreset: RolldownBabelPreset = {
+      preset: (): babel.InputOptions => ({
+        plugins: [
+          (): babel.PluginObject => ({
+            visitor: {
+              Program() {
+                ssrTransformCalled = true
+              },
+            },
+          }),
+        ],
+      }),
+      rolldown: {
+        applyToEnvironmentHook: (env) => env.name === 'client',
+      },
+    }
+
+    const filename = 'foo.js'
+    const virtualId = `\0virtual:${filename}`
+
+    const builder = await createBuilder({
+      configFile: false,
+      logLevel: 'silent',
+      plugins: [
+        {
+          name: 'virtual',
+          resolveId(id) {
+            if (id === filename) return virtualId
+          },
+          load(id) {
+            if (id === virtualId) return 'export const result = 42'
+          },
+        },
+        babelPlugin({
+          presets: [clientOnlyPreset],
+        }),
+      ],
+      environments: {
+        client: {},
+        ssr: {},
+      },
+      builder: {
+        sharedPlugins: true,
+      },
+      build: {
+        write: false,
+        minify: false,
+        rollupOptions: { input: filename, treeshake: false },
+      },
+    })
+
+    // Build SSR first — the client-only preset should not run
+    ssrTransformCalled = false
+    await builder.build(builder.environments.ssr)
+    expect(ssrTransformCalled).toBe(false)
+
+    // Build client — the preset should run
+    ssrTransformCalled = false
+    await builder.build(builder.environments.client)
+    expect(ssrTransformCalled).toBe(true)
+  })
+})
+
+async function buildWithVite(
   filename: string,
   code: string,
-  options: babel.TransformOptions,
-): Promise<OutputChunk> {
+  options: PluginOptions,
+): Promise<Rollup.OutputChunk> {
+  const virtualId = `\0virtual:${filename}`
+  const result = await viteBuild({
+    configFile: false,
+    logLevel: 'silent',
+    plugins: [
+      {
+        name: 'virtual',
+        resolveId(id) {
+          if (id === filename) return virtualId
+        },
+        load(id) {
+          if (id === virtualId) return code
+        },
+      },
+      babelPlugin(options),
+    ],
+    build: {
+      write: false,
+      minify: false,
+      rollupOptions: { input: filename, treeshake: false },
+    },
+  })
+  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+  const output = (result as Rollup.RolldownOutput).output
+  const chunk = output.find((o) => o.type === 'chunk')
+  assert(chunk, 'expected a chunk in output')
+  return chunk
+}
+
+async function build(filename: string, code: string, options: PluginOptions): Promise<OutputChunk> {
   const bundle = await rolldown({
     input: filename,
     plugins: [
@@ -311,10 +613,10 @@ async function build(
 }
 
 function identifierReplaceBabelPlugin(name: string, value: boolean): babel.PluginItem {
-  return ({ types: t }): babel.PluginObj => ({
+  return ({ types: t }): babel.PluginObject => ({
     visitor: {
       Identifier(p) {
-        if (p.node.name === 'foo') {
+        if (p.node.name === name) {
           p.replaceWith(t.booleanLiteral(value))
         }
       },

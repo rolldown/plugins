@@ -1,27 +1,92 @@
-import { Plugin, type SourceMapInput } from 'rolldown'
-import type { PluginOptions } from './options.ts'
+import { Plugin, type HookFilter, type SourceMapInput } from 'rolldown'
+import {
+  createBabelOptionsConverter,
+  filterPresetsWithConfigResolved,
+  filterPresetsWithEnvironment,
+  resolveOptions,
+  type PluginOptions,
+} from './options.ts'
+import * as babel from '@babel/core'
+import type { PartialEnvironment, PresetConversionContext } from './rolldownPreset.ts'
+import { calculatePluginFilters } from './filter.ts'
+import type { ResolvedConfig, Plugin as VitePlugin } from 'vite'
 
-// lazy load babel since it may only be used during development
-let babelCache: typeof import('@babel/core')
-async function loadBabel() {
-  babelCache ||= await import('@babel/core')
-  return babelCache
-}
+async function babelPlugin(rawOptions: PluginOptions): Promise<Plugin> {
+  let configFilteredOptions: PluginOptions | undefined
+  const envState = new Map<string | undefined, ReturnType<typeof createBabelOptionsConverter>>()
 
-function babelPlugin(options: PluginOptions): Plugin {
-  return {
+  const plugin = {
     name: '@rolldown/plugin-babel',
+    configResolved(config: ResolvedConfig) {
+      configFilteredOptions = filterPresetsWithConfigResolved(rawOptions, config)
+      const resolved = resolveOptions(configFilteredOptions)
+      plugin.transform.filter = calculatePluginFilters(resolved).transformFilter
+    },
+    applyToEnvironment(environment: PartialEnvironment) {
+      const envOptions = filterPresetsWithEnvironment(configFilteredOptions!, environment)
+      if (
+        !envOptions.presets?.length &&
+        !envOptions.plugins?.length &&
+        !envOptions.overrides?.some((o) => o.presets?.length || o.plugins?.length)
+      ) {
+        return false
+      }
+      const resolved = resolveOptions(envOptions)
+      envState.set(environment.name, createBabelOptionsConverter(resolved))
+      return true
+    },
+    outputOptions() {
+      if (this.meta.viteVersion) return
+      const resolved = resolveOptions(rawOptions)
+      envState.set(undefined, createBabelOptionsConverter(resolved))
+      plugin.transform.filter = calculatePluginFilters(resolved).transformFilter
+    },
     transform: {
-      // TODO: filter
-      async handler(code, id) {
-        // TODO: filter
-
-        const babel = await loadBabel()
-        const result = await babel.transformAsync(code, {
-          ...options,
-          sourceMaps: options.sourceMap,
+      filter: undefined as HookFilter | undefined,
+      async handler(code, id, opts) {
+        const convertToBabelOptions = envState.get(this.environment?.name)
+        if (!convertToBabelOptions) return
+        const conversionContext: PresetConversionContext = {
+          id,
+          moduleType: opts?.moduleType ?? 'js',
+          code,
+        }
+        const babelOptions = convertToBabelOptions(conversionContext)
+        const loadedOptions = await babel.loadOptionsAsync({
+          ...babelOptions,
+          babelrc: false,
+          configFile: false,
+          parserOpts: {
+            sourceType: 'module',
+            allowAwaitOutsideFunction: true,
+            ...babelOptions.parserOpts,
+          },
+          overrides: [
+            {
+              test: '**/*.jsx',
+              parserOpts: { plugins: ['jsx'] },
+            },
+            {
+              test: '**/*.ts',
+              parserOpts: { plugins: ['typescript'] },
+            },
+            {
+              test: '**/*.tsx',
+              parserOpts: { plugins: ['typescript', 'jsx'] },
+            },
+            ...(babelOptions.overrides ?? []),
+          ],
           filename: id,
         })
+        if (!loadedOptions || loadedOptions.plugins.length === 0) {
+          return
+        }
+
+        const result = await babel.transformAsync(
+          code,
+          // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+          loadedOptions as unknown as babel.InputOptions,
+        )
         if (result) {
           return {
             code: result.code ?? undefined,
@@ -31,7 +96,11 @@ function babelPlugin(options: PluginOptions): Plugin {
         }
       },
     },
-  }
+  } satisfies VitePlugin
+
+  return plugin as Plugin
 }
 
 export default babelPlugin
+export { defineRolldownBabelPreset } from './rolldownPreset.ts'
+export type { RolldownBabelPreset } from './rolldownPreset.ts'

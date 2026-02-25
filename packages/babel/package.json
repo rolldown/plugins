@@ -29,25 +29,33 @@
     "test": "vitest --project babel"
   },
   "devDependencies": {
-    "@babel/core": "^7.29.0",
+    "@babel/core": "^8.0.0-rc.1",
     "@types/node": "^22.19.11",
-    "rolldown": "1.0.0-rc.5"
+    "@types/picomatch": "^4.0.2",
+    "rolldown": "1.0.0-rc.5",
+    "vite": "^8.0.0-beta.15"
   },
   "peerDependencies": {
-    "@babel/core": "7.29.0",
-    "rolldown": "^1.0.0-rc.5"
+    "@babel/core": "^7.29.0 || ^8.0.0-rc.1",
+    "rolldown": "^1.0.0-rc.5",
+    "vite": "^8.0.0"
+  },
+  "peerDependenciesMeta": {
+    "vite": {
+      "optional": true
+    }
   },
   "engines": {
     "node": ">=22.12.0 || ^24.0.0"
   },
   "compatiblePackages": {
     "schemaVersion": 1,
-    "vite": {
-      "type": "compatible"
-    },
     "rollup": {
       "type": "incompatible",
       "reason": "Uses Rolldown-specific APIs"
     }
+  },
+  "dependencies": {
+    "picomatch": "^4.0.3"
   }
 }
