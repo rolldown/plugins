@@ -17,7 +17,6 @@ concurrency:
 
 jobs:
   test:
-    if: needs.changed.outputs.should_skip != 'true'
     timeout-minutes: 20
     runs-on: ${{ matrix.os }}
     strategy:

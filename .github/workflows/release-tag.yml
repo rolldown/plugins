@@ -1,0 +1,36 @@
+name: Add GitHub Release Tag
+
+on:
+  push:
+    tags:
+      - 'plugin-*'
+
+jobs:
+  release:
+    if: github.repository == 'rolldown/plugins'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # for yyx990803/release-tag to create a release tag
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Get pkgDirName for tag
+        id: tag
+        run: |
+          # `%@*` truncates @ and version number from the right side.
+          # https://stackoverflow.com/questions/9532654/expression-after-last-specific-character
+          pkgDirName=${GITHUB_REF_NAME%@*}
+          # remove `plugin-` prefix from the left side if exists
+          pkgDirName=${pkgDirName#plugin-}
+
+          echo "pkgDirName=$pkgDirName" >> "$GITHUB_OUTPUT"
+
+      - name: Create Release for Tag
+        id: release_tag
+        uses: yyx990803/release-tag@8cccf7c5aa332d71d222df46677f70f77a8d2dc0 # v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          body: |
+            Please refer to [CHANGELOG.md](https://github.com/rolldown/plugins/blob/${{ github.ref_name }}/packages/${{ steps.tag.outputs.pkgDirName }}/CHANGELOG.md) for details.
