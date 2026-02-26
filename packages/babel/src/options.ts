@@ -39,12 +39,19 @@ export interface InnerTransformOptions extends Pick<
 export interface PluginOptions extends Omit<InnerTransformOptions, 'include' | 'exclude'> {
   /**
    * If specified, only files matching the pattern will be processed by babel.
+   * @default `/\.(?:[jt]sx?|[cm][jt]s)(?:$|\?)/`
+   *
+   * Note that this option receives the syntax supported by babel instead of picomatch.
+   * @see https://babeljs.io/docs/options#matchpattern
    */
   include?: InnerTransformOptions['include']
 
   /**
    * If any of patterns match, babel will not process the file.
    * @default `/[\/\\]node_modules[\/\\]/`
+   *
+   * Note that this option receives the syntax supported by babel instead of picomatch.
+   * @see https://babeljs.io/docs/options#matchpattern
    */
   exclude?: InnerTransformOptions['exclude']
 
@@ -62,12 +69,16 @@ export interface PluginOptions extends Omit<InnerTransformOptions, 'include' | '
 }
 
 export type ResolvedPluginOptions = PluginOptions &
-  Required<Pick<PluginOptions, 'exclude' | 'sourceMap'>>
+  Required<Pick<PluginOptions, 'include' | 'exclude' | 'sourceMap'>>
+
+export const DEFAULT_INCLUDE = [/\.(?:[jt]sx?|[cm][jt]s)(?:$|\?)/]
+export const DEFAULT_EXCLUDE = [/[/\\]node_modules[/\\]/]
 
 export function resolveOptions(options: PluginOptions): ResolvedPluginOptions {
   return {
     ...options,
-    exclude: options.exclude ?? [/[/\\]node_modules[/\\]/],
+    include: options.include ?? DEFAULT_INCLUDE,
+    exclude: options.exclude ?? DEFAULT_EXCLUDE,
     sourceMap: options.sourceMap ?? true,
   }
 }

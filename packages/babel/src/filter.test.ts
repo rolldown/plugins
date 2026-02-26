@@ -1,9 +1,7 @@
 import { describe, expect, test } from 'vitest'
 import { calculatePluginFilters } from './filter.ts'
-import { resolveOptions } from './options.ts'
+import { resolveOptions, DEFAULT_INCLUDE, DEFAULT_EXCLUDE } from './options.ts'
 import type { RolldownBabelPreset } from './rolldownPreset.ts'
-
-const DEFAULT_EXCLUDE = [/[/\\]node_modules[/\\]/]
 
 function makeRolldownPreset(
   filter: RolldownBabelPreset['rolldown']['filter'],
@@ -16,10 +14,10 @@ function makeRolldownPreset(
 
 describe('calculatePluginFilters', () => {
   describe('baseFilter basics', () => {
-    test('default options produce exclude-only id filter', () => {
+    test('default options produce default id filter', () => {
       const { transformFilter } = calculatePluginFilters(resolveOptions({}))
       expect(transformFilter).toStrictEqual({
-        id: { include: undefined, exclude: DEFAULT_EXCLUDE },
+        id: { include: DEFAULT_INCLUDE, exclude: DEFAULT_EXCLUDE },
       })
     })
 
@@ -41,7 +39,7 @@ describe('calculatePluginFilters', () => {
       const customExclude = [/vendor/]
       const { transformFilter } = calculatePluginFilters(resolveOptions({ exclude: customExclude }))
       expect(transformFilter).toStrictEqual({
-        id: { include: undefined, exclude: customExclude },
+        id: { include: DEFAULT_INCLUDE, exclude: customExclude },
       })
     })
 
@@ -66,14 +64,14 @@ describe('calculatePluginFilters', () => {
         resolveOptions({ exclude: [() => true, /vendor/] }),
       )
       expect(transformFilter).toStrictEqual({
-        id: { include: undefined, exclude: undefined },
+        id: { include: DEFAULT_INCLUDE, exclude: undefined },
       })
     })
 
     test('exclude with only function entries means exclude nothing', () => {
       const { transformFilter } = calculatePluginFilters(resolveOptions({ exclude: [() => true] }))
       expect(transformFilter).toStrictEqual({
-        id: { include: undefined, exclude: undefined },
+        id: { include: DEFAULT_INCLUDE, exclude: undefined },
       })
     })
   })
@@ -88,7 +86,7 @@ describe('calculatePluginFilters', () => {
       )
       // Preset filter is ignored; only baseFilter is returned
       expect(transformFilter).toStrictEqual({
-        id: { include: undefined, exclude: DEFAULT_EXCLUDE },
+        id: { include: DEFAULT_INCLUDE, exclude: DEFAULT_EXCLUDE },
       })
     })
 
@@ -110,14 +108,14 @@ describe('calculatePluginFilters', () => {
     test('returns baseFilter when presets is undefined', () => {
       const { transformFilter } = calculatePluginFilters(resolveOptions({ presets: undefined }))
       expect(transformFilter).toStrictEqual({
-        id: { include: undefined, exclude: DEFAULT_EXCLUDE },
+        id: { include: DEFAULT_INCLUDE, exclude: DEFAULT_EXCLUDE },
       })
     })
 
     test('returns baseFilter when presets is empty', () => {
       const { transformFilter } = calculatePluginFilters(resolveOptions({ presets: [] }))
       expect(transformFilter).toStrictEqual({
-        id: { include: undefined, exclude: DEFAULT_EXCLUDE },
+        id: { include: DEFAULT_INCLUDE, exclude: DEFAULT_EXCLUDE },
       })
     })
   })
@@ -128,7 +126,7 @@ describe('calculatePluginFilters', () => {
         resolveOptions({ presets: [() => ({ plugins: [] })] }),
       )
       expect(transformFilter).toStrictEqual({
-        id: { include: undefined, exclude: DEFAULT_EXCLUDE },
+        id: { include: DEFAULT_INCLUDE, exclude: DEFAULT_EXCLUDE },
       })
     })
 
@@ -139,7 +137,7 @@ describe('calculatePluginFilters', () => {
         }),
       )
       expect(transformFilter).toStrictEqual({
-        id: { include: undefined, exclude: DEFAULT_EXCLUDE },
+        id: { include: DEFAULT_INCLUDE, exclude: DEFAULT_EXCLUDE },
       })
     })
 
@@ -150,7 +148,7 @@ describe('calculatePluginFilters', () => {
       }
       const { transformFilter } = calculatePluginFilters(resolveOptions({ presets: [preset] }))
       expect(transformFilter).toStrictEqual({
-        id: { include: undefined, exclude: DEFAULT_EXCLUDE },
+        id: { include: DEFAULT_INCLUDE, exclude: DEFAULT_EXCLUDE },
       })
     })
   })
@@ -163,7 +161,7 @@ describe('calculatePluginFilters', () => {
         }),
       )
       expect(transformFilter).toStrictEqual({
-        id: { include: [/\.tsx$/], exclude: DEFAULT_EXCLUDE },
+        id: { include: DEFAULT_INCLUDE, exclude: DEFAULT_EXCLUDE },
       })
     })
 
@@ -174,7 +172,7 @@ describe('calculatePluginFilters', () => {
         }),
       )
       expect(transformFilter.id).toStrictEqual({
-        include: [/\.tsx$/, /\.jsx$/],
+        include: DEFAULT_INCLUDE,
         exclude: DEFAULT_EXCLUDE,
       })
     })
@@ -186,7 +184,7 @@ describe('calculatePluginFilters', () => {
         }),
       )
       expect(transformFilter.id).toStrictEqual({
-        include: ['**/*.tsx'],
+        include: DEFAULT_INCLUDE,
         exclude: DEFAULT_EXCLUDE,
       })
     })
@@ -198,7 +196,7 @@ describe('calculatePluginFilters', () => {
         }),
       )
       expect(transformFilter.id).toStrictEqual({
-        include: [/\.tsx$/, /\.jsx$/],
+        include: DEFAULT_INCLUDE,
         exclude: DEFAULT_EXCLUDE,
       })
     })
@@ -215,7 +213,7 @@ describe('calculatePluginFilters', () => {
       )
       // Single preset: its exclude is the intersection (just itself), combined with user exclude
       expect(transformFilter.id).toStrictEqual({
-        include: [/\.tsx$/],
+        include: DEFAULT_INCLUDE,
         exclude: [...DEFAULT_EXCLUDE, /test/],
       })
     })
@@ -231,7 +229,7 @@ describe('calculatePluginFilters', () => {
       )
       // First preset has no id → id matches everything → no preset id include
       expect(transformFilter.id).toStrictEqual({
-        include: undefined,
+        include: DEFAULT_INCLUDE,
         exclude: DEFAULT_EXCLUDE,
       })
     })
@@ -248,7 +246,7 @@ describe('calculatePluginFilters', () => {
       )
       // No include → match-all, but exclude is kept (intersection of one preset)
       expect(transformFilter.id).toStrictEqual({
-        include: undefined,
+        include: DEFAULT_INCLUDE,
         exclude: [...DEFAULT_EXCLUDE, /test/],
       })
     })
@@ -366,14 +364,14 @@ describe('calculatePluginFilters', () => {
       })
     })
 
-    test('preset id includes used when user has no include', () => {
+    test('default include takes priority over preset id includes', () => {
       const { transformFilter } = calculatePluginFilters(
         resolveOptions({
           presets: [makeRolldownPreset({ id: /\.tsx$/ })],
         }),
       )
       expect(transformFilter.id).toStrictEqual({
-        include: [/\.tsx$/],
+        include: DEFAULT_INCLUDE,
         exclude: DEFAULT_EXCLUDE,
       })
     })
@@ -387,7 +385,7 @@ describe('calculatePluginFilters', () => {
         }),
       )
       expect(transformFilter.id).toStrictEqual({
-        include: [/\.tsx$/],
+        include: DEFAULT_INCLUDE,
         exclude: customExclude,
       })
     })
@@ -407,7 +405,7 @@ describe('calculatePluginFilters', () => {
       )
       // No shared excludes across presets → only user exclude remains
       expect(transformFilter.id).toStrictEqual({
-        include: [/\.tsx$/, /\.jsx$/],
+        include: DEFAULT_INCLUDE,
         exclude: DEFAULT_EXCLUDE,
       })
     })
@@ -427,7 +425,7 @@ describe('calculatePluginFilters', () => {
       )
       // /test/ is in both presets' excludes → kept; /vendor/ and /dist/ are not shared → dropped
       expect(transformFilter.id).toStrictEqual({
-        include: [/\.tsx$/, /\.jsx$/],
+        include: DEFAULT_INCLUDE,
         exclude: [...DEFAULT_EXCLUDE, /test/],
       })
     })
@@ -447,7 +445,7 @@ describe('calculatePluginFilters', () => {
       )
       // Second preset has no excludes → intersection is empty → only user exclude
       expect(transformFilter.id).toStrictEqual({
-        include: [/\.tsx$/, /\.jsx$/],
+        include: DEFAULT_INCLUDE,
         exclude: DEFAULT_EXCLUDE,
       })
     })
