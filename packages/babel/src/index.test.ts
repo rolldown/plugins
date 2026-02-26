@@ -549,6 +549,27 @@ describe('per-environment state isolation', () => {
   })
 })
 
+test('babel syntax error produces enhanced error message', async () => {
+  const err = await build('foo.js', 'export const = ;', {
+    plugins: [identifierReplaceBabelPlugin('foo', true)],
+  }).catch((e) => e)
+  const normalized = err.message
+    .replace(/\r\n/g, '\n')
+    .replace(/[A-Z]:[\\/][^\s:]+[\\/](?=foo\.js)/gi, '<cwd>/')
+    .replace(/\n {4,}at .+/g, '')
+    .replace(/\nCaused by:\n[\s\S]*$/, '')
+    .trim()
+  expect(normalized).toMatchInlineSnapshot(`
+    "Build failed with 1 error:
+
+    [plugin @rolldown/plugin-babel] foo.js:1:13
+    RolldownError: [BabelError] <cwd>/foo.js: Unexpected token (1:13)
+
+    > 1 | export const = ;
+        |              ^"
+  `)
+})
+
 async function buildWithVite(
   filename: string,
   code: string,
