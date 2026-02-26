@@ -1,3 +1,17 @@
+## <small>[0.1.4](https://github.com/rolldown/plugins/compare/plugin-babel@0.1.3...plugin-babel@0.1.4) (2026-02-26)</small>
+### Features
+
+* **babel:** add `include` option by default ([#2](https://github.com/rolldown/plugins/issues/2)) ([92332df](https://github.com/rolldown/plugins/commit/92332df92b738227a140c688f5468bf95281872c))
+* **babel:** format babel errors ([#3](https://github.com/rolldown/plugins/issues/3)) ([c0c3358](https://github.com/rolldown/plugins/commit/c0c3358fc7a6f5a6df460aba49d566ff6974262e))
+
+### Documentation
+
+* **babel:** update example ([c307289](https://github.com/rolldown/plugins/commit/c3072896eaf8d045b354b2862f663a210f7f4440))
+
+### Miscellaneous Chores
+
+* format ([881c4b8](https://github.com/rolldown/plugins/commit/881c4b860c5b2a6fa7eb6e437477a40733c3fd78))
+
 ## <small>[0.1.3](https://github.com/rolldown/plugins/compare/plugin-babel@0.1.2...plugin-babel@0.1.3) (2026-02-26)</small>
 ### Continuous Integration
 
