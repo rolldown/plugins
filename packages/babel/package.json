@@ -28,6 +28,9 @@
     "build": "tsdown",
     "test": "vitest --project babel"
   },
+  "dependencies": {
+    "picomatch": "^4.0.3"
+  },
   "devDependencies": {
     "@babel/core": "^8.0.0-rc.1",
     "@types/node": "^22.19.11",
@@ -54,8 +57,5 @@
       "type": "incompatible",
       "reason": "Uses Rolldown-specific APIs"
     }
-  },
-  "dependencies": {
-    "picomatch": "^4.0.3"
   }
 }

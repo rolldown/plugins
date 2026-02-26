@@ -468,9 +468,7 @@ describe('per-environment state isolation', () => {
     })
 
     // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-    const clientOutput = (await builder.build(
-      builder.environments.client,
-    )) as Rollup.RolldownOutput
+    const clientOutput = (await builder.build(builder.environments.client)) as Rollup.RolldownOutput
     const clientChunk = clientOutput.output.find((o) => o.type === 'chunk')
     assert(clientChunk, 'expected a chunk in client output')
     // client preset replaces CLIENT_MARKER → true, leaves SSR_MARKER alone
@@ -478,9 +476,7 @@ describe('per-environment state isolation', () => {
     expect(clientChunk.code).toContain('SSR_MARKER')
 
     // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-    const ssrOutput = (await builder.build(
-      builder.environments.ssr,
-    )) as Rollup.RolldownOutput
+    const ssrOutput = (await builder.build(builder.environments.ssr)) as Rollup.RolldownOutput
     const ssrChunk = ssrOutput.output.find((o) => o.type === 'chunk')
     assert(ssrChunk, 'expected a chunk in ssr output')
     // ssr preset replaces SSR_MARKER → true, leaves CLIENT_MARKER alone

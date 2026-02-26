@@ -119,8 +119,14 @@ Match files by path. Accepts a string glob, RegExp, array, or `{ include, exclud
 Match by Rolldown module type. Accepts a string array or `{ include }` object.
 
 ```js
-{ moduleType: ['tsx', 'jsx'] }
-{ moduleType: { include: ['tsx'] } }
+{
+  moduleType: ['tsx', 'jsx']
+}
+{
+  moduleType: {
+    include: ['tsx']
+  }
+}
 ```
 
 #### `code`
@@ -183,7 +189,7 @@ You can mix standard Babel presets and Rolldown presets freely:
 ```js
 babelPlugin({
   presets: [
-    '@babel/preset-env',  // applied to all files
+    '@babel/preset-env', // applied to all files
     {
       preset: ['@babel/preset-react'],
       rolldown: { filter: { id: /\.[jt]sx$/ } },
