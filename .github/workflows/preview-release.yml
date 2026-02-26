@@ -1,21 +1,23 @@
-name: Publish Package
+name: Preview release
 
 on:
   push:
-    tags:
-      - 'plugin-*'
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, labeled]
 
 jobs:
-  publish:
-    # prevents this action from running on forks
-    if: github.repository == 'rolldown/plugins'
+  preview:
+    if: >
+      github.repository == 'rolldown/plugins' &&
+      (github.event_name == 'push' ||
+      (github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'trigger: preview')))
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      id-token: write
-    environment: Release
+      pull-requests: write
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v6
 
       - name: Install pnpm
@@ -35,5 +37,7 @@ jobs:
       - name: Install deps
         run: pnpm install
 
-      - name: Publish package
-        run: npm i -g npm@^11.5.2 && pnpm run ci-publish ${{ github.ref_name }}
+      - name: Build packages
+        run: pnpm build
+
+      - run: pnpm dlx pkg-pr-new@0.0 publish --pnpm './packages/babel' --packageManager=pnpm,npm,yarn --commentWithDev
