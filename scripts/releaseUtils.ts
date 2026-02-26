@@ -36,3 +36,7 @@ export async function logRecentCommits(pkgName: string, pkgDir: string): Promise
   })
   console.log()
 }
+
+export function getPkgDir(pkgName: string) {
+  return `packages/${pkgName.replace('plugin-', '')}`
+}

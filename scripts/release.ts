@@ -1,11 +1,7 @@
 import { generateChangelog, release } from '@vitejs/release-scripts'
 import colors from 'picocolors'
-import { logRecentCommits } from './releaseUtils.ts'
+import { logRecentCommits, getPkgDir } from './releaseUtils.ts'
 import path from 'node:path'
-
-function getPkgDir(pkgName: string) {
-  return `packages/${pkgName.replace('plugin-', '')}`
-}
 
 process.chdir(path.join(import.meta.dirname, '..'))
 
