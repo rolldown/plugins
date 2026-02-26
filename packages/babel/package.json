@@ -26,7 +26,8 @@
   "scripts": {
     "dev": "tsdown --watch",
     "build": "tsdown",
-    "test": "vitest --project babel"
+    "test": "vitest --project babel",
+    "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
     "picomatch": "^4.0.3"
