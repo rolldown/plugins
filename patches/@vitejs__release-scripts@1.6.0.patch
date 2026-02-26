@@ -1,0 +1,13 @@
+diff --git a/dist/index.js b/dist/index.js
+index b99f01bd88796fb531aeb5f17e1b1bc561bc4c49..1b93b688f8e0edff746b003a14dd3fabca406134 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -255,7 +255,7 @@ Dry run finished - run git diff to see package changes.`);
+       colors2.green(
+         `
+ Pushed, publishing should starts shortly on CI.
+-https://github.com/vitejs/${repo}/actions/workflows/publish.yml`
++https://github.com/${repo}/actions/workflows/publish.yml`
+       )
+     );
+   }

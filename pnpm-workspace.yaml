@@ -2,3 +2,5 @@ packages:
   - packages/*
   - scripts
 
+patchedDependencies:
+  '@vitejs/release-scripts@1.6.0': patches/@vitejs__release-scripts@1.6.0.patch

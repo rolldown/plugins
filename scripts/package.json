@@ -1,0 +1,14 @@
+{
+  "name": "@rolldown/plugins-scripts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "release": "node ./release.ts",
+    "ci-publish": "node ./publishCI.ts"
+  },
+  "devDependencies": {
+    "@vitejs/release-scripts": "^1.6.0",
+    "execa": "^9.6.1",
+    "picocolors": "^1.1.1"
+  }
+}
