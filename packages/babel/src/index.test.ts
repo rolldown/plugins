@@ -555,7 +555,7 @@ test('babel syntax error produces enhanced error message', async () => {
   }).catch((e) => e)
   const normalized = err.message
     .replace(/\r\n/g, '\n')
-    .replace(/[A-Z]:[\\/][^\s:]+[\\/](?=foo\.js)/gi, '<cwd>/')
+    .replace(/(?:[A-Z]:)?[\\/][^\s:]+[\\/](?=foo\.js)/gi, '<cwd>/')
     .replace(/\n {4,}at .+/g, '')
     .replace(/\nCaused by:\n[\s\S]*$/, '')
     .trim()
