@@ -5,18 +5,18 @@ Rolldown plugin for transforming code with [Babel](https://babeljs.io/).
 ## Install
 
 ```bash
-npm install @rolldown/plugin-babel @babel/core
+pnpm install @rolldown/plugin-babel @babel/core
 ```
 
 ## Usage
 
 ```js
-import babelPlugin from '@rolldown/plugin-babel'
+import babel from '@rolldown/plugin-babel'
 
 export default {
   plugins: [
-    babelPlugin({
-      presets: [['@babel/preset-env', { targets: { chrome: '100' } }]],
+    babel({
+      plugins: ["@babel/plugin-proposal-throw-expressions"],
     }),
   ],
 }
