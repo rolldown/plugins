@@ -31,8 +31,9 @@ The plugin automatically configures Babel's parser for `.jsx`, `.ts`, and `.tsx`
 ### `include`
 
 - **Type:** `string | RegExp | (string | RegExp)[]`
+- **Default:** `/\.(?:[jt]sx?|[cm][jt]s)(?:$|\?)/`
 
-If specified, only files matching the pattern will be processed.
+Only files matching the pattern will be processed.
 
 ### `exclude`
 
