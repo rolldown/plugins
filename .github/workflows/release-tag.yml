@@ -23,7 +23,7 @@ jobs:
           # remove `plugin-` prefix from the left side if exists
           pkgDirName=${pkgDirName#plugin-}
 
-          echo "::set-output name=pkgDirName::$pkgDirName"
+          echo "pkgDirName=$pkgDirName" >> "$GITHUB_OUTPUT"
 
       - name: Create Release for Tag
         id: release_tag
