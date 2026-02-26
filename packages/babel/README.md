@@ -1,4 +1,4 @@
-# @rolldown/plugin-babel
+# @rolldown/plugin-babel [![npm](https://img.shields.io/npm/v/@rolldown/plugin-babel.svg)](https://npmx.dev/package/@rolldown/plugin-babel)
 
 Rolldown plugin for transforming code with [Babel](https://babeljs.io/).
 
