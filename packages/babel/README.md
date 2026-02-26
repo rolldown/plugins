@@ -16,7 +16,7 @@ import babel from '@rolldown/plugin-babel'
 export default {
   plugins: [
     babel({
-      plugins: ["@babel/plugin-proposal-throw-expressions"],
+      plugins: ['@babel/plugin-proposal-throw-expressions'],
     }),
   ],
 }
