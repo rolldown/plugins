@@ -147,6 +147,23 @@ export function filterPresetsWithConfigResolved(
   }
 }
 
+export function collectOptimizeDepsInclude(options: PluginOptions): string[] {
+  const result: string[] = []
+  for (const preset of options.presets ?? []) {
+    if (typeof preset === 'object' && 'rolldown' in preset) {
+      result.push(...(preset.rolldown.optimizeDeps?.include ?? []))
+    }
+  }
+  for (const override of options.overrides ?? []) {
+    for (const preset of override.presets ?? []) {
+      if (typeof preset === 'object' && 'rolldown' in preset) {
+        result.push(...(preset.rolldown.optimizeDeps?.include ?? []))
+      }
+    }
+  }
+  return result
+}
+
 /**
  * Pre-compile all preset filters and return a function that
  * converts options to babel options for a given context.

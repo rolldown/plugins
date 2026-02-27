@@ -14,6 +14,9 @@ export type RolldownBabelPreset = {
       moduleType?: ModuleTypeFilter
       code?: GeneralHookFilter
     }
+    optimizeDeps?: {
+      include?: string[]
+    }
     applyToEnvironmentHook?: (environment: PartialEnvironment) => boolean
     configResolvedHook?: (config: ResolvedConfig) => boolean
   }

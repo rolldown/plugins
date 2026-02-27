@@ -177,6 +177,24 @@ defineRolldownBabelPreset({
 
 When running without Vite (pure Rolldown), `applyToEnvironmentHook` is ignored.
 
+### `optimizeDeps`
+
+A preset can declare dependencies that should be pre-bundled by Vite's dependency optimizer. The plugin automatically merges these into `optimizeDeps.include` in the Vite config.
+
+```js
+defineRolldownBabelPreset({
+  preset: ['@babel/preset-react'],
+  rolldown: {
+    filter: { id: /\.[jt]sx$/ },
+    optimizeDeps: {
+      include: ['react', 'react-dom'],
+    },
+  },
+})
+```
+
+When running without Vite (pure Rolldown), `optimizeDeps` is ignored.
+
 ### How preset filters work
 
 Preset filters operate at two levels:
