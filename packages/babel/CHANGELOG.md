@@ -1,3 +1,8 @@
+## <small>[0.1.5](https://github.com/rolldown/plugins/compare/plugin-babel@0.1.4...plugin-babel@0.1.5) (2026-02-27)</small>
+### Bug Fixes
+
+* **babel:** add `enforce: 'pre'` ([69501d3](https://github.com/rolldown/plugins/commit/69501d396159a73972a493f43bf0f388e2167919))
+
 ## <small>[0.1.4](https://github.com/rolldown/plugins/compare/plugin-babel@0.1.3...plugin-babel@0.1.4) (2026-02-26)</small>
 ### Features
 
