@@ -1,3 +1,8 @@
+## <small>[0.1.6](https://github.com/rolldown/plugins/compare/plugin-babel@0.1.5...plugin-babel@0.1.6) (2026-02-27)</small>
+### Features
+
+* **babel:** allow preset to specify optimize deps ([#5](https://github.com/rolldown/plugins/issues/5)) ([ce212b4](https://github.com/rolldown/plugins/commit/ce212b4883912a3ff87bbea7c4f7a952c5b2c8ea))
+
 ## <small>[0.1.5](https://github.com/rolldown/plugins/compare/plugin-babel@0.1.4...plugin-babel@0.1.5) (2026-02-27)</small>
 ### Bug Fixes
 
