@@ -17,6 +17,8 @@ async function babelPlugin(rawOptions: PluginOptions): Promise<Plugin> {
 
   const plugin = {
     name: '@rolldown/plugin-babel',
+    // this plugin should run before TS, JSX, TSX transformations are done
+    enforce: 'pre',
     configResolved(config: ResolvedConfig) {
       configFilteredOptions = filterPresetsWithConfigResolved(rawOptions, config)
       const resolved = resolveOptions(configFilteredOptions)
