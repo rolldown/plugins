@@ -4,7 +4,7 @@ import * as babel from '@babel/core'
 import { rolldown, type OutputChunk } from 'rolldown'
 import { build as viteBuild, createBuilder, type Rollup } from 'vite'
 import path from 'node:path'
-import type { PluginOptions } from './options.ts'
+import { collectOptimizeDepsInclude, type PluginOptions } from './options.ts'
 import type { RolldownBabelPreset } from './rolldownPreset.ts'
 
 test('plugin works', async () => {
@@ -568,6 +568,73 @@ test('babel syntax error produces enhanced error message', async () => {
     > 1 | export const = ;
         |              ^"
   `)
+})
+
+describe('optimizeDeps.include', () => {
+  test('collectOptimizeDepsInclude merges from presets and overrides', () => {
+    const topPreset: RolldownBabelPreset = {
+      preset: '@babel/preset-react',
+      rolldown: {
+        optimizeDeps: { include: ['react'] },
+      },
+    }
+    const overridePreset: RolldownBabelPreset = {
+      preset: '@babel/preset-react',
+      rolldown: {
+        optimizeDeps: { include: ['react-dom'] },
+      },
+    }
+    const result = collectOptimizeDepsInclude({
+      presets: [topPreset],
+      overrides: [{ presets: [overridePreset] }],
+    })
+    expect(result).toEqual(['react', 'react-dom'])
+  })
+
+  test('collectOptimizeDepsInclude skips plain babel presets', () => {
+    const result = collectOptimizeDepsInclude({
+      presets: ['@babel/preset-env'],
+    })
+    expect(result).toEqual([])
+  })
+
+  test('collectOptimizeDepsInclude returns empty for no optimizeDeps', () => {
+    const preset: RolldownBabelPreset = {
+      preset: '@babel/preset-react',
+      rolldown: {},
+    }
+    const result = collectOptimizeDepsInclude({ presets: [preset] })
+    expect(result).toEqual([])
+  })
+
+  test('config hook returns optimizeDeps.include via Vite build', async () => {
+    const preset: RolldownBabelPreset = {
+      preset: (): babel.InputOptions => ({ plugins: [] }),
+      rolldown: {
+        optimizeDeps: { include: ['react', 'react-dom'] },
+      },
+    }
+    let receivedOptimizeDeps: any
+    await viteBuild({
+      configFile: false,
+      logLevel: 'silent',
+      plugins: [
+        {
+          name: 'capture-config',
+          configResolved(config) {
+            receivedOptimizeDeps = config.optimizeDeps
+          },
+        },
+        babelPlugin({ presets: [preset] }),
+      ],
+      build: {
+        write: false,
+        minify: false,
+        rollupOptions: { input: 'foo.js' },
+      },
+    }).catch(() => {})
+    expect(receivedOptimizeDeps?.include).toEqual(expect.arrayContaining(['react', 'react-dom']))
+  })
 })
 
 async function buildWithVite(

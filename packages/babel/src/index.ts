@@ -1,5 +1,6 @@
 import { Plugin, type HookFilter, type SourceMapInput } from 'rolldown'
 import {
+  collectOptimizeDepsInclude,
   createBabelOptionsConverter,
   filterPresetsWithConfigResolved,
   filterPresetsWithEnvironment,
@@ -19,6 +20,12 @@ async function babelPlugin(rawOptions: PluginOptions): Promise<Plugin> {
     name: '@rolldown/plugin-babel',
     // this plugin should run before TS, JSX, TSX transformations are done
     enforce: 'pre',
+    config() {
+      const include = collectOptimizeDepsInclude(rawOptions)
+      if (include.length > 0) {
+        return { optimizeDeps: { include } }
+      }
+    },
     configResolved(config: ResolvedConfig) {
       configFilteredOptions = filterPresetsWithConfigResolved(rawOptions, config)
       const resolved = resolveOptions(configFilteredOptions)
