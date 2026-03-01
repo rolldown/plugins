@@ -1,0 +1,63 @@
+{
+  "name": "@rolldown/plugin-emotion",
+  "version": "0.1.0",
+  "description": "Rolldown plugin for Emotion CSS-in-JS",
+  "keywords": [
+    "css-in-js",
+    "emotion",
+    "plugin",
+    "rolldown",
+    "rolldown-plugin"
+  ],
+  "homepage": "https://github.com/rolldown/plugins/tree/main/packages/emotion#readme",
+  "bugs": {
+    "url": "https://github.com/rolldown/plugins/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rolldown/plugins.git",
+    "directory": "packages/emotion"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "exports": "./dist/index.mjs",
+  "scripts": {
+    "dev": "tsdown --watch",
+    "build": "tsdown",
+    "test": "vitest --project emotion",
+    "prepublishOnly": "pnpm run build"
+  },
+  "dependencies": {
+    "@emotion/hash": "^0.9.2",
+    "@jridgewell/gen-mapping": "^0.3.13",
+    "rolldown-string": "^0.3.0"
+  },
+  "devDependencies": {
+    "@rolldown/oxc-unshadowed-visitor": "workspace:*",
+    "rolldown": "^1.0.0-rc.9",
+    "tinyglobby": "^0.2.15",
+    "vite": "^8.0.0"
+  },
+  "peerDependencies": {
+    "rolldown": "^1.0.0-rc.9",
+    "vite": "^8.0.0"
+  },
+  "peerDependenciesMeta": {
+    "vite": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=22.12.0 || ^24.0.0"
+  },
+  "compatiblePackages": {
+    "schemaVersion": 1,
+    "rollup": {
+      "type": "incompatible",
+      "reason": "Uses Rolldown-specific APIs"
+    }
+  }
+}
