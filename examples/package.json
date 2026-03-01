@@ -1,0 +1,14 @@
+{
+  "name": "@rolldown/examples",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest --project=e2e:dev --project=e2e:build",
+    "test:dev": "vitest --project=e2e:dev",
+    "test:build": "vitest --project=e2e:build"
+  },
+  "devDependencies": {
+    "playwright-chromium": "^1.58.2",
+    "vite": "^8.0.0"
+  }
+}
