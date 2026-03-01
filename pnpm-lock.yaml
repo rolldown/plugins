@@ -88,6 +88,27 @@ importers:
         specifier: ^0.7.0
         version: 0.7.0(oxc-parser@0.119.0)
 
+  internal-packages/swc-output-gen:
+    dependencies:
+      '@oxc-node/cli':
+        specifier: ^0.0.35
+        version: 0.0.35
+      '@rollup/plugin-swc':
+        specifier: ^0.4.0
+        version: 0.4.0(@swc/core@1.15.18)
+      '@swc/core':
+        specifier: ^1.15.18
+        version: 1.15.18
+      '@swc/plugin-emotion':
+        specifier: ^14.7.0
+        version: 14.7.0
+      rolldown:
+        specifier: ^1.0.0-rc.9
+        version: 1.0.0-rc.9
+      tinyglobby:
+        specifier: ^0.2.15
+        version: 0.2.15
+
   packages/babel:
     dependencies:
       picomatch:
