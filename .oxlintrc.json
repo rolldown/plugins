@@ -7,5 +7,5 @@
   "rules": {
     "no-shadow": "off"
   },
-  "ignorePatterns": ["**/dist/**", "**/fixtures/**", "**/fixtures-labels/**"]
+  "ignorePatterns": ["**/dist/**", "**/fixtures/**", "**/fixtures-labels/**", "**/benchmark/**"]
 }
