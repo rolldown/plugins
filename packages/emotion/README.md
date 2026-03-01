@@ -97,6 +97,29 @@ emotion({
 
 Each entry maps an export name to its canonical Emotion equivalent via `canonicalImport: [packageName, exportName]`.
 
+## Benchmark
+
+Results of the benchmark that can be run by `pnpm bench` in `./benchmark` directory:
+
+```
+  name                          hz      min     max    mean     p75     p99    p995    p999     rme  samples
+· @rolldown/plugin-emotion  9.7954  98.4954  108.83  102.09  103.34  108.83  108.83  108.83  ±2.23%       10
+· @rolldown/plugin-babel    3.7139   254.48  295.01  269.26  277.63  295.01  295.01  295.01  ±3.49%       10
+· @rollup/plugin-swc        7.5542   128.56  139.14  132.38  134.82  139.14  139.14  139.14  ±1.78%       10
+
+@rolldown/plugin-emotion - bench/emotion.bench.ts > Emotion Benchmark
+  1.30x faster than @rollup/plugin-swc
+  2.64x faster than @rolldown/plugin-babel
+```
+
+The benchmark was ran on the following environment:
+
+```
+OS: macOS Tahoe 26.3
+CPU: Apple M4
+Memory: LPDDR5X-7500 32GB
+```
+
 ## License
 
 MIT

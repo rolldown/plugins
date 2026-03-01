@@ -143,4 +143,6 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
 
+.swc
+
 /examples-temp-*
