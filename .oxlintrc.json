@@ -4,5 +4,5 @@
     "correctness": "error",
     "suspicious": "error"
   },
-  "ignorePatterns": ["**/dist/**"]
+  "ignorePatterns": ["**/dist/**", "**/fixtures/**", "**/fixtures-labels/**"]
 }
