@@ -1,6 +1,6 @@
 {
   "name": "@rolldown/plugin-babel",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Rolldown plugin for Babel",
   "keywords": [
     "babel",

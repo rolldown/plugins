@@ -1,3 +1,8 @@
+## <small>[0.1.7](https://github.com/rolldown/plugins/compare/plugin-babel@0.1.6...plugin-babel@0.1.7) (2026-03-02)</small>
+### Bug Fixes
+
+* add proper babel 7 support ([#6](https://github.com/rolldown/plugins/issues/6)) ([d4bface](https://github.com/rolldown/plugins/commit/d4bfacea8c36560ef151276845cb18897633ae86))
+
 ## <small>[0.1.6](https://github.com/rolldown/plugins/compare/plugin-babel@0.1.5...plugin-babel@0.1.6) (2026-02-27)</small>
 ### Features
 
