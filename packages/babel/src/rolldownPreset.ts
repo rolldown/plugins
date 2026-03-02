@@ -1,4 +1,4 @@
-import * as babel from '@babel/core'
+import * as babel from './babelCompat.ts'
 import type { GeneralHookFilter, ModuleTypeFilter } from 'rolldown'
 import type { ResolvedConfig, Plugin as VitePlugin } from 'vite'
 import picomatch from 'picomatch'

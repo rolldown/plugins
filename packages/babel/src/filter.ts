@@ -1,7 +1,7 @@
 import type { HookFilter, GeneralHookFilter, ModuleTypeFilter } from 'rolldown'
 import type { ResolvedPluginOptions } from './options'
 import type { RolldownBabelPresetItem, RolldownBabelPreset } from './rolldownPreset'
-import type { InputOptions } from '@babel/core'
+import type { InputOptions } from './babelCompat'
 import { arrayify } from './utils'
 
 type ConfigApplicableTest = Exclude<InputOptions['include'], undefined>
