@@ -27,7 +27,8 @@ type BabelFileResult = babel.BabelFileResult
 
 export type InputOptions = IsAny<InputOptions8> extends false ? InputOptions8 : TransformOptions
 export type PresetItem = IsAny<PresetItem8> extends false ? PresetItem8 : babel.PluginItem
-export type PluginObject<T = babel.PluginPass> = IsAny<PluginObject8<T>> extends false ? PluginObject8<T> : PluginObj<T>
+export type PluginObject<T = babel.PluginPass> =
+  IsAny<PluginObject8<T>> extends false ? PluginObject8<T> : PluginObj<T>
 export type FileResult = IsAny<FileResult8> extends false ? FileResult8 : BabelFileResult
 
 export const loadOptionsAsync: (
