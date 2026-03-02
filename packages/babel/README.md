@@ -5,7 +5,7 @@ Rolldown plugin for transforming code with [Babel](https://babeljs.io/).
 ## Install
 
 ```bash
-pnpm install @rolldown/plugin-babel @babel/core
+pnpm add -D @rolldown/plugin-babel @babel/core
 ```
 
 ## Usage
@@ -35,12 +35,16 @@ The plugin automatically configures Babel's parser for `.jsx`, `.ts`, and `.tsx`
 
 Only files matching the pattern will be processed.
 
+Note that this option receives [the syntax supported by babel](https://babeljs.io/docs/options#matchpattern) instead of picomatch.
+
 ### `exclude`
 
 - **Type:** `string | RegExp | (string | RegExp)[]`
 - **Default:** `/[\/\\]node_modules[\/\\]/`
 
 Files matching the pattern will be skipped.
+
+Note that this option receives [the syntax supported by babel](https://babeljs.io/docs/options#matchpattern) instead of picomatch.
 
 ### `sourceMap`
 
@@ -141,7 +145,7 @@ Match by file content. Accepts a RegExp, array, or `{ include, exclude }` object
 
 ### `configResolvedHook`
 
-When used with Vite, a preset can define a `configResolvedHook` callback to conditionally enable or disable itself based on the resolved Vite config. The callback receives the `ResolvedConfig` and should return `false` to remove the preset.
+When used with Vite, a preset can define a `configResolvedHook` callback to conditionally enable or disable itself based on the resolved Vite config, similar to [`configResolved` hook](https://vite.dev/guide/api-plugin#configresolved). The callback receives the `ResolvedConfig` and should return `false` to remove the preset.
 
 ```js
 defineRolldownBabelPreset({
@@ -160,7 +164,7 @@ When running without Vite (pure Rolldown), `configResolvedHook` is ignored.
 
 ### `applyToEnvironmentHook`
 
-When used with Vite, a preset can define an `applyToEnvironmentHook` callback to conditionally enable or disable itself based on the Vite environment. The callback receives the `PartialEnvironment` and should return `false` to remove the preset for that environment.
+When used with Vite, a preset can define an `applyToEnvironmentHook` callback to conditionally enable or disable itself based on the Vite environment, similar to [`applyToEnvironment` hook](https://vite.dev/guide/api-environment-plugins#per-environment-plugins). The callback receives the `PartialEnvironment` and should return `false` to remove the preset for that environment.
 
 ```js
 defineRolldownBabelPreset({
@@ -179,7 +183,7 @@ When running without Vite (pure Rolldown), `applyToEnvironmentHook` is ignored.
 
 ### `optimizeDeps`
 
-A preset can declare dependencies that should be pre-bundled by Vite's dependency optimizer. The plugin automatically merges these into `optimizeDeps.include` in the Vite config.
+A preset can declare dependencies that should be pre-bundled by Vite's dependency optimizer. The plugin automatically merges these into [`optimizeDeps.include`](https://vite.dev/config/dep-optimization-options#optimizedeps-include) in the Vite config.
 
 ```js
 defineRolldownBabelPreset({
