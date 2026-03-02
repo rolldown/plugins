@@ -11,7 +11,7 @@ import type {
   PresetConversionContext,
   RolldownBabelPreset,
 } from './rolldownPreset.ts'
-import type * as babel from '@babel/core'
+import type * as babel from './babelCompat.ts'
 import type { ResolvedConfig } from 'vite'
 
 const presetA: babel.PresetItem = () => ({ plugins: [] })

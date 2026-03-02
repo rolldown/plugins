@@ -1,11 +1,12 @@
 import { assert, describe, expect, test } from 'vitest'
 import babelPlugin from './index.ts'
-import * as babel from '@babel/core'
+import * as babel from './babelCompat.ts'
 import { rolldown, type OutputChunk } from 'rolldown'
 import { build as viteBuild, createBuilder, type Rollup } from 'vite'
 import path from 'node:path'
 import { collectOptimizeDepsInclude, type PluginOptions } from './options.ts'
 import type { RolldownBabelPreset } from './rolldownPreset.ts'
+import { stripVTControlCharacters } from 'node:util'
 
 test('plugin works', async () => {
   const result = await build('foo.js', 'export const result = foo', {
@@ -226,7 +227,7 @@ test('wrapPluginVisitorMethod wraps visitor calls', async () => {
   const result = await build('foo.js', 'export const result = foo', {
     plugins: [identifierReplaceBabelPlugin('foo', true)],
     wrapPluginVisitorMethod(_pluginAlias, _visitorType, callback) {
-      return function (this, p, state) {
+      return function (this: any, p, state) {
         wrapCalled = true
         return callback.call(this, p, state)
       }
@@ -553,7 +554,7 @@ test('babel syntax error produces enhanced error message', async () => {
   const err = await build('foo.js', 'export const = ;', {
     plugins: [identifierReplaceBabelPlugin('foo', true)],
   }).catch((e) => e)
-  const normalized = err.message
+  const normalized = stripVTControlCharacters(err.message)
     .replace(/\r\n/g, '\n')
     .replace(/(?:[A-Z]:)?[\\/][^\s:]+[\\/](?=foo\.js)/gi, '<cwd>/')
     .replace(/\n {4,}at .+/g, '')

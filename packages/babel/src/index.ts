@@ -7,7 +7,7 @@ import {
   resolveOptions,
   type PluginOptions,
 } from './options.ts'
-import * as babel from '@babel/core'
+import * as babel from './babelCompat.ts'
 import type { PartialEnvironment, PresetConversionContext } from './rolldownPreset.ts'
 import { calculatePluginFilters } from './filter.ts'
 import type { ResolvedConfig, Plugin as VitePlugin } from 'vite'

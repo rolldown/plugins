@@ -1,4 +1,4 @@
-import * as babel from '@babel/core'
+import * as babel from './babelCompat'
 import type { ResolvedConfig } from 'vite'
 import {
   compilePresetFilter,
