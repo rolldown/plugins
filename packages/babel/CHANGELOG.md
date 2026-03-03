@@ -1,3 +1,12 @@
+## <small>[0.1.8](https://github.com/rolldown/plugins/compare/plugin-babel@0.1.7...plugin-babel@0.1.8) (2026-03-03)</small>
+### Bug Fixes
+
+* **babel:** use substring matching for string code filter ([#7](https://github.com/rolldown/plugins/issues/7)) ([c882cf0](https://github.com/rolldown/plugins/commit/c882cf08d6dbb550c2d9138f246af8dfb6fb5584))
+
+### Documentation
+
+* **babel:** refine README ([8b10c9b](https://github.com/rolldown/plugins/commit/8b10c9bd4945339b47ea766de14f5d9cdc432697))
+
 ## <small>[0.1.7](https://github.com/rolldown/plugins/compare/plugin-babel@0.1.6...plugin-babel@0.1.7) (2026-03-02)</small>
 ### Bug Fixes
 
