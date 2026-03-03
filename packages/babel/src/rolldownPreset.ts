@@ -33,15 +33,18 @@ export type PresetConversionContext = {
 type StringOrRegExp = string | RegExp
 type Matcher = (value: string) => boolean
 
-function compilePattern(pattern: StringOrRegExp): Matcher {
+function compilePattern(pattern: StringOrRegExp, isPath: boolean): Matcher {
   if (pattern instanceof RegExp) {
     return (value) => pattern.test(value)
   }
-  return picomatch(pattern)
+  if (isPath) {
+    return picomatch(pattern)
+  }
+  return (value) => value.includes(pattern)
 }
 
-function compilePatterns(patterns: StringOrRegExp[]): Matcher {
-  const matchers = patterns.map(compilePattern)
+function compilePatterns(patterns: StringOrRegExp[], isPath: boolean): Matcher {
+  const matchers = patterns.map((p) => compilePattern(p, isPath))
   return (value) => matchers.some((m) => m(value))
 }
 
@@ -49,7 +52,10 @@ function compilePatterns(patterns: StringOrRegExp[]): Matcher {
  * Pre-compile a GeneralHookFilter into a single matcher function.
  * Returns undefined when the filter matches everything.
  */
-function compileGeneralHookFilter(filter: GeneralHookFilter | undefined): Matcher | undefined {
+function compileGeneralHookFilter(
+  filter: GeneralHookFilter | undefined,
+  isPath: boolean,
+): Matcher | undefined {
   if (filter == null) return undefined
 
   let include: StringOrRegExp[] | undefined
@@ -64,8 +70,8 @@ function compileGeneralHookFilter(filter: GeneralHookFilter | undefined): Matche
     exclude = filter.exclude != null ? arrayify(filter.exclude) : undefined
   }
 
-  const includeMatcher = include ? compilePatterns(include) : undefined
-  const excludeMatcher = exclude ? compilePatterns(exclude) : undefined
+  const includeMatcher = include ? compilePatterns(include, isPath) : undefined
+  const excludeMatcher = exclude ? compilePatterns(exclude, isPath) : undefined
 
   if (includeMatcher && excludeMatcher) {
     return (value) => !excludeMatcher(value) && includeMatcher(value)
@@ -95,9 +101,9 @@ export function compilePresetFilter(
   filter: RolldownBabelPreset['rolldown']['filter'],
 ): CompiledPresetFilter | undefined {
   if (!filter) return undefined
-  const matchId = compileGeneralHookFilter(filter.id)
+  const matchId = compileGeneralHookFilter(filter.id, true)
   const matchModuleType = compileModuleTypeFilter(filter.moduleType)
-  const matchCode = compileGeneralHookFilter(filter.code)
+  const matchCode = compileGeneralHookFilter(filter.code, false)
   if (!matchId && !matchModuleType && !matchCode) return undefined
   return (ctx) =>
     (!matchId || matchId(ctx.id)) &&

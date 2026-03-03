@@ -148,6 +148,18 @@ describe('createBabelOptionsConverter', () => {
       expect(convert(makeCtx({ code: 'const x = 1' })).presets).toStrictEqual([])
     })
 
+    test('string include uses substring matching', () => {
+      const convert = createBabelOptionsConverter(
+        resolveOptions({
+          presets: [makeRolldownPreset(presetA, { code: 'import React' })],
+        }),
+      )
+      expect(convert(makeCtx({ code: 'import React from "react"' })).presets).toStrictEqual([
+        presetA,
+      ])
+      expect(convert(makeCtx({ code: 'const x = 1' })).presets).toStrictEqual([])
+    })
+
     test('object with include and exclude', () => {
       const convert = createBabelOptionsConverter(
         resolveOptions({
