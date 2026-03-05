@@ -2,5 +2,11 @@ packages:
   - packages/*
   - scripts
 
+catalogs:
+  babel7:
+    '@babel/core': ^7.29.0
+    '@babel/plugin-transform-runtime': ^7.29.0
+    '@babel/runtime': ^7.28.6
+
 patchedDependencies:
   '@vitejs/release-scripts@1.6.0': patches/@vitejs__release-scripts@1.6.0.patch
