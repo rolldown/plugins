@@ -89,7 +89,9 @@ import babel from '@rolldown/plugin-babel'
 // if you are externalizing @babel/runtime
 import fs from 'node:fs'
 import path from 'node:path'
-const packageJson = JSON.parse(fs.readFileSync(path.join(import.meta.dirname, 'package.json'), 'utf8'))
+const packageJson = JSON.parse(
+  fs.readFileSync(path.join(import.meta.dirname, 'package.json'), 'utf8'),
+)
 const babelRuntimeVersion = packageJson.dependencies['@babel/runtime']
 
 // if you are bundling @babel/runtime
