@@ -13,6 +13,17 @@ import { calculatePluginFilters } from './filter.ts'
 import type { ResolvedConfig, Plugin as VitePlugin } from 'vite'
 
 async function babelPlugin(rawOptions: PluginOptions): Promise<Plugin> {
+  if (rawOptions.runtimeVersion) {
+    try {
+      import.meta.resolve('@babel/plugin-transform-runtime')
+    } catch (err) {
+      throw new Error(
+        `Failed to load @babel/plugin-transform-runtime. Please install it to use the runtime option.`,
+        { cause: err },
+      )
+    }
+  }
+
   let configFilteredOptions: PluginOptions | undefined
   const envState = new Map<string | undefined, ReturnType<typeof createBabelOptionsConverter>>()
 
@@ -88,7 +99,17 @@ async function babelPlugin(rawOptions: PluginOptions): Promise<Plugin> {
           filename: id,
         })
         if (!loadedOptions || loadedOptions.plugins.length === 0) {
+          // No plugins to run — @babel/plugin-transform-runtime only affects
+          // how other plugins' helpers are emitted, so skip it too.
           return
+        }
+
+        if (rawOptions.runtimeVersion) {
+          loadedOptions.plugins ??= []
+          loadedOptions.plugins.push([
+            '@babel/plugin-transform-runtime',
+            { version: rawOptions.runtimeVersion },
+          ])
         }
 
         let result: babel.FileResult | null
