@@ -38,6 +38,15 @@ export interface InnerTransformOptions extends Pick<
 
 export interface PluginOptions extends Omit<InnerTransformOptions, 'include' | 'exclude'> {
   /**
+   * When set, automatically adds `@babel/plugin-transform-runtime` so that
+   * babel helpers are imported from `@babel/runtime` instead of being inlined
+   * into every file.
+   *
+   * Requires `@babel/plugin-transform-runtime` and `@babel/runtime` to be installed.
+   */
+  runtimeVersion?: string
+
+  /**
    * If specified, only files matching the pattern will be processed by babel.
    * @default `/\.(?:[jt]sx?|[cm][jt]s)(?:$|\?)/`
    *
@@ -175,8 +184,10 @@ export function createBabelOptionsConverter(options: ResolvedPluginOptions) {
   )
 
   return function (ctx: PresetConversionContext): babel.InputOptions {
+    // Strip plugin-level options that babel doesn't understand
+    const { runtimeVersion: _, ...babelOptions } = options
     return {
-      ...options,
+      ...babelOptions,
       presets: options.presets
         ? filterMap(options.presets, (preset, i) =>
             convertToBabelPresetItem(ctx, preset, presetFilters![i]),

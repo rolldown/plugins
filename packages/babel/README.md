@@ -71,6 +71,43 @@ List of Babel plugins to apply.
 
 Array of additional configurations that are merged into the current configuration. Use with Babel's `test`/`include`/`exclude` options to conditionally apply overrides.
 
+### `runtimeVersion`
+
+- **Type:** `string`
+
+When set, automatically adds [`@babel/plugin-transform-runtime`](https://babeljs.io/docs/babel-plugin-transform-runtime) so that Babel helpers are imported from `@babel/runtime` instead of being inlined into every file. This deduplicates helpers across modules and reduces bundle size.
+
+The value is the version of `@babel/runtime` that is assumed to be installed. If you are externalizing `@babel/runtime` (for example, you are packaging a library), you should set the version range of `@babel/runtime` in your package.json. If you are bundling `@babel/runtime` for your application, you should set the version of `@babel/runtime` that is installed.
+
+```bash
+pnpm add -D @babel/plugin-transform-runtime @babel/runtime
+```
+
+```js
+import babel from '@rolldown/plugin-babel'
+
+// if you are externalizing @babel/runtime
+import fs from 'node:fs'
+import path from 'node:path'
+const packageJson = JSON.parse(
+  fs.readFileSync(path.join(import.meta.dirname, 'package.json'), 'utf8'),
+)
+const babelRuntimeVersion = packageJson.dependencies['@babel/runtime']
+
+// if you are bundling @babel/runtime
+import babelRuntimePackageJson from '@babel/runtime/package.json'
+const babelRuntimeVersion = babelRuntimePackageJson.version
+
+export default {
+  plugins: [
+    babel({
+      runtimeVersion: babelRuntimeVersion,
+      plugins: ['@babel/plugin-proposal-decorators'],
+    }),
+  ],
+}
+```
+
 ### Other Babel options
 
 The following [Babel options](https://babeljs.io/docs/options) are forwarded directly:

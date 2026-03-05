@@ -571,6 +571,58 @@ test('babel syntax error produces enhanced error message', async () => {
   `)
 })
 
+test('runtimeVersion deduplicates helpers via @babel/runtime', async () => {
+  const entryCode = `
+import { decorated } from './dep.js'
+@decorator
+class Entry { method() { return decorated } }
+function decorator(target) { return target }
+export { Entry }
+`
+  const depCode = `
+@decorator
+class Dep { method() { return 42 } }
+function decorator(target) { return target }
+export const decorated = new Dep()
+`
+
+  const files: Record<string, string> = {
+    'entry.js': entryCode,
+    'dep.js': depCode,
+  }
+
+  const babelRuntimeVersion = (
+    await import('@babel/runtime/package.json', { with: { type: 'json' } })
+  ).default.version
+
+  const bundle = await rolldown({
+    input: 'entry.js',
+    external: [/^@babel\/runtime/],
+    plugins: [
+      {
+        name: 'virtual',
+        resolveId(id) {
+          if (id in files) return id
+          if (id === './dep.js') return 'dep.js'
+        },
+        load(id) {
+          if (id in files) return files[id]
+        },
+      },
+      babelPlugin({
+        runtimeVersion: babelRuntimeVersion,
+        plugins: [['@babel/plugin-proposal-decorators', { version: '2023-11' }]],
+      }),
+    ],
+  })
+  const { output } = await bundle.generate()
+  const chunk = output.find((o) => o.type === 'chunk')
+  assert(chunk, 'expected a chunk in output')
+
+  // Helpers should come from @babel/runtime, not be inlined
+  expect(chunk.code).toContain('@babel/runtime')
+})
+
 describe('optimizeDeps.include', () => {
   test('collectOptimizeDepsInclude merges from presets and overrides', () => {
     const topPreset: RolldownBabelPreset = {

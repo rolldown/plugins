@@ -71,8 +71,8 @@ jobs:
           node-version: 24
           cache: 'pnpm'
 
-      - name: Override @babel/core to v7
-        run: yq -i '.overrides."@babel/core" = "^7.29.0"' pnpm-workspace.yaml
+      - name: Override Babel related deps to v7
+        run: yq -i '.overrides."@babel/core" = "catalog:babel7" | .overrides."@babel/plugin-transform-runtime" = "catalog:babel7" | .overrides."@babel/runtime" = "catalog:babel7"' pnpm-workspace.yaml
 
       - name: Install deps
         run: pnpm install --no-frozen-lockfile
