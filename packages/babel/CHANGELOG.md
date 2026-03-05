@@ -1,3 +1,8 @@
+## [0.2.0](https://github.com/rolldown/plugins/compare/plugin-babel@0.1.8...plugin-babel@0.2.0) (2026-03-05)
+### Features
+
+* **babel:** add `runtimeVersion` option for deduplicating Babel helpers ([#8](https://github.com/rolldown/plugins/issues/8)) ([12b084d](https://github.com/rolldown/plugins/commit/12b084df4a8e96c4e54d1ff9a32a999e4da61d7c))
+
 ## <small>[0.1.8](https://github.com/rolldown/plugins/compare/plugin-babel@0.1.7...plugin-babel@0.1.8) (2026-03-03)</small>
 ### Bug Fixes
 
