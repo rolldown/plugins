@@ -550,6 +550,31 @@ describe('per-environment state isolation', () => {
   })
 })
 
+test('jsx file with query string is parsed with jsx plugin', async () => {
+  const result = await build('foo.jsx?query', 'export const result = <div>{__FOO__}</div>', {
+    plugins: [identifierReplaceBabelPlugin('__FOO__', true)],
+  })
+  expect(result.code).toContain('jsx("div"')
+})
+
+test('ts file with query string is parsed with typescript plugin', async () => {
+  const result = await build('foo.ts?query', 'export const result: number = __FOO__', {
+    plugins: [identifierReplaceBabelPlugin('__FOO__', true)],
+  })
+  expect(result.code).toContain('const result = true')
+})
+
+test('tsx file with query string is parsed with typescript and jsx plugins', async () => {
+  const result = await build(
+    'foo.tsx?query',
+    'export const result: JSX.Element = <div>{__FOO__}</div>',
+    {
+      plugins: [identifierReplaceBabelPlugin('__FOO__', true)],
+    },
+  )
+  expect(result.code).toContain('jsx("div"')
+})
+
 test('babel syntax error produces enhanced error message', async () => {
   const err = await build('foo.js', 'export const = ;', {
     plugins: [identifierReplaceBabelPlugin('foo', true)],
@@ -737,7 +762,11 @@ async function build(filename: string, code: string, options: PluginOptions): Pr
         },
         load(id) {
           if (id === filename) {
-            return code
+            const ext = path.extname(id.replace(/\?.*$/, '')).slice(1)
+            return {
+              code,
+              moduleType: extensionToModuleType(ext),
+            }
           }
         },
       },
@@ -747,6 +776,16 @@ async function build(filename: string, code: string, options: PluginOptions): Pr
   const { output } = await bundle.generate()
   assert(output[0].type === 'chunk')
   return output[0]
+}
+
+function extensionToModuleType(ext: string): string | undefined {
+  if (ext === 'tsx' || ext === 'jsx') {
+    return ext
+  }
+  if (ext === 'ts' || ext === 'mts' || ext === 'cts') {
+    return 'ts'
+  }
+  return undefined
 }
 
 function identifierReplaceBabelPlugin(name: string, value: boolean): babel.PluginItem {
