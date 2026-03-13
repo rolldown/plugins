@@ -83,15 +83,15 @@ async function babelPlugin(rawOptions: PluginOptions): Promise<Plugin> {
           },
           overrides: [
             {
-              test: '**/*.jsx',
+              test: /\.jsx(?:$|\?)/,
               parserOpts: { plugins: ['jsx'] },
             },
             {
-              test: '**/*.ts',
+              test: /\.ts(?:$|\?)/,
               parserOpts: { plugins: ['typescript'] },
             },
             {
-              test: '**/*.tsx',
+              test: /\.tsx(?:$|\?)/,
               parserOpts: { plugins: ['typescript', 'jsx'] },
             },
             ...(babelOptions.overrides ?? []),
