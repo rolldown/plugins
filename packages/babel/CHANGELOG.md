@@ -1,3 +1,8 @@
+## <small>[0.2.1](https://github.com/rolldown/plugins/compare/plugin-babel@0.2.0...plugin-babel@0.2.1) (2026-03-13)</small>
+### Bug Fixes
+
+* **babel:** ignore queries when applying ts / jsx parsers ([#11](https://github.com/rolldown/plugins/issues/11)) ([0ce3d49](https://github.com/rolldown/plugins/commit/0ce3d49af31cf869baa3e9aab497179f0c99aa37))
+
 ## [0.2.0](https://github.com/rolldown/plugins/compare/plugin-babel@0.1.8...plugin-babel@0.2.0) (2026-03-05)
 ### Features
 
