@@ -92,7 +92,7 @@ jobs:
   test-passed:
     if: (!cancelled() && !failure())
     needs: [test, test-babel7]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     name: Build & Test Passed or Skipped
     steps:
       - run: echo "Build & Test Passed or Skipped"
@@ -100,7 +100,7 @@ jobs:
   test-failed:
     if: (!cancelled() && failure())
     needs: [test, test-babel7]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     name: Build & Test Failed
     steps:
       - run: echo "Build & Test Failed"
