@@ -752,6 +752,7 @@ async function buildWithVite(
 async function build(filename: string, code: string, options: PluginOptions): Promise<OutputChunk> {
   const bundle = await rolldown({
     input: filename,
+    external: [/^react\/jsx-runtime$/],
     plugins: [
       {
         name: 'virtual',
