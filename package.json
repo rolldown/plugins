@@ -13,12 +13,12 @@
     "ci-publish": "pnpm run --filter=./scripts ci-publish"
   },
   "devDependencies": {
-    "@typescript/native-preview": "7.0.0-dev.20260220.1",
-    "oxfmt": "^0.34.0",
-    "oxlint": "^1.49.0",
-    "oxlint-tsgolint": "^0.14.1",
+    "@typescript/native-preview": "7.0.0-dev.20260314.1",
+    "oxfmt": "^0.40.0",
+    "oxlint": "^1.55.0",
+    "oxlint-tsgolint": "^0.16.0",
     "tsdown": "^0.21.2",
-    "vitest": "^4.0.18"
+    "vitest": "^4.1.0"
   },
-  "packageManager": "pnpm@10.29.2"
+  "packageManager": "pnpm@10.32.1"
 }
