@@ -8,7 +8,7 @@ on:
 jobs:
   release:
     if: github.repository == 'rolldown/plugins'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     permissions:
       contents: write # for yyx990803/release-tag to create a release tag
     steps:
