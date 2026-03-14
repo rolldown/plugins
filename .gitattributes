@@ -1,0 +1,2 @@
+# keep LF as-is even on Windows for consistent hash values across platforms
+* text=auto eol=lf
