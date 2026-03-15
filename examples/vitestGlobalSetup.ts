@@ -16,9 +16,13 @@ export async function setup({ provide, config }: TestProject): Promise<void> {
 
   const isBuild = !!config.provide.isBuild
   tempBaseDir = path.join(import.meta.dirname, `../examples-temp-${isBuild ? 'build' : 'dev'}`)
+  const tsconfigBaseDest = path.join(tempBaseDir, './tsconfig.base.json')
 
   if (!fs.existsSync(tempBaseDir)) {
     fs.mkdirSync(tempBaseDir, { recursive: true })
+  }
+  if (!fs.existsSync(tsconfigBaseDest)) {
+    fs.copyFileSync(path.join(import.meta.dirname, './tsconfig.base.json'), tsconfigBaseDest)
   }
   provide('tempBaseDir', tempBaseDir)
 }
