@@ -71,6 +71,29 @@ jsxRemoveAttributes({
 })
 ```
 
+## Benchmark
+
+Results of the benchmark that can be run by `pnpm bench` in `./benchmark` directory:
+
+```
+  name                                         hz      min     max     mean      p75     p99    p995    p999     rme  samples
+· @rolldown/plugin-jsx-remove-attributes  12.9805  72.0620  107.49  77.0388  74.7614  107.49  107.49  107.49  ±9.99%       10
+· @rolldown/plugin-babel                   5.1662   183.08  223.91   193.56   197.79  223.91  223.91  223.91  ±5.22%       10
+· @rollup/plugin-swc                      11.3756  82.0540  111.68  87.9076  87.6005  111.68  111.68  111.68  ±6.98%       10
+
+@rolldown/plugin-jsx-remove-attributes - bench/jsx-remove-attributes.bench.ts > JSX Remove Attributes Benchmark
+  1.14x faster than @rollup/plugin-swc
+  2.51x faster than @rolldown/plugin-babel
+```
+
+The benchmark was ran on the following environment:
+
+```
+OS: macOS Tahoe 26.3
+CPU: Apple M4
+Memory: LPDDR5X-7500 32GB
+```
+
 ## License
 
 MIT

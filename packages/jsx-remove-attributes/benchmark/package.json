@@ -1,0 +1,32 @@
+{
+  "name": "@rolldown/benchmark-jsx-remove-attributes",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "oxnode scripts/generate-app.ts",
+    "bench": "vitest bench --run",
+    "build:custom": "rolldown -c configs/custom.ts",
+    "build:babel": "rolldown -c configs/babel.ts",
+    "build:swc": "rolldown -c configs/swc.ts"
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "@oxc-node/cli": "^0.0.35",
+    "@rolldown/benchmark-utils": "workspace:*",
+    "@rolldown/plugin-babel": "file:../../babel",
+    "@rolldown/plugin-jsx-remove-attributes": "workspace:*",
+    "@rollup/plugin-swc": "^0.4.0",
+    "@swc/core": "^1.15.18",
+    "@swc/plugin-react-remove-properties": "^12.7.0",
+    "@types/node": "^24.10.13",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "babel-plugin-react-remove-properties": "^0.3.0",
+    "rolldown": "^1.0.0-rc.9"
+  }
+}

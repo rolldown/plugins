@@ -264,6 +264,55 @@ importers:
         specifier: ^8.0.0
         version: 8.0.0(@types/node@24.12.0)(esbuild@0.27.3)
 
+  packages/jsx-remove-attributes/benchmark:
+    dependencies:
+      react:
+        specifier: ^19.2.4
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.2.4
+        version: 19.2.4(react@19.2.4)
+    devDependencies:
+      '@babel/core':
+        specifier: ^7.29.0
+        version: 7.29.0
+      '@oxc-node/cli':
+        specifier: ^0.0.35
+        version: 0.0.35
+      '@rolldown/benchmark-utils':
+        specifier: workspace:*
+        version: link:../../../internal-packages/benchmark-utils
+      '@rolldown/plugin-babel':
+        specifier: file:../../babel
+        version: file:packages/babel(@babel/core@7.29.0)(@babel/plugin-transform-runtime@8.0.0-rc.2(@babel/core@7.29.0))(@babel/runtime@8.0.0-rc.2)(rolldown@1.0.0-rc.9)(vite@8.0.0(@types/node@24.12.0)(esbuild@0.27.3))
+      '@rolldown/plugin-jsx-remove-attributes':
+        specifier: workspace:*
+        version: link:..
+      '@rollup/plugin-swc':
+        specifier: ^0.4.0
+        version: 0.4.0(@swc/core@1.15.18)
+      '@swc/core':
+        specifier: ^1.15.18
+        version: 1.15.18
+      '@swc/plugin-react-remove-properties':
+        specifier: ^12.7.0
+        version: 12.7.0
+      '@types/node':
+        specifier: ^24.10.13
+        version: 24.12.0
+      '@types/react':
+        specifier: ^19.2.14
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.2.3
+        version: 19.2.3(@types/react@19.2.14)
+      babel-plugin-react-remove-properties:
+        specifier: ^0.3.0
+        version: 0.3.1
+      rolldown:
+        specifier: ^1.0.0-rc.9
+        version: 1.0.0-rc.9
+
   scripts:
     devDependencies:
       '@vitejs/release-scripts':
@@ -1642,6 +1691,9 @@ packages:
   babel-plugin-macros@3.1.0:
     resolution: {integrity: sha512-Cg7TFGpIr01vOQNODXOOaGz2NpCU5gl8x1qJFbb6hbZxR7XrcE2vtbAsTAbJ7/xwJtUuJEw8K8Zr/AE0LHlesg==}
     engines: {node: '>=10', npm: '>=6'}
+
+  babel-plugin-react-remove-properties@0.3.1:
+    resolution: {integrity: sha512-JQ0oEgC4P6TZxSqEaoPZdbgE2L38Kz7RgTgGcOUUR24Z19OiGhnhdXkXkwwsYyx6LOr/bMY5ljDADhxDr/JQug==}
 
   baseline-browser-mapping@2.10.0:
     resolution: {integrity: sha512-lIyg0szRfYbiy67j9KN8IyeD7q7hcmqnJ1ddWmNt19ItGpNN64mnllmxUNFIOdOm6by97jlL6wfpTTJrmnjWAA==}
@@ -3602,6 +3654,8 @@ snapshots:
       '@babel/runtime': 7.28.6
       cosmiconfig: 7.1.0
       resolve: 1.22.11
+
+  babel-plugin-react-remove-properties@0.3.1: {}
 
   baseline-browser-mapping@2.10.0: {}
 
