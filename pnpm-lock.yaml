@@ -97,6 +97,34 @@ importers:
         specifier: ^8.0.3
         version: 8.0.3(@types/node@24.12.0)(esbuild@0.27.3)
 
+  examples/styled-jsx:
+    dependencies:
+      react:
+        specifier: ^19.2.4
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.2.4
+        version: 19.2.4(react@19.2.4)
+      styled-jsx:
+        specifier: ^5.1.7
+        version: 5.1.7(@babel/core@8.0.0-rc.3)(react@19.2.4)
+    devDependencies:
+      '@rolldown/plugin-styled-jsx':
+        specifier: workspace:*
+        version: link:../../packages/styled-jsx
+      '@types/react':
+        specifier: ^19.2.14
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.2.3
+        version: 19.2.3(@types/react@19.2.14)
+      '@vitejs/plugin-react':
+        specifier: ^6.0.1
+        version: 6.0.1(@rolldown/plugin-babel@0.2.2(@babel/core@8.0.0-rc.3)(@babel/plugin-transform-runtime@8.0.0-rc.3(@babel/core@8.0.0-rc.3))(@babel/runtime@8.0.0-rc.3)(rolldown@1.0.0-rc.13)(vite@8.0.3(@types/node@24.12.0)(esbuild@0.27.3)))(vite@8.0.3(@types/node@24.12.0)(esbuild@0.27.3))
+      vite:
+        specifier: ^8.0.3
+        version: 8.0.3(@types/node@24.12.0)(esbuild@0.27.3)
+
   internal-packages/benchmark-utils:
     devDependencies:
       '@oxc-node/core':
@@ -1878,6 +1906,9 @@ packages:
     resolution: {integrity: sha512-NUPRluOfOiTKBKvWPtSD4PhFvWCqOi0BGStNWs57X9js7XGTprSmFoz5F0tWhR4WPjNeR9jXqdC7/UpSJTnlRg==}
     engines: {node: '>=18'}
 
+  client-only@0.0.1:
+    resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
+
   compare-func@2.0.0:
     resolution: {integrity: sha512-zHig5N+tPWARooBnb0Zx1MFcdfpyJrfTJ3Y5L+IFvUm8rM74hHz66z0gw0x4tijh5CorKkKUCnW82R2vmpeCRA==}
 
@@ -2527,6 +2558,19 @@ packages:
   strip-final-newline@4.0.0:
     resolution: {integrity: sha512-aulFJcD6YK8V1G7iRB5tigAP4TsHBZZrOV8pjV++zdUwmeV8uzbY7yn6h9MswN62adStNZFuCIx4haBnRuMDaw==}
     engines: {node: '>=18'}
+
+  styled-jsx@5.1.7:
+    resolution: {integrity: sha512-HPLmEIYprxCeWDMLYiaaAhsV3yGfIlCqzuVOybE6fjF3SUJmH67nCoMDO+nAvHNHo46OfvpCNu4Rcue82dMNFg==}
+    engines: {node: '>= 12.0.0'}
+    peerDependencies:
+      '@babel/core': '*'
+      babel-plugin-macros: '*'
+      react: '>= 16.8.0 || 17.x.x || ^18.0.0-0 || ^19.0.0-0'
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+      babel-plugin-macros:
+        optional: true
 
   stylis@4.2.0:
     resolution: {integrity: sha512-Orov6g6BB1sDfYgzWfTHDOxamtX1bE/zo104Dh9e6fqJ3PooipYyfJ0pUmrZO2wAvO8YbEyeFrkV91XTsGMSrw==}
@@ -3919,6 +3963,8 @@ snapshots:
 
   chai@6.2.2: {}
 
+  client-only@0.0.1: {}
+
   compare-func@2.0.0:
     dependencies:
       array-ify: 1.0.0
@@ -4585,6 +4631,13 @@ snapshots:
   strip-final-newline@3.0.0: {}
 
   strip-final-newline@4.0.0: {}
+
+  styled-jsx@5.1.7(@babel/core@8.0.0-rc.3)(react@19.2.4):
+    dependencies:
+      client-only: 0.0.1
+      react: 19.2.4
+    optionalDependencies:
+      '@babel/core': 8.0.0-rc.3
 
   stylis@4.2.0: {}
 
