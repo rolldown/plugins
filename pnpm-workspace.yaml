@@ -1,5 +1,9 @@
 packages:
   - packages/*
+  - packages/*/benchmark
+  - internal-packages/*
+  - examples
+  - examples/*
   - scripts
 
 catalogs:

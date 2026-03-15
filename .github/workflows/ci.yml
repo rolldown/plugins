@@ -48,6 +48,9 @@ jobs:
       - name: Install deps
         run: pnpm install
 
+      - name: Install playwright
+        run: pnpm --filter examples exec playwright install chromium --with-deps
+
       - name: Build
         run: pnpm run build
 
@@ -76,6 +79,9 @@ jobs:
 
       - name: Install deps
         run: pnpm install --no-frozen-lockfile
+
+      - name: Install playwright
+        run: pnpm --filter examples exec playwright install chromium --with-deps
 
       - name: Install @babel/core v7 types
         run: pnpm add -Dw @types/babel__core@^7.20.5

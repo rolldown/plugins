@@ -1,0 +1,12 @@
+{
+  "name": "@rolldown/benchmark-utils",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./seeded-random": "./src/seeded-random.ts"
+  },
+  "devDependencies": {
+    "@oxc-node/core": "^0.0.35"
+  }
+}
