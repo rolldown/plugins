@@ -1,0 +1,10 @@
+# Build outputs
+dist/
+
+# Generated components (regenerated with pnpm generate)
+shared-app/src/components/
+shared-app/src/__generated__/
+!shared-app/src/__generated__/.gitkeep
+
+# SWC plugin cache
+.swc/

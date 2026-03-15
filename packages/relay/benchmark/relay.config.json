@@ -1,0 +1,6 @@
+{
+  "src": "./shared-app/src",
+  "schema": "./schema.graphql",
+  "language": "typescript",
+  "artifactDirectory": "./shared-app/src/__generated__"
+}

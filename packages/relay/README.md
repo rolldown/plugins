@@ -75,6 +75,29 @@ relay({
 })
 ```
 
+## Benchmark
+
+Results of the benchmark that can be run by `pnpm bench` in `./benchmark` directory:
+
+```
+  name                         hz      min      max     mean      p75      p99     p995     p999     rme  samples
+· @rolldown/plugin-relay  14.1509  69.2545  74.9222  70.6669  71.1245  74.9222  74.9222  74.9222  ±1.70%       10
+· @rolldown/plugin-babel   4.7261   209.62   216.36   211.59   211.52   216.36   216.36   216.36  ±0.63%       10
+· @rollup/plugin-swc       8.4390   115.84   125.36   118.50   117.70   125.36   125.36   125.36  ±1.85%       10
+
+@rolldown/plugin-relay - bench/relay.bench.ts > Relay Benchmark
+  1.68x faster than @rollup/plugin-swc
+  2.99x faster than @rolldown/plugin-babel
+```
+
+The benchmark was ran on the following environment:
+
+```
+OS: macOS Tahoe 26.3
+CPU: Apple M4
+Memory: LPDDR5X-7500 32GB
+```
+
 ## License
 
 MIT

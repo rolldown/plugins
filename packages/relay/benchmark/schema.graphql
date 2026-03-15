@@ -1,0 +1,533 @@
+interface Node {
+  id: ID!
+}
+
+type User implements Node {
+  id: ID!
+  name: String
+  title: String
+  body: String
+  createdAt: String
+  updatedAt: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+type Post implements Node {
+  id: ID!
+  name: String
+  title: String
+  body: String
+  createdAt: String
+  updatedAt: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+type Comment implements Node {
+  id: ID!
+  name: String
+  title: String
+  body: String
+  createdAt: String
+  updatedAt: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+type Profile implements Node {
+  id: ID!
+  name: String
+  title: String
+  body: String
+  createdAt: String
+  updatedAt: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+type Settings implements Node {
+  id: ID!
+  name: String
+  title: String
+  body: String
+  createdAt: String
+  updatedAt: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+type Team implements Node {
+  id: ID!
+  name: String
+  title: String
+  body: String
+  createdAt: String
+  updatedAt: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+type Project implements Node {
+  id: ID!
+  name: String
+  title: String
+  body: String
+  createdAt: String
+  updatedAt: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+type Task implements Node {
+  id: ID!
+  name: String
+  title: String
+  body: String
+  createdAt: String
+  updatedAt: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+type Message implements Node {
+  id: ID!
+  name: String
+  title: String
+  body: String
+  createdAt: String
+  updatedAt: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+type Notification implements Node {
+  id: ID!
+  name: String
+  title: String
+  body: String
+  createdAt: String
+  updatedAt: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+type Feed implements Node {
+  id: ID!
+  name: String
+  title: String
+  body: String
+  createdAt: String
+  updatedAt: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+type Album implements Node {
+  id: ID!
+  name: String
+  title: String
+  body: String
+  createdAt: String
+  updatedAt: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+type Photo implements Node {
+  id: ID!
+  name: String
+  title: String
+  body: String
+  createdAt: String
+  updatedAt: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+type Video implements Node {
+  id: ID!
+  name: String
+  title: String
+  body: String
+  createdAt: String
+  updatedAt: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+type Event implements Node {
+  id: ID!
+  name: String
+  title: String
+  body: String
+  createdAt: String
+  updatedAt: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+type Group implements Node {
+  id: ID!
+  name: String
+  title: String
+  body: String
+  createdAt: String
+  updatedAt: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+type Page implements Node {
+  id: ID!
+  name: String
+  title: String
+  body: String
+  createdAt: String
+  updatedAt: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+type Story implements Node {
+  id: ID!
+  name: String
+  title: String
+  body: String
+  createdAt: String
+  updatedAt: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+type Article implements Node {
+  id: ID!
+  name: String
+  title: String
+  body: String
+  createdAt: String
+  updatedAt: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+type Review implements Node {
+  id: ID!
+  name: String
+  title: String
+  body: String
+  createdAt: String
+  updatedAt: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+input UpdateUserInput {
+  name: String
+  title: String
+  body: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+input UpdatePostInput {
+  name: String
+  title: String
+  body: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+input UpdateCommentInput {
+  name: String
+  title: String
+  body: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+input UpdateProfileInput {
+  name: String
+  title: String
+  body: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+input UpdateSettingsInput {
+  name: String
+  title: String
+  body: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+input UpdateTeamInput {
+  name: String
+  title: String
+  body: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+input UpdateProjectInput {
+  name: String
+  title: String
+  body: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+input UpdateTaskInput {
+  name: String
+  title: String
+  body: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+input UpdateMessageInput {
+  name: String
+  title: String
+  body: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+input UpdateNotificationInput {
+  name: String
+  title: String
+  body: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+input UpdateFeedInput {
+  name: String
+  title: String
+  body: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+input UpdateAlbumInput {
+  name: String
+  title: String
+  body: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+input UpdatePhotoInput {
+  name: String
+  title: String
+  body: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+input UpdateVideoInput {
+  name: String
+  title: String
+  body: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+input UpdateEventInput {
+  name: String
+  title: String
+  body: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+input UpdateGroupInput {
+  name: String
+  title: String
+  body: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+input UpdatePageInput {
+  name: String
+  title: String
+  body: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+input UpdateStoryInput {
+  name: String
+  title: String
+  body: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+input UpdateArticleInput {
+  name: String
+  title: String
+  body: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+input UpdateReviewInput {
+  name: String
+  title: String
+  body: String
+  status: String
+  email: String
+  avatar: String
+  description: String
+}
+
+type Query {
+  node(id: ID!): Node
+  user: User
+  post: Post
+  comment: Comment
+  profile: Profile
+  settings: Settings
+  team: Team
+  project: Project
+  task: Task
+  message: Message
+  notification: Notification
+  feed: Feed
+  album: Album
+  photo: Photo
+  video: Video
+  event: Event
+  group: Group
+  page: Page
+  story: Story
+  article: Article
+  review: Review
+}
+
+type Mutation {
+  updateUser(input: UpdateUserInput!): User
+  updatePost(input: UpdatePostInput!): Post
+  updateComment(input: UpdateCommentInput!): Comment
+  updateProfile(input: UpdateProfileInput!): Profile
+  updateSettings(input: UpdateSettingsInput!): Settings
+  updateTeam(input: UpdateTeamInput!): Team
+  updateProject(input: UpdateProjectInput!): Project
+  updateTask(input: UpdateTaskInput!): Task
+  updateMessage(input: UpdateMessageInput!): Message
+  updateNotification(input: UpdateNotificationInput!): Notification
+  updateFeed(input: UpdateFeedInput!): Feed
+  updateAlbum(input: UpdateAlbumInput!): Album
+  updatePhoto(input: UpdatePhotoInput!): Photo
+  updateVideo(input: UpdateVideoInput!): Video
+  updateEvent(input: UpdateEventInput!): Event
+  updateGroup(input: UpdateGroupInput!): Group
+  updatePage(input: UpdatePageInput!): Page
+  updateStory(input: UpdateStoryInput!): Story
+  updateArticle(input: UpdateArticleInput!): Article
+  updateReview(input: UpdateReviewInput!): Review
+}
+
+type Subscription {
+  onUserUpdated: User
+  onPostUpdated: Post
+  onCommentUpdated: Comment
+  onProfileUpdated: Profile
+  onSettingsUpdated: Settings
+  onTeamUpdated: Team
+  onProjectUpdated: Project
+  onTaskUpdated: Task
+  onMessageUpdated: Message
+  onNotificationUpdated: Notification
+  onFeedUpdated: Feed
+  onAlbumUpdated: Album
+  onPhotoUpdated: Photo
+  onVideoUpdated: Video
+  onEventUpdated: Event
+  onGroupUpdated: Group
+  onPageUpdated: Page
+  onStoryUpdated: Story
+  onArticleUpdated: Article
+  onReviewUpdated: Review
+}
