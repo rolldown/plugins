@@ -7,7 +7,7 @@ process.chdir(path.join(import.meta.dirname, '..'))
 
 await release({
   repo: 'rolldown/plugins',
-  packages: ['plugin-babel'],
+  packages: ['plugin-babel', 'plugin-emotion'],
   toTag: (pkg, version) => `${pkg}@${version}`,
   logChangelog: (pkg) => logRecentCommits(pkg, getPkgDir(pkg)),
   getPkgDir,
