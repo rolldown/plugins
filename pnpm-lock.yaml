@@ -139,6 +139,12 @@ importers:
       '@rollup/plugin-swc':
         specifier: ^0.4.0
         version: 0.4.0(@swc/core@1.15.21)
+      '@swc-jotai/debug-label':
+        specifier: ^0.5.0
+        version: 0.5.0
+      '@swc-jotai/react-refresh':
+        specifier: ^0.5.0
+        version: 0.5.0
       '@swc/core':
         specifier: ^1.15.21
         version: 1.15.21
@@ -268,6 +274,22 @@ importers:
       rolldown:
         specifier: ^1.0.0-rc.12
         version: 1.0.0-rc.12
+
+  packages/jotai:
+    dependencies:
+      rolldown-string:
+        specifier: ^0.3.0
+        version: 0.3.0(rolldown@1.0.0-rc.13)
+    devDependencies:
+      rolldown:
+        specifier: ^1.0.0-rc.9
+        version: 1.0.0-rc.13
+      tinyglobby:
+        specifier: ^0.2.15
+        version: 0.2.15
+      vite:
+        specifier: ^8.0.0
+        version: 8.0.3(@types/node@24.12.0)(esbuild@0.27.3)
 
   packages/jsx-remove-attributes:
     dependencies:
@@ -1678,6 +1700,12 @@ packages:
 
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
+
+  '@swc-jotai/debug-label@0.5.0':
+    resolution: {integrity: sha512-qaQ2cBlNrrtyeplZY82riSw79t84TwvIWG2tzs5vUR8QF93HOP6iKnjuN7Q2T5tmrUzYw5aibIiNUPyg+/hPaA==}
+
+  '@swc-jotai/react-refresh@0.5.0':
+    resolution: {integrity: sha512-TXCQJ/eZ8mZXGnO0W1nK73VKGDt5dVsrPd3wSYypLOth5tSdBRtbU2opYeUJEXY4iUI5sVu1zUAmRJSJ7V+h8A==}
 
   '@swc/core-darwin-arm64@1.15.21':
     resolution: {integrity: sha512-SA8SFg9dp0qKRH8goWsax6bptFE2EdmPf2YRAQW9WoHGf3XKM1bX0nd5UdwxmC5hXsBUZAYf7xSciCler6/oyA==}
@@ -3881,6 +3909,10 @@ snapshots:
   '@sindresorhus/merge-streams@4.0.0': {}
 
   '@standard-schema/spec@1.1.0': {}
+
+  '@swc-jotai/debug-label@0.5.0': {}
+
+  '@swc-jotai/react-refresh@0.5.0': {}
 
   '@swc/core-darwin-arm64@1.15.21':
     optional: true

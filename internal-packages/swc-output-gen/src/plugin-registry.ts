@@ -26,6 +26,34 @@ export const pluginRegistry: Record<string, PluginConfig> = {
     mapOptions: (config) => [['@swc/plugin-emotion', config]],
     shouldSkip: () => false,
   },
+  jotai: {
+    packages: ['@swc-jotai/debug-label', '@swc-jotai/react-refresh'],
+    mapOptions: (config, ctx) => {
+      // Strip `filename` — it's our custom field, not recognized by SWC plugins
+      const { filename: _, ...swcConfig } = config
+      // Route to correct SWC plugin based on fixture subdirectory
+      if (ctx.fixtureDir.includes('/debug-label/')) {
+        return [['@swc-jotai/debug-label', swcConfig]]
+      }
+      if (ctx.fixtureDir.includes('/react-refresh/')) {
+        return [['@swc-jotai/react-refresh', swcConfig]]
+      }
+      return [
+        ['@swc-jotai/debug-label', swcConfig],
+        ['@swc-jotai/react-refresh', swcConfig],
+      ]
+    },
+    shouldSkip: (_config, ctx) => {
+      // SWC debug-label uses the virtual entry filename as the variable name for
+      // default exports, producing `const virtual:entry = ...` which is invalid JS
+      if (ctx.fixtureDir.includes('/debug-label/') && ctx.fixtureDir.includes('default-export')) {
+        return true
+      }
+      // JSX fixtures with .js input files can't be parsed by rolldown in the SWC pipeline
+      if (ctx.fixtureDir.includes('nextjs-')) return true
+      return false
+    },
+  },
   'jsx-remove-attributes': {
     packages: ['@swc/plugin-react-remove-properties'],
     mapOptions: (config) => {
