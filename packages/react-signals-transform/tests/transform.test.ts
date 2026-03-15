@@ -1,10 +1,7 @@
 // @ts-nocheck
 
-import { transform, traverse } from '@babel/core'
-import type { Visitor } from '@babel/core'
-import type { Scope } from '@babel/traverse'
 import prettier from 'prettier'
-import signalsTransform, { PluginOptions } from '../src/babel.ts'
+import signalsTransform, { type ReactSignalsTransformPluginOptions } from '../src/index.ts'
 import {
   CommentKind,
   GeneratedCode,
@@ -37,30 +34,51 @@ const DEBUG_TEST_IDS: string[] | boolean = []
 
 const format = (code: string) => prettier.format(code, { parser: 'babel' })
 
-function transformCode(code: string, options?: PluginOptions, filename?: string, cjs?: boolean) {
-  const signalsPluginConfig: any[] = [signalsTransform]
-  if (options) {
-    signalsPluginConfig.push(options)
+function normalizeTransformedCode(code: string): string {
+  return code
+    .replace(
+      /^(import \{ useSignals as _useSignals \} from [^\n]+;|var _useSignals = require\([^\n]+\)\.useSignals;?)\n\n/m,
+      '$1\n',
+    )
+    .replace(/\{\n\s+children: ([^\n]+),?\n\s*\}/g, '{ children: $1 }')
+    .replace(/\{\n\s+name: ([^,\n]+),?\n\s*\}/g, '{ name: $1 }')
+    .replace(
+      /\{\n\s+name: ([^,\n]+),\n\s+watched: \(\) => \{\},?\n\s*\}/g,
+      '{ name: $1, watched: () => {} }',
+    )
+}
+
+async function transformCode(
+  code: string,
+  options?: ReactSignalsTransformPluginOptions,
+  filename = 'virtual:entry.jsx',
+): Promise<string> {
+  const plugin = signalsTransform(options)
+  const handler = plugin.transform?.handler
+  if (handler == null) {
+    return code
   }
 
-  const result = transform(code, {
-    filename,
-    plugins: [signalsPluginConfig, '@babel/plugin-syntax-jsx'],
-    sourceType: cjs ? 'script' : undefined,
-  })
+  const result = await handler.call({}, code, filename, undefined)
 
-  return result?.code || ''
+  if (result == null) {
+    return code
+  }
+
+  return typeof result === 'string' ? result : result.code
 }
 
 async function runTest(
   input: string,
   expected: string,
-  options: PluginOptions = { mode: 'auto' },
+  options: ReactSignalsTransformPluginOptions = { mode: 'auto' },
   filename?: string,
-  cjs?: boolean,
+  _cjs?: boolean,
 ) {
-  const output = transformCode(input, options, filename, cjs)
-  expect(await format(output)).to.equal(await format(expected))
+  const output = await transformCode(input, options, filename)
+  expect(await format(normalizeTransformedCode(output))).to.equal(
+    await format(normalizeTransformedCode(expected)),
+  )
 }
 
 interface TestCaseConfig {
@@ -71,7 +89,7 @@ interface TestCaseConfig {
   /** What kind of opt-in or opt-out to include if any */
   comment?: CommentKind
   /** Options to pass to the babel plugin */
-  options: PluginOptions
+  options: ReactSignalsTransformPluginOptions
   /** The filename to run the transform under */
   filename?: string
 }
@@ -869,52 +887,22 @@ describe('React Signals Babel Transform', () => {
   })
 
   describe('scope tracking', () => {
-    interface VisitorState {
-      programScope?: Scope
-    }
+    it('adds an import declaration and usage for useSignals', async () => {
+      const output = await transformCode(
+        `
+          const MyComponent = () => {
+            signal.value;
+            return <div>Hello World</div>;
+          };
+        `,
+        { mode: 'auto' },
+        'Component.jsx',
+      )
 
-    const programScopeVisitor: Visitor<VisitorState> = {
-      Program: {
-        exit(path, state) {
-          state.programScope = path.scope
-        },
-      },
-    }
-
-    function getRootScope(code: string) {
-      const signalsPluginConfig: any[] = [signalsTransform]
-      const result = transform(code, {
-        ast: true,
-        plugins: [signalsPluginConfig, '@babel/plugin-syntax-jsx'],
-      })
-      if (!result) {
-        throw new Error('Could not transform code')
-      }
-
-      const state: VisitorState = {}
-      traverse(result.ast!, programScopeVisitor, undefined, state)
-
-      const scope = state.programScope
-      if (!scope) {
-        throw new Error('Could not find program scope')
-      }
-
-      return scope
-    }
-
-    it('adds newly inserted import declarations and usages to program scope', () => {
-      const scope = getRootScope(`
-				const MyComponent = () => {
-					signal.value;
-					return <div>Hello World</div>;
-				};
-			`)
-
-      scope.path.scope.crawl()
-      const signalsBinding = scope.bindings['_useSignals']
-      expect(signalsBinding).toBeDefined()
-      expect(signalsBinding?.kind).toBe('module')
-      expect(signalsBinding?.referenced).toBe(true)
+      expect(output).toContain(
+        `import { useSignals as _useSignals } from "@preact/signals-react/runtime";`,
+      )
+      expect(output).toContain('_useSignals(1)')
     })
   })
 

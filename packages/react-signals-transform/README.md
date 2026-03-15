@@ -1,8 +1,8 @@
 # @rolldown/plugin-react-signals-transform [![npm](https://img.shields.io/npm/v/@rolldown/plugin-react-signals-transform.svg)](https://npmx.dev/package/@rolldown/plugin-react-signals-transform)
 
-Rolldown plugin for [`@preact/signals-react-transform`](https://www.npmjs.com/package/@preact/signals-react-transform).
+Rolldown plugin for the React Signals transform.
 
-It applies the Signals React transform during Rolldown builds so React components and hooks can automatically subscribe to signal reads without wiring Babel up manually.
+It applies the Signals React transform during Rolldown builds with Rolldown's native magic string pipeline, so React components and hooks can automatically subscribe to signal reads without wiring Babel up manually.
 
 ## Install
 
