@@ -1,0 +1,77 @@
+{
+  "name": "@rolldown/plugin-react-signals-transform",
+  "version": "0.1.0",
+  "description": "Rolldown plugin for @preact/signals-react-transform",
+  "keywords": [
+    "plugin",
+    "react",
+    "rolldown",
+    "rolldown-plugin",
+    "signals"
+  ],
+  "homepage": "https://github.com/rolldown/plugins/tree/main/packages/react-signals-transform#readme",
+  "bugs": {
+    "url": "https://github.com/rolldown/plugins/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rolldown/plugins.git",
+    "directory": "packages/react-signals-transform"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "exports": "./dist/index.mjs",
+  "scripts": {
+    "dev": "tsdown --watch",
+    "build": "tsdown",
+    "test": "vitest --project react-signals-transform",
+    "prepublishOnly": "pnpm run build"
+  },
+  "dependencies": {
+    "@babel/core": "^7.28.4",
+    "@babel/helper-module-imports": "^7.27.1",
+    "@babel/traverse": "^7.28.4",
+    "debug": "^4.4.3"
+  },
+  "devDependencies": {
+    "@babel/plugin-syntax-jsx": "^7.27.1",
+    "@preact/signals-core": "^1.12.1",
+    "@preact/signals-react": "^3.9.1",
+    "@types/babel__core": "^7.20.5",
+    "@types/babel__helper-module-imports": "^7.18.3",
+    "@types/babel__traverse": "^7.20.7",
+    "@types/debug": "^4.1.12",
+    "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.3.7",
+    "jsdom": "^26.1.0",
+    "prettier": "^3.6.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rolldown": "^1.0.0-rc.9",
+    "vite": "^8.0.0"
+  },
+  "peerDependencies": {
+    "@preact/signals-react": "^3.9.1",
+    "react": "^16.14.0 || 17.x || 18.x || 19.x",
+    "rolldown": "^1.0.0-rc.9",
+    "vite": "^8.0.0"
+  },
+  "peerDependenciesMeta": {
+    "vite": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=22.12.0 || ^24.0.0"
+  },
+  "compatiblePackages": {
+    "schemaVersion": 1,
+    "rollup": {
+      "type": "incompatible",
+      "reason": "Uses Rolldown-specific APIs"
+    }
+  }
+}
