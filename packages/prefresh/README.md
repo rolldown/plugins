@@ -48,6 +48,29 @@ prefresh({
 
 Enable or disable the transform. When used with Vite, the plugin automatically detects the environment. When used with Rolldown directly, it checks `process.env.NODE_ENV`.
 
+## Benchmark
+
+Results of the benchmark that can be run by `pnpm bench` in `./benchmark` directory:
+
+```
+name                           hz     min     max    mean     p75     p99    p995    p999     rme  samples
+· @rolldown/plugin-prefresh  7.7340  123.59  140.14  129.30  129.53  140.14  140.14  140.14  ±2.57%       10
+· @rolldown/plugin-babel     3.6874  254.66  374.95  271.19  263.76  374.95  374.95  374.95  ±9.70%       10
+· @rollup/plugin-swc         6.7767  143.32  166.00  147.56  146.57  166.00  166.00  166.00  ±3.17%       10
+
+@rolldown/plugin-prefresh - bench/prefresh.bench.ts > Prefresh Benchmark
+  1.14x faster than @rollup/plugin-swc
+  2.10x faster than @rolldown/plugin-babel
+```
+
+The benchmark was ran on the following environment:
+
+```
+OS: macOS Tahoe 26.3
+CPU: Apple M4
+Memory: LPDDR5X-7500 32GB
+```
+
 ## License
 
 MIT

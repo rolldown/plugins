@@ -1,0 +1,29 @@
+{
+  "name": "@rolldown/benchmark-prefresh",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "oxnode scripts/generate-app.ts",
+    "bench": "vitest bench --run",
+    "build:custom": "rolldown -c configs/custom.ts",
+    "build:babel": "rolldown -c configs/babel.ts",
+    "build:swc": "rolldown -c configs/swc.ts"
+  },
+  "dependencies": {
+    "preact": "^10.29.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "@oxc-node/cli": "^0.0.35",
+    "@prefresh/babel-plugin": "^0.5.3",
+    "@rolldown/benchmark-utils": "workspace:*",
+    "@rolldown/plugin-babel": "file:../../babel",
+    "@rolldown/plugin-prefresh": "workspace:*",
+    "@rollup/plugin-swc": "^0.4.0",
+    "@swc/core": "^1.15.18",
+    "@swc/plugin-prefresh": "^12.7.0",
+    "@types/node": "^24.10.13",
+    "rolldown": "^1.0.0-rc.9"
+  }
+}
