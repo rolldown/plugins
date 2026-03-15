@@ -148,6 +148,9 @@ importers:
       '@swc/plugin-react-remove-properties':
         specifier: ^12.7.0
         version: 12.7.0
+      '@swc/plugin-styled-jsx':
+        specifier: ^13.8.0
+        version: 13.8.0
       rolldown:
         specifier: ^1.0.0-rc.12
         version: 1.0.0-rc.12

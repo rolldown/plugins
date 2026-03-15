@@ -7,6 +7,7 @@
  *   pnpm generate:swc-outputs --dry-run          # Preview only
  */
 
+import { existsSync, unlinkSync } from 'node:fs'
 import { readFile, writeFile } from 'node:fs/promises'
 import { basename, dirname, join, relative } from 'node:path'
 import { glob } from 'tinyglobby'
@@ -159,15 +160,29 @@ async function processFixture(inputPath: string, dryRun: boolean): Promise<Proce
     const outputPath = join(fixtureDir, 'output.swc.js')
     await writeFile(outputPath, output, 'utf-8')
 
+    // Clean up stale error file from a previous failed run
+    const staleErrorPath = join(fixtureDir, 'error.swc.txt')
+    if (existsSync(staleErrorPath)) unlinkSync(staleErrorPath)
+
     return {
       fixture: relativePath,
       status: 'success',
     }
   } catch (error) {
+    const message = error instanceof Error ? error.message : String(error)
+
+    // Write error output
+    const errorPath = join(fixtureDir, 'error.swc.txt')
+    await writeFile(errorPath, message, 'utf-8')
+
+    // Clean up stale output file from a previous successful run
+    const staleOutputPath = join(fixtureDir, 'output.swc.js')
+    if (existsSync(staleOutputPath)) unlinkSync(staleOutputPath)
+
     return {
       fixture: relativePath,
       status: 'error',
-      message: error instanceof Error ? error.message : String(error),
+      message,
     }
   }
 }
@@ -208,10 +223,6 @@ async function main() {
   const errors = results.filter((r) => r.status === 'error').length
 
   console.log(`\nSummary: ${success} success, ${skipped} skipped, ${errors} errors`)
-
-  if (errors > 0) {
-    process.exit(1)
-  }
 }
 
 main().catch((error) => {

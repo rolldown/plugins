@@ -36,6 +36,16 @@ export const pluginRegistry: Record<string, PluginConfig> = {
       return [['@swc/plugin-react-remove-properties', swcConfig]]
     },
   },
+  'styled-jsx': {
+    packages: ['@swc/plugin-styled-jsx'],
+    mapOptions: (config) => {
+      const swcConfig = {
+        useLightningcss: true,
+        ...config,
+      }
+      return [['@swc/plugin-styled-jsx', swcConfig]]
+    },
+  },
 }
 
 /** Get list of all supported plugin names */
