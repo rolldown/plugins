@@ -121,6 +121,9 @@ importers:
       '@swc/plugin-emotion':
         specifier: ^14.7.0
         version: 14.7.0
+      '@swc/plugin-prefresh':
+        specifier: ^12.7.0
+        version: 12.7.0
       rolldown:
         specifier: ^1.0.0-rc.9
         version: 1.0.0-rc.9
