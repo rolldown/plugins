@@ -72,6 +72,31 @@ importers:
         specifier: 8.0.0
         version: 8.0.0(@types/node@24.12.0)(esbuild@0.27.3)
 
+  examples/jsx-remove-attributes:
+    dependencies:
+      react:
+        specifier: ^19.2.4
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.2.4
+        version: 19.2.4(react@19.2.4)
+    devDependencies:
+      '@rolldown/plugin-jsx-remove-attributes':
+        specifier: workspace:*
+        version: link:../../packages/jsx-remove-attributes
+      '@types/react':
+        specifier: ^19.2.14
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.2.3
+        version: 19.2.3(@types/react@19.2.14)
+      '@vitejs/plugin-react':
+        specifier: ^6.0.1
+        version: 6.0.1(@rolldown/plugin-babel@0.2.1(@babel/core@8.0.0-rc.2)(@babel/plugin-transform-runtime@8.0.0-rc.2(@babel/core@8.0.0-rc.2))(@babel/runtime@8.0.0-rc.2)(rolldown@1.0.0-rc.9)(vite@8.0.0(@types/node@24.12.0)(esbuild@0.27.3)))(vite@8.0.0(@types/node@24.12.0)(esbuild@0.27.3))
+      vite:
+        specifier: ^8.0.0
+        version: 8.0.0(@types/node@24.12.0)(esbuild@0.27.3)
+
   internal-packages/benchmark-utils:
     devDependencies:
       '@oxc-node/core':
