@@ -7,10 +7,12 @@
     "format": "oxfmt .",
     "lint": "oxlint --type-aware --type-check .",
     "test": "vitest",
+    "test:e2e": "vitest --project=e2e",
     "dev": "pnpm -r --parallel --filter=\"./packages/*\" run dev",
     "build": "pnpm -r --filter=\"./packages/*\" run build",
     "release": "pnpm run --filter=./scripts release",
-    "ci-publish": "pnpm run --filter=./scripts ci-publish"
+    "ci-publish": "pnpm run --filter=./scripts ci-publish",
+    "generate:swc-outputs": "pnpm run --filter=@rolldown/swc-output-gen generate"
   },
   "devDependencies": {
     "@typescript/native-preview": "7.0.0-dev.20260314.1",

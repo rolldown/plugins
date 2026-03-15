@@ -1,0 +1,34 @@
+{
+  "name": "@rolldown/benchmark-emotion",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "oxnode scripts/generate-app.ts",
+    "bench": "vitest bench --run",
+    "build:custom": "rolldown -c configs/custom.ts",
+    "build:babel": "rolldown -c configs/babel.ts",
+    "build:swc": "rolldown -c configs/swc.ts"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "@emotion/babel-plugin": "^11.13.5",
+    "@oxc-node/cli": "^0.0.35",
+    "@rolldown/benchmark-utils": "workspace:*",
+    "@rolldown/plugin-babel": "file:../../babel",
+    "@rolldown/plugin-emotion": "workspace:*",
+    "@rollup/plugin-swc": "^0.4.0",
+    "@swc/core": "^1.15.18",
+    "@swc/plugin-emotion": "^14.7.0",
+    "@types/node": "^24.10.13",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "rolldown": "^1.0.0-rc.9"
+  }
+}

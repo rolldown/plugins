@@ -4,5 +4,8 @@
     "correctness": "error",
     "suspicious": "error"
   },
-  "ignorePatterns": ["**/dist/**"]
+  "rules": {
+    "no-shadow": "off"
+  },
+  "ignorePatterns": ["**/dist/**", "**/fixtures/**", "**/fixtures-labels/**", "**/benchmark/**"]
 }
