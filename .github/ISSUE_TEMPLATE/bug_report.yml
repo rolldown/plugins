@@ -17,6 +17,8 @@ body:
             [plugin-babel](https://github.com/rolldown/plugins/tree/main/packages/babel)
         - label: |
             [plugin-emotion](https://github.com/rolldown/plugins/tree/main/packages/emotion)
+        - label: |
+            [plugin-jsx-remove-attributes](https://github.com/rolldown/plugins/tree/main/packages/jsx-remove-attributes)
   - type: textarea
     id: bug-description
     attributes:

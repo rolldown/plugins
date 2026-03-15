@@ -26,6 +26,16 @@ export const pluginRegistry: Record<string, PluginConfig> = {
     mapOptions: (config) => [['@swc/plugin-emotion', config]],
     shouldSkip: () => false,
   },
+  'jsx-remove-attributes': {
+    packages: ['@swc/plugin-react-remove-properties'],
+    mapOptions: (config) => {
+      const swcConfig: Record<string, unknown> = {}
+      if (config.attributes) {
+        swcConfig.properties = config.attributes
+      }
+      return [['@swc/plugin-react-remove-properties', swcConfig]]
+    },
+  },
 }
 
 /** Get list of all supported plugin names */

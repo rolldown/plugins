@@ -2,3 +2,5 @@
   - '/- \[x\] \[plugin-babel\]/i'
 'plugin: emotion':
   - '/- \[x\] \[plugin-emotion\]/i'
+'plugin: jsx-remove-attributes':
+  - '/- \[x\] \[plugin-jsx-remove-attributes\]/i'
