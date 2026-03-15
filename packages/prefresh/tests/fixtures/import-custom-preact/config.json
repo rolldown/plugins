@@ -1,0 +1,3 @@
+{
+  "library": ["@custom/preact", "preact", "react"]
+}

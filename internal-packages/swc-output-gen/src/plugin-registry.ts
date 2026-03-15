@@ -26,6 +26,10 @@ export const pluginRegistry: Record<string, PluginConfig> = {
     mapOptions: (config) => [['@swc/plugin-emotion', config]],
     shouldSkip: () => false,
   },
+  prefresh: {
+    packages: ['@swc/plugin-prefresh'],
+    mapOptions: (config) => [['@swc/plugin-prefresh', config]],
+  },
 }
 
 /** Get list of all supported plugin names */

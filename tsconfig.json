@@ -1,4 +1,9 @@
 {
-  "references": [{ "path": "./tsconfig.common.json" }, { "path": "./examples/tsconfig.json" }],
+  "references": [
+    { "path": "./tsconfig.common.json" },
+    { "path": "./examples/tsconfig.root.json" },
+    { "path": "./examples/emotion/tsconfig.json" },
+    { "path": "./examples/prefresh/tsconfig.json" }
+  ],
   "include": []
 }

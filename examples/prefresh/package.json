@@ -1,0 +1,19 @@
+{
+  "name": "@rolldown/example-prefresh",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "preact": "^10.29.0"
+  },
+  "devDependencies": {
+    "@prefresh/core": "^1.5.9",
+    "@prefresh/utils": "^1.2.1",
+    "@rolldown/plugin-prefresh": "workspace:*",
+    "vite": "^8.0.0"
+  }
+}
