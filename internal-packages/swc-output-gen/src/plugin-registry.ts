@@ -26,6 +26,16 @@ export const pluginRegistry: Record<string, PluginConfig> = {
     mapOptions: (config) => [['@swc/plugin-emotion', config]],
     shouldSkip: () => false,
   },
+  relay: {
+    packages: ['@swc/plugin-relay'],
+    mapOptions: (config, ctx) => [
+      [
+        '@swc/plugin-relay',
+        { ...config, eagerEsModules: config.eagerEsModules !== false, rootDir: ctx.fixtureDir },
+      ],
+    ],
+    // shouldSkip: (config) => Array.isArray(config.projects) && config.projects.length > 0,
+  },
 }
 
 /** Get list of all supported plugin names */
