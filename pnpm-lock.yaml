@@ -371,6 +371,55 @@ importers:
         specifier: ^8.0.3
         version: 8.0.3(@types/node@24.12.0)(esbuild@0.27.3)
 
+  packages/styled-jsx/benchmark:
+    dependencies:
+      react:
+        specifier: ^19.2.4
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.2.4
+        version: 19.2.4(react@19.2.4)
+      styled-jsx:
+        specifier: ^5.1.7
+        version: 5.1.7(@babel/core@7.29.0)(react@19.2.4)
+    devDependencies:
+      '@babel/core':
+        specifier: ^7.29.0
+        version: 7.29.0
+      '@oxc-node/cli':
+        specifier: ^0.0.35
+        version: 0.0.35
+      '@rolldown/benchmark-utils':
+        specifier: workspace:*
+        version: link:../../../internal-packages/benchmark-utils
+      '@rolldown/plugin-babel':
+        specifier: file:../../babel
+        version: file:packages/babel(@babel/core@7.29.0)(@babel/plugin-transform-runtime@8.0.0-rc.3(@babel/core@7.29.0))(@babel/runtime@8.0.0-rc.3)(rolldown@1.0.0-rc.13)(vite@8.0.3(@types/node@24.12.0)(esbuild@0.27.3))
+      '@rolldown/plugin-styled-jsx':
+        specifier: workspace:*
+        version: link:..
+      '@rollup/plugin-swc':
+        specifier: ^0.4.0
+        version: 0.4.0(@swc/core@1.15.24)
+      '@swc/core':
+        specifier: ^1.15.24
+        version: 1.15.24
+      '@swc/plugin-styled-jsx':
+        specifier: ^13.8.0
+        version: 13.8.0
+      '@types/node':
+        specifier: ^24.12.0
+        version: 24.12.0
+      '@types/react':
+        specifier: ^19.2.14
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.2.3
+        version: 19.2.3(@types/react@19.2.14)
+      rolldown:
+        specifier: ^1.0.0-rc.13
+        version: 1.0.0-rc.13
+
   scripts:
     devDependencies:
       '@vitejs/release-scripts':
@@ -1633,8 +1682,20 @@ packages:
     cpu: [arm64]
     os: [darwin]
 
+  '@swc/core-darwin-arm64@1.15.24':
+    resolution: {integrity: sha512-uM5ZGfFXjtvtJ+fe448PVBEbn/CSxS3UAyLj3O9xOqKIWy3S6hPTXSPbszxkSsGDYKi+YFhzAsR4r/eXLxEQ0g==}
+    engines: {node: '>=10'}
+    cpu: [arm64]
+    os: [darwin]
+
   '@swc/core-darwin-x64@1.15.21':
     resolution: {integrity: sha512-//fOVntgowz9+V90lVsNCtyyrtbHp3jWH6Rch7MXHXbcvbLmbCTmssl5DeedUWLLGiAAW1wksBdqdGYOTjaNLw==}
+    engines: {node: '>=10'}
+    cpu: [x64]
+    os: [darwin]
+
+  '@swc/core-darwin-x64@1.15.24':
+    resolution: {integrity: sha512-fMIb/Zfn929pw25VMBhV7Ji2Dl+lCWtUPNdYJQYOke+00E5fcQ9ynxtP8+qhUo/HZc+mYQb1gJxwHM9vty+lXg==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [darwin]
@@ -1645,8 +1706,21 @@ packages:
     cpu: [arm]
     os: [linux]
 
+  '@swc/core-linux-arm-gnueabihf@1.15.24':
+    resolution: {integrity: sha512-vOkjsyjjxnoYx3hMEWcGxQrMgnNrRm6WAegBXrN8foHtDAR+zpdhpGF5a4lj1bNPgXAvmysjui8cM1ov/Clkaw==}
+    engines: {node: '>=10'}
+    cpu: [arm]
+    os: [linux]
+
   '@swc/core-linux-arm64-gnu@1.15.21':
     resolution: {integrity: sha512-QrXlNQnHeXqU2EzLlnsPoWEh8/GtNJLvfMiPsDhk+ht6Xv8+vhvZ5YZ/BokNWSIZiWPKLAqR0M7T92YF5tmD3g==}
+    engines: {node: '>=10'}
+    cpu: [arm64]
+    os: [linux]
+    libc: [glibc]
+
+  '@swc/core-linux-arm64-gnu@1.15.24':
+    resolution: {integrity: sha512-h/oNu+upkXJ6Cicnq7YGVj9PkdfarLCdQa8l/FlHYvfv8CEiMaeeTnpLU7gSBH/rGxosM6Qkfa/J9mThGF9CLA==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
@@ -1659,8 +1733,22 @@ packages:
     os: [linux]
     libc: [musl]
 
+  '@swc/core-linux-arm64-musl@1.15.24':
+    resolution: {integrity: sha512-ZpF/pRe1guk6sKzQI9D1jAORtjTdNlyeXn9GDz8ophof/w2WhojRblvSDJaGe7rJjcPN8AaOkhwdRUh7q8oYIg==}
+    engines: {node: '>=10'}
+    cpu: [arm64]
+    os: [linux]
+    libc: [musl]
+
   '@swc/core-linux-ppc64-gnu@1.15.21':
     resolution: {integrity: sha512-ucW0HzPx0s1dgRvcvuLSPSA/2Kk/VYTv9st8qe1Kc22Gu0Q0rH9+6TcBTmMuNIp0Xs4BPr1uBttmbO1wEGI49Q==}
+    engines: {node: '>=10'}
+    cpu: [ppc64]
+    os: [linux]
+    libc: [glibc]
+
+  '@swc/core-linux-ppc64-gnu@1.15.24':
+    resolution: {integrity: sha512-QZEsZfisHTSJlmyChgDFNmKPb3W6Lhbfo/O76HhIngfEdnQNmukS38/VSe1feho+xkV5A5hETyCbx3sALBZKAQ==}
     engines: {node: '>=10'}
     cpu: [ppc64]
     os: [linux]
@@ -1673,8 +1761,22 @@ packages:
     os: [linux]
     libc: [glibc]
 
+  '@swc/core-linux-s390x-gnu@1.15.24':
+    resolution: {integrity: sha512-DLdJKVsJgglqQrJBuoUYNmzm3leI7kUZhLbZGHv42onfKsGf6JDS3+bzCUQfte/XOqDjh/tmmn1DR/CF/tCJFw==}
+    engines: {node: '>=10'}
+    cpu: [s390x]
+    os: [linux]
+    libc: [glibc]
+
   '@swc/core-linux-x64-gnu@1.15.21':
     resolution: {integrity: sha512-D0RokxtM+cPvSqJIKR6uja4hbD+scI9ezo95mBhfSyLUs9wnPPl26sLp1ZPR/EXRdYm3F3S6RUtVi+8QXhT24Q==}
+    engines: {node: '>=10'}
+    cpu: [x64]
+    os: [linux]
+    libc: [glibc]
+
+  '@swc/core-linux-x64-gnu@1.15.24':
+    resolution: {integrity: sha512-IpLYfposPA/XLxYOKpRfeccl1p5dDa3+okZDHHTchBkXEaVCnq5MADPmIWwIYj1tudt7hORsEHccG5no6IUQRw==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
@@ -1687,8 +1789,21 @@ packages:
     os: [linux]
     libc: [musl]
 
+  '@swc/core-linux-x64-musl@1.15.24':
+    resolution: {integrity: sha512-JHy3fMSc0t/EPWgo74+OK5TGr51aElnzqfUPaiRf2qJ/BfX5CUCfMiWVBuhI7qmVMBnk1jTRnL/xZnOSHDPLYg==}
+    engines: {node: '>=10'}
+    cpu: [x64]
+    os: [linux]
+    libc: [musl]
+
   '@swc/core-win32-arm64-msvc@1.15.21':
     resolution: {integrity: sha512-+/AgNBnjYugUA8C0Do4YzymgvnGbztv7j8HKSQLvR/DQgZPoXQ2B3PqB2mTtGh/X5DhlJWiqnunN35JUgWcAeQ==}
+    engines: {node: '>=10'}
+    cpu: [arm64]
+    os: [win32]
+
+  '@swc/core-win32-arm64-msvc@1.15.24':
+    resolution: {integrity: sha512-Txj+qUH1z2bUd1P3JvwByfjKFti3cptlAxhWgmunBUUxy/IW3CXLZ6l6Gk4liANadKkU71nIU1X30Z5vpMT3BA==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [win32]
@@ -1699,14 +1814,35 @@ packages:
     cpu: [ia32]
     os: [win32]
 
+  '@swc/core-win32-ia32-msvc@1.15.24':
+    resolution: {integrity: sha512-15D/nl3XwrhFpMv+MADFOiVwv3FvH9j8c6Rf8EXBT3Q5LoMh8YnDnSgPYqw1JzPnksvsBX6QPXLiPqmcR/Z4qQ==}
+    engines: {node: '>=10'}
+    cpu: [ia32]
+    os: [win32]
+
   '@swc/core-win32-x64-msvc@1.15.21':
     resolution: {integrity: sha512-zUyWso7OOENB6e1N1hNuNn8vbvLsTdKQ5WKLgt/JcBNfJhKy/6jmBmqI3GXk/MyvQKd5SLvP7A0F36p7TeDqvw==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [win32]
 
+  '@swc/core-win32-x64-msvc@1.15.24':
+    resolution: {integrity: sha512-PR0PlTlPra2JbaDphrOAzm6s0v9rA0F17YzB+XbWD95B4g2cWcZY9LAeTa4xll70VLw9Jr7xBrlohqlQmelMFQ==}
+    engines: {node: '>=10'}
+    cpu: [x64]
+    os: [win32]
+
   '@swc/core@1.15.21':
     resolution: {integrity: sha512-fkk7NJcBscrR3/F8jiqlMptRHP650NxqDnspBMrRe5d8xOoCy9MLL5kOBLFXjFLfMo3KQQHhk+/jUULOMlR1uQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@swc/helpers': '>=0.5.17'
+    peerDependenciesMeta:
+      '@swc/helpers':
+        optional: true
+
+  '@swc/core@1.15.24':
+    resolution: {integrity: sha512-5Hj8aNasue7yusUt8LGCUe/AjM7RMAce8ZoyDyiFwx7Al+GbYKL+yE7g4sJk8vEr1dKIkTRARkNIJENc4CjkBQ==}
     engines: {node: '>=10'}
     peerDependencies:
       '@swc/helpers': '>=0.5.17'
@@ -1723,8 +1859,14 @@ packages:
   '@swc/plugin-react-remove-properties@12.7.0':
     resolution: {integrity: sha512-v3k5MDuPNBETpOBzbqsEVSSX1w6HALA+tFxE2HP939mJRevQE9VVg2bv11Us8J8sjI41D1pWsOcXE4nPQ4WMXw==}
 
+  '@swc/plugin-styled-jsx@13.8.0':
+    resolution: {integrity: sha512-ptbmkoEgdiF25SOvQyR0icd5ARj7kuaJmQAyDZl/xPfGIKt9b7LoXef1ZoY1i7osXCJ/m9cUkR5Lrf57E8cpUA==}
+
   '@swc/types@0.1.25':
     resolution: {integrity: sha512-iAoY/qRhNH8a/hBvm3zKj9qQ4oc2+3w1unPJa2XvTK3XjeLXtzcCingVPw/9e5mn1+0yPqxcBGp9Jf0pkfMb1g==}
+
+  '@swc/types@0.1.26':
+    resolution: {integrity: sha512-lyMwd7WGgG79RS7EERZV3T8wMdmPq3xwyg+1nmAM64kIhx5yl+juO2PYIHb7vTiPgPCj8LYjsNV2T5wiQHUEaw==}
 
   '@tybys/wasm-util@0.10.1':
     resolution: {integrity: sha512-9tTaPJLSiejZKx+Bmog4uSubteqTvFrVrURwkmHixBo0G4seD0zUxp98E1DzUBJxLQ3NPwXrGKDiVjwx/DpPsg==}
@@ -3688,6 +3830,16 @@ snapshots:
       '@babel/runtime': 8.0.0-rc.3
       vite: 8.0.3(@types/node@24.12.0)(esbuild@0.27.3)
 
+  '@rolldown/plugin-babel@file:packages/babel(@babel/core@7.29.0)(@babel/plugin-transform-runtime@8.0.0-rc.3(@babel/core@7.29.0))(@babel/runtime@8.0.0-rc.3)(rolldown@1.0.0-rc.13)(vite@8.0.3(@types/node@24.12.0)(esbuild@0.27.3))':
+    dependencies:
+      '@babel/core': 7.29.0
+      picomatch: 4.0.4
+      rolldown: 1.0.0-rc.13
+    optionalDependencies:
+      '@babel/plugin-transform-runtime': 8.0.0-rc.3(@babel/core@7.29.0)
+      '@babel/runtime': 8.0.0-rc.3
+      vite: 8.0.3(@types/node@24.12.0)(esbuild@0.27.3)
+
   '@rolldown/pluginutils@1.0.0-rc.12': {}
 
   '@rolldown/pluginutils@1.0.0-rc.13': {}
@@ -3698,6 +3850,12 @@ snapshots:
     dependencies:
       '@rollup/pluginutils': 5.3.0
       '@swc/core': 1.15.21
+      smob: 1.6.1
+
+  '@rollup/plugin-swc@0.4.0(@swc/core@1.15.24)':
+    dependencies:
+      '@rollup/pluginutils': 5.3.0
+      '@swc/core': 1.15.24
       smob: 1.6.1
 
   '@rollup/pluginutils@5.3.0':
@@ -3724,37 +3882,73 @@ snapshots:
   '@swc/core-darwin-arm64@1.15.21':
     optional: true
 
+  '@swc/core-darwin-arm64@1.15.24':
+    optional: true
+
   '@swc/core-darwin-x64@1.15.21':
+    optional: true
+
+  '@swc/core-darwin-x64@1.15.24':
     optional: true
 
   '@swc/core-linux-arm-gnueabihf@1.15.21':
     optional: true
 
+  '@swc/core-linux-arm-gnueabihf@1.15.24':
+    optional: true
+
   '@swc/core-linux-arm64-gnu@1.15.21':
+    optional: true
+
+  '@swc/core-linux-arm64-gnu@1.15.24':
     optional: true
 
   '@swc/core-linux-arm64-musl@1.15.21':
     optional: true
 
+  '@swc/core-linux-arm64-musl@1.15.24':
+    optional: true
+
   '@swc/core-linux-ppc64-gnu@1.15.21':
+    optional: true
+
+  '@swc/core-linux-ppc64-gnu@1.15.24':
     optional: true
 
   '@swc/core-linux-s390x-gnu@1.15.21':
     optional: true
 
+  '@swc/core-linux-s390x-gnu@1.15.24':
+    optional: true
+
   '@swc/core-linux-x64-gnu@1.15.21':
+    optional: true
+
+  '@swc/core-linux-x64-gnu@1.15.24':
     optional: true
 
   '@swc/core-linux-x64-musl@1.15.21':
     optional: true
 
+  '@swc/core-linux-x64-musl@1.15.24':
+    optional: true
+
   '@swc/core-win32-arm64-msvc@1.15.21':
+    optional: true
+
+  '@swc/core-win32-arm64-msvc@1.15.24':
     optional: true
 
   '@swc/core-win32-ia32-msvc@1.15.21':
     optional: true
 
+  '@swc/core-win32-ia32-msvc@1.15.24':
+    optional: true
+
   '@swc/core-win32-x64-msvc@1.15.21':
+    optional: true
+
+  '@swc/core-win32-x64-msvc@1.15.24':
     optional: true
 
   '@swc/core@1.15.21':
@@ -3775,6 +3969,24 @@ snapshots:
       '@swc/core-win32-ia32-msvc': 1.15.21
       '@swc/core-win32-x64-msvc': 1.15.21
 
+  '@swc/core@1.15.24':
+    dependencies:
+      '@swc/counter': 0.1.3
+      '@swc/types': 0.1.26
+    optionalDependencies:
+      '@swc/core-darwin-arm64': 1.15.24
+      '@swc/core-darwin-x64': 1.15.24
+      '@swc/core-linux-arm-gnueabihf': 1.15.24
+      '@swc/core-linux-arm64-gnu': 1.15.24
+      '@swc/core-linux-arm64-musl': 1.15.24
+      '@swc/core-linux-ppc64-gnu': 1.15.24
+      '@swc/core-linux-s390x-gnu': 1.15.24
+      '@swc/core-linux-x64-gnu': 1.15.24
+      '@swc/core-linux-x64-musl': 1.15.24
+      '@swc/core-win32-arm64-msvc': 1.15.24
+      '@swc/core-win32-ia32-msvc': 1.15.24
+      '@swc/core-win32-x64-msvc': 1.15.24
+
   '@swc/counter@0.1.3': {}
 
   '@swc/plugin-emotion@14.7.0':
@@ -3785,7 +3997,15 @@ snapshots:
     dependencies:
       '@swc/counter': 0.1.3
 
+  '@swc/plugin-styled-jsx@13.8.0':
+    dependencies:
+      '@swc/counter': 0.1.3
+
   '@swc/types@0.1.25':
+    dependencies:
+      '@swc/counter': 0.1.3
+
+  '@swc/types@0.1.26':
     dependencies:
       '@swc/counter': 0.1.3
 
@@ -4631,6 +4851,13 @@ snapshots:
   strip-final-newline@3.0.0: {}
 
   strip-final-newline@4.0.0: {}
+
+  styled-jsx@5.1.7(@babel/core@7.29.0)(react@19.2.4):
+    dependencies:
+      client-only: 0.0.1
+      react: 19.2.4
+    optionalDependencies:
+      '@babel/core': 7.29.0
 
   styled-jsx@5.1.7(@babel/core@8.0.0-rc.3)(react@19.2.4):
     dependencies:

@@ -55,6 +55,29 @@ styledJsx({
 })
 ```
 
+## Benchmark
+
+Results of the benchmark that can be run by `pnpm bench` in `./benchmark` directory:
+
+```
+  name                              hz      min      max     mean      p75      p99     p995     p999     rme  samples
+· @rolldown/plugin-styled-jsx  10.9402  89.9217  96.5430  91.4056  91.2763  96.5430  96.5430  96.5430  ±1.49%       10
+· @rolldown/plugin-babel        4.3779   223.52   238.96   228.42   230.16   238.96   238.96   238.96  ±1.65%       10
+· @rollup/plugin-swc            9.4885   103.62   109.31   105.39   105.83   109.31   109.31   109.31  ±1.11%       10
+
+@rolldown/plugin-styled-jsx - bench/styled-jsx.bench.ts > Styled JSX Benchmark
+  1.15x faster than @rollup/plugin-swc
+  2.50x faster than @rolldown/plugin-babel
+```
+
+The benchmark was ran on the following environment:
+
+```
+OS: macOS Tahoe 26.3
+CPU: Apple M4
+Memory: LPDDR5X-7500 32GB
+```
+
 ## License
 
 MIT

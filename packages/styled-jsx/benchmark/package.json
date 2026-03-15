@@ -1,0 +1,32 @@
+{
+  "name": "@rolldown/benchmark-styled-jsx",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "oxnode scripts/generate-app.ts",
+    "bench": "vitest bench --run",
+    "build:custom": "rolldown -c configs/custom.ts",
+    "build:babel": "rolldown -c configs/babel.ts",
+    "build:swc": "rolldown -c configs/swc.ts"
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "styled-jsx": "^5.1.7"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "@oxc-node/cli": "^0.0.35",
+    "@rolldown/benchmark-utils": "workspace:*",
+    "@rolldown/plugin-babel": "file:../../babel",
+    "@rolldown/plugin-styled-jsx": "workspace:*",
+    "@rollup/plugin-swc": "^0.4.0",
+    "@swc/core": "^1.15.24",
+    "@swc/plugin-styled-jsx": "^13.8.0",
+    "@types/node": "^24.12.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "rolldown": "^1.0.0-rc.13"
+  }
+}
