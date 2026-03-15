@@ -1,0 +1,4 @@
+'plugin: babel':
+  - '/- \[x\] \[plugin-babel\]/i'
+'plugin: emotion':
+  - '/- \[x\] \[plugin-emotion\]/i'
