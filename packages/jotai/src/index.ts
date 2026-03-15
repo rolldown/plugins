@@ -205,9 +205,7 @@ export function jotaiPlugin(options: JotaiPluginOptions = {}): Plugin {
             for (const decl of node.declarations) {
               if (!decl.init) continue
               const key = decl.id.type === 'Identifier' ? decl.id.name : '[missing-declarator]'
-              if (
-                scanForAtomCalls(decl.init, [key], atomImportMap, fileKey, s)
-              ) {
+              if (scanForAtomCalls(decl.init, [key], atomImportMap, fileKey, s)) {
                 usedAtom = true
               }
             }
@@ -219,12 +217,24 @@ export function jotaiPlugin(options: JotaiPluginOptions = {}): Plugin {
             atomImportMap.addFromImportDecl(node)
           },
 
-          FunctionDeclaration() { functionDepth++ },
-          'FunctionDeclaration:exit'() { functionDepth-- },
-          FunctionExpression() { functionDepth++ },
-          'FunctionExpression:exit'() { functionDepth-- },
-          ArrowFunctionExpression() { functionDepth++ },
-          'ArrowFunctionExpression:exit'() { functionDepth-- },
+          FunctionDeclaration() {
+            functionDepth++
+          },
+          'FunctionDeclaration:exit'() {
+            functionDepth--
+          },
+          FunctionExpression() {
+            functionDepth++
+          },
+          'FunctionExpression:exit'() {
+            functionDepth--
+          },
+          ArrowFunctionExpression() {
+            functionDepth++
+          },
+          'ArrowFunctionExpression:exit'() {
+            functionDepth--
+          },
 
           ExportDefaultDeclaration(node: ESTree.ExportDefaultDeclaration) {
             if (debugLabelEnabled && isExpressionExportDefault(node.declaration)) {
