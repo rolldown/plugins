@@ -17,6 +17,8 @@ body:
             [plugin-babel](https://github.com/rolldown/plugins/tree/main/packages/babel)
         - label: |
             [plugin-emotion](https://github.com/rolldown/plugins/tree/main/packages/emotion)
+        - label: |
+            [plugin-relay](https://github.com/rolldown/plugins/tree/main/packages/relay)
   - type: textarea
     id: bug-description
     attributes:

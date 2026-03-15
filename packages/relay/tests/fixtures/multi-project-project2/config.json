@@ -1,0 +1,14 @@
+{
+  "language": "javascript",
+  "eagerEsModules": true,
+  "outputFileExtension": "typescript",
+  "projects": [
+    {
+      "rootDir": "__FIXTURE_DIR__/multi-project-project1",
+      "artifactDirectory": "__FIXTURE_DIR__/projects1"
+    },
+    {
+      "rootDir": "__FIXTURE_DIR__/multi-project-project2"
+    }
+  ]
+}

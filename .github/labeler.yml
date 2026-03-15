@@ -2,3 +2,5 @@
   - '/- \[x\] \[plugin-babel\]/i'
 'plugin: emotion':
   - '/- \[x\] \[plugin-emotion\]/i'
+'plugin: relay':
+  - '/- \[x\] \[plugin-relay\]/i'
