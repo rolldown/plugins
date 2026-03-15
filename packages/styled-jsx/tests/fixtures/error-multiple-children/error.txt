@@ -1,0 +1,1 @@
+Expected one child under JSX Style tag, but got 2 (eg: <style jsx>{`hi`}</style>)
