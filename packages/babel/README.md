@@ -8,6 +8,12 @@ Rolldown plugin for transforming code with [Babel](https://babeljs.io/).
 pnpm add -D @rolldown/plugin-babel @babel/core
 ```
 
+If you are using TypeScript, you will also need to install `@types/babel__core`:
+
+```bash
+pnpm add -D @types/babel__core
+```
+
 ## Usage
 
 ```js
