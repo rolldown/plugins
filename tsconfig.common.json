@@ -12,5 +12,5 @@
     "isolatedModules": true,
     "declaration": true
   },
-  "exclude": ["./examples"]
+  "exclude": ["./examples", "./packages/babel/src/babelCompat.typetest.ts"]
 }
