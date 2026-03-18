@@ -1,3 +1,25 @@
+## <small>[0.2.2](https://github.com/rolldown/plugins/compare/plugin-babel@0.2.1...plugin-babel@0.2.2) (2026-03-18)</small>
+### Features
+
+* **emotion:** add emotion plugin ([#15](https://github.com/rolldown/plugins/issues/15)) ([5461836](https://github.com/rolldown/plugins/commit/5461836f91a362eed6b3667e79970b42426b70b0))
+
+### Bug Fixes
+
+* **babel:** suppress type errors when `@types/babel__core` is not installed ([#31](https://github.com/rolldown/plugins/issues/31)) ([98ee335](https://github.com/rolldown/plugins/commit/98ee335d76223b7c8e5854b8845e720b6ce2414b))
+
+### Documentation
+
+* **babel:** add `@types/babel__core` install instruction ([#29](https://github.com/rolldown/plugins/issues/29)) ([bc8b913](https://github.com/rolldown/plugins/commit/bc8b9131408cc35a3a9aa5364f870cb75b4a6a08))
+
+### Miscellaneous Chores
+
+* **deps:** update all non-major dependencies ([#13](https://github.com/rolldown/plugins/issues/13)) ([d9a6950](https://github.com/rolldown/plugins/commit/d9a6950cb08c75a9e4fd8af0b7595391008ef18e))
+* **deps:** update rolldown-related dependencies ([#14](https://github.com/rolldown/plugins/issues/14)) ([721d4b0](https://github.com/rolldown/plugins/commit/721d4b0c6e9b5f3b42535639950994c92db6e2be))
+
+### Tests
+
+* **babel:** externalize `react/jsx-runtime` to supress warning ([#16](https://github.com/rolldown/plugins/issues/16)) ([5b94b74](https://github.com/rolldown/plugins/commit/5b94b74bb633b4c8f3a8ea60bdc4ed31f315a0f3))
+
 ## <small>[0.2.1](https://github.com/rolldown/plugins/compare/plugin-babel@0.2.0...plugin-babel@0.2.1) (2026-03-13)</small>
 ### Bug Fixes
 
