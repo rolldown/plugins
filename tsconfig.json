@@ -1,4 +1,8 @@
 {
-  "references": [{ "path": "./tsconfig.common.json" }, { "path": "./examples/tsconfig.json" }],
+  "references": [
+    { "path": "./tsconfig.common.json" },
+    { "path": "./examples/tsconfig.json" },
+    { "path": "./packages/babel/src/tsconfig.typetest.json" }
+  ],
   "include": []
 }

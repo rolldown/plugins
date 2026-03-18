@@ -10,7 +10,7 @@ import {
 } from './rolldownPreset'
 import { filterMap } from './utils'
 
-export interface InnerTransformOptions extends Pick<
+export interface InnerTransformOptions extends Partial<Pick<
   babel.InputOptions,
   | 'assumptions'
   | 'auxiliaryCommentAfter'
@@ -27,7 +27,7 @@ export interface InnerTransformOptions extends Pick<
   | 'shouldPrintComment'
   | 'targets'
   | 'wrapPluginVisitorMethod'
-> {
+>> {
   /**
    * List of presets (a set of plugins) to load and use
    *

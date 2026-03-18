@@ -9,6 +9,14 @@ import * as babel from '@babel/core'
 // https://github.com/type-challenges/type-challenges/issues/29285
 type IsAny<T> = boolean extends (T extends never ? true : false) ? true : false
 
+/** **When using babel 7, install `@types/babel__core` to get proper types.** */
+type InputOptionsFallback = {
+  /** **When using babel 7, install `@types/babel__core` to get proper types.** */
+  plugins?: unknown[]
+  /** **When using babel 7, install `@types/babel__core` to get proper types.** */
+  presets?: unknown[]
+}
+
 // @ts-ignore -- InputOptions doesn't exist in Babel 7
 type InputOptions8 = babel.InputOptions
 // @ts-ignore -- PresetItem doesn't exist in Babel 7
@@ -25,7 +33,7 @@ type PluginObj<T> = babel.PluginObj<T>
 // @ts-ignore -- BabelFileResult doesn't exist in Babel 8
 type BabelFileResult = babel.BabelFileResult
 
-export type InputOptions = IsAny<InputOptions8> extends false ? InputOptions8 : TransformOptions
+export type InputOptions = IsAny<InputOptions8> extends false ? InputOptions8 : IsAny<TransformOptions> extends false ? TransformOptions : InputOptionsFallback
 export type PresetItem = IsAny<PresetItem8> extends false ? PresetItem8 : babel.PluginItem
 export type PluginObject<T = babel.PluginPass> =
   IsAny<PluginObject8<T>> extends false ? PluginObject8<T> : PluginObj<T>
