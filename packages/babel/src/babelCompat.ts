@@ -33,7 +33,12 @@ type PluginObj<T> = babel.PluginObj<T>
 // @ts-ignore -- BabelFileResult doesn't exist in Babel 8
 type BabelFileResult = babel.BabelFileResult
 
-export type InputOptions = IsAny<InputOptions8> extends false ? InputOptions8 : IsAny<TransformOptions> extends false ? TransformOptions : InputOptionsFallback
+export type InputOptions =
+  IsAny<InputOptions8> extends false
+    ? InputOptions8
+    : IsAny<TransformOptions> extends false
+      ? TransformOptions
+      : InputOptionsFallback
 export type PresetItem = IsAny<PresetItem8> extends false ? PresetItem8 : babel.PluginItem
 export type PluginObject<T = babel.PluginPass> =
   IsAny<PluginObject8<T>> extends false ? PluginObject8<T> : PluginObj<T>

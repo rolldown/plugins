@@ -5,5 +5,5 @@ export const _testPlugin: PluginOptions = {
 }
 
 export const _testPreset: PluginOptions = {
-  presets: ['some-preset']
+  presets: ['some-preset'],
 }
