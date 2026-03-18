@@ -1,0 +1,11 @@
+'plugin: babel':
+  - changed-files:
+    - any-glob-to-any-file: 'packages/babel/**'
+
+'plugin: emotion':
+  - changed-files:
+    - any-glob-to-any-file: 'packages/emotion/**'
+
+'plugin: jsx-remove-attributes':
+  - changed-files:
+    - any-glob-to-any-file: 'packages/jsx-remove-attributes/**'
