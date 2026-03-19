@@ -543,7 +543,14 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
                           // Add { target, label } as second arg to inner call
                           if (callee.arguments.length === 1) {
                             // Insert before inner call's closing )
-                            s.appendLeft(callee.end - 1, `, {\n\t${labelObj}\n}`)
+                            const hasTrailingComma = checkTrailingCommaExistence(
+                              s.original,
+                              callee.end - 1,
+                            )
+                            s.appendLeft(
+                              callee.end - 1,
+                              `${maybeComma(!hasTrailingComma)}{\n\t${labelObj}\n}`,
+                            )
                           } else if (callee.arguments.length >= 2) {
                             const secondArg = callee.arguments[1]
                             if (secondArg.type === 'ObjectExpression') {
