@@ -3,7 +3,6 @@ import { createSourceMap } from './source-map'
 
 describe('createSourceMap', () => {
   it('handles source content with non-Latin-1 characters', () => {
-    // Regression: btoa() only supports Latin-1 (U+0000–U+00FF).
     // Source files containing characters outside that range caused
     // "Invalid character" errors when generating inline source maps.
     const sourceWithUnicode = `
@@ -13,7 +12,7 @@ describe('createSourceMap', () => {
       // Emoji: 🔁
       const style = css\`color: red;\`
     `
-    // With the old btoa() implementation, this would throw:
+    // With the btoa() implementation, this would throw:
     //   "Invalid character" at btoa (node:buffer)
     expect(() =>
       createSourceMap(sourceWithUnicode, 'test.tsx', { line: 6, column: 20 }),
