@@ -16,7 +16,7 @@ export function createSourceMap(
   setSourceContent(map, filename, sourceContent)
   addSegment(map, 0, 0, filename, pos.line, pos.column)
 
-  const encoded = btoa(JSON.stringify(toEncodedMap(map)))
+  const encoded = Buffer.from(JSON.stringify(toEncodedMap(map))).toString('base64')
   return `/*# sourceMappingURL=data:application/json;charset=utf-8;base64,${encoded} */`
 }
 
