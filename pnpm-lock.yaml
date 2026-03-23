@@ -156,8 +156,8 @@ importers:
         specifier: ^8.0.0-rc.3
         version: 8.0.0-rc.3
       '@types/node':
-        specifier: ^22.19.15
-        version: 22.19.15
+        specifier: ^24.12.0
+        version: 24.12.0
       '@types/picomatch':
         specifier: ^4.0.2
         version: 4.0.2
@@ -166,7 +166,7 @@ importers:
         version: 1.0.0-rc.10
       vite:
         specifier: ^8.0.1
-        version: 8.0.1(@types/node@22.19.15)(esbuild@0.27.3)
+        version: 8.0.1(@types/node@24.12.0)(esbuild@0.27.3)
 
   packages/emotion:
     dependencies:
@@ -4634,18 +4634,6 @@ snapshots:
     dependencies:
       spdx-correct: 3.2.0
       spdx-expression-parse: 3.0.1
-
-  vite@8.0.1(@types/node@22.19.15)(esbuild@0.27.3):
-    dependencies:
-      lightningcss: 1.32.0
-      picomatch: 4.0.3
-      postcss: 8.5.8
-      rolldown: 1.0.0-rc.10
-      tinyglobby: 0.2.15
-    optionalDependencies:
-      '@types/node': 22.19.15
-      esbuild: 0.27.3
-      fsevents: 2.3.3
 
   vite@8.0.1(@types/node@24.12.0)(esbuild@0.27.3):
     dependencies:
