@@ -38,8 +38,8 @@ importers:
         specifier: ^1.58.2
         version: 1.58.2
       vite:
-        specifier: ^8.0.1
-        version: 8.0.1(@types/node@24.12.0)(esbuild@0.27.3)
+        specifier: ^8.0.0
+        version: 8.0.0(@types/node@24.12.0)(esbuild@0.27.3)
 
   examples/emotion:
     dependencies:
@@ -67,10 +67,10 @@ importers:
         version: 19.2.3(@types/react@19.2.14)
       '@vitejs/plugin-react':
         specifier: ^6.0.1
-        version: 6.0.1(@rolldown/plugin-babel@0.2.2(@babel/core@8.0.0-rc.3)(@babel/plugin-transform-runtime@8.0.0-rc.3(@babel/core@8.0.0-rc.3))(@babel/runtime@8.0.0-rc.3)(rolldown@1.0.0-rc.10)(vite@8.0.1(@types/node@24.12.0)(esbuild@0.27.3)))(vite@8.0.1(@types/node@24.12.0)(esbuild@0.27.3))
+        version: 6.0.1(@rolldown/plugin-babel@0.2.2(@babel/core@8.0.0-rc.3)(@babel/plugin-transform-runtime@8.0.0-rc.3(@babel/core@8.0.0-rc.3))(@babel/runtime@8.0.0-rc.3)(rolldown@1.0.0-rc.10)(vite@8.0.0(@types/node@24.12.0)(esbuild@0.27.3)))(vite@8.0.0(@types/node@24.12.0)(esbuild@0.27.3))
       vite:
-        specifier: 8.0.1
-        version: 8.0.1(@types/node@24.12.0)(esbuild@0.27.3)
+        specifier: ^8.0.0
+        version: 8.0.0(@types/node@24.12.0)(esbuild@0.27.3)
 
   examples/jsx-remove-attributes:
     dependencies:
@@ -92,10 +92,10 @@ importers:
         version: 19.2.3(@types/react@19.2.14)
       '@vitejs/plugin-react':
         specifier: ^6.0.1
-        version: 6.0.1(@rolldown/plugin-babel@0.2.2(@babel/core@8.0.0-rc.3)(@babel/plugin-transform-runtime@8.0.0-rc.3(@babel/core@8.0.0-rc.3))(@babel/runtime@8.0.0-rc.3)(rolldown@1.0.0-rc.10)(vite@8.0.1(@types/node@24.12.0)(esbuild@0.27.3)))(vite@8.0.1(@types/node@24.12.0)(esbuild@0.27.3))
+        version: 6.0.1(@rolldown/plugin-babel@0.2.2(@babel/core@8.0.0-rc.3)(@babel/plugin-transform-runtime@8.0.0-rc.3(@babel/core@8.0.0-rc.3))(@babel/runtime@8.0.0-rc.3)(rolldown@1.0.0-rc.10)(vite@8.0.0(@types/node@24.12.0)(esbuild@0.27.3)))(vite@8.0.0(@types/node@24.12.0)(esbuild@0.27.3))
       vite:
-        specifier: ^8.0.1
-        version: 8.0.1(@types/node@24.12.0)(esbuild@0.27.3)
+        specifier: ^8.0.0
+        version: 8.0.0(@types/node@24.12.0)(esbuild@0.27.3)
 
   internal-packages/benchmark-utils:
     devDependencies:
@@ -165,8 +165,8 @@ importers:
         specifier: 1.0.0-rc.9
         version: 1.0.0-rc.9
       vite:
-        specifier: ^8.0.1
-        version: 8.0.1(@types/node@22.19.15)(esbuild@0.27.3)
+        specifier: ^8.0.0
+        version: 8.0.0(@types/node@22.19.15)(esbuild@0.27.3)
 
   packages/emotion:
     dependencies:
@@ -190,8 +190,8 @@ importers:
         specifier: ^0.2.15
         version: 0.2.15
       vite:
-        specifier: ^8.0.1
-        version: 8.0.1(@types/node@24.12.0)(esbuild@0.27.3)
+        specifier: ^8.0.0
+        version: 8.0.0(@types/node@24.12.0)(esbuild@0.27.3)
 
   packages/emotion/benchmark:
     dependencies:
@@ -261,7 +261,7 @@ importers:
         specifier: ^0.2.15
         version: 0.2.15
       vite:
-        specifier: ^8.0.1
+        specifier: ^8.0.0
         version: 8.0.1(@types/node@24.12.0)(esbuild@0.27.3)
 
   packages/jsx-remove-attributes/benchmark:
@@ -1010,6 +1010,10 @@ packages:
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [win32]
+
+  '@oxc-project/runtime@0.115.0':
+    resolution: {integrity: sha512-Rg8Wlt5dCbXhQnsXPrkOjL1DTSvXLgb2R/KYfnf1/K+R0k6UMLEmbQXPM+kwrWqSmWA2t0B1EtHy2/3zikQpvQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
 
   '@oxc-project/types@0.115.0':
     resolution: {integrity: sha512-4n91DKnebUS4yjUHl2g3/b2T+IUdCfmoZGhmwsovZCDaJSs+QkVAM+0AqqTxHSsHfeiMuueT75cZaZcT/m0pSw==}
@@ -2608,6 +2612,49 @@ packages:
   validate-npm-package-license@3.0.4:
     resolution: {integrity: sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew==}
 
+  vite@8.0.0:
+    resolution: {integrity: sha512-fPGaRNj9Zytaf8LEiBhY7Z6ijnFKdzU/+mL8EFBaKr7Vw1/FWcTBAMW0wLPJAGMPX38ZPVCVgLceWiEqeoqL2Q==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': ^20.19.0 || >=22.12.0
+      '@vitejs/devtools': ^0.0.0-alpha.31
+      esbuild: ^0.27.0
+      jiti: '>=1.21.0'
+      less: ^4.0.0
+      sass: ^1.70.0
+      sass-embedded: ^1.70.0
+      stylus: '>=0.54.8'
+      sugarss: ^5.0.0
+      terser: ^5.16.0
+      tsx: ^4.8.1
+      yaml: ^2.4.2
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      '@vitejs/devtools':
+        optional: true
+      esbuild:
+        optional: true
+      jiti:
+        optional: true
+      less:
+        optional: true
+      sass:
+        optional: true
+      sass-embedded:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+      tsx:
+        optional: true
+      yaml:
+        optional: true
+
   vite@8.0.1:
     resolution: {integrity: sha512-wt+Z2qIhfFt85uiyRt5LPU4oVEJBXj8hZNWKeqFG4gRG/0RaRGJ7njQCwzFVjO+v4+Ipmf5CY7VdmZRAYYBPHw==}
     engines: {node: ^20.19.0 || >=22.12.0}
@@ -3352,6 +3399,8 @@ snapshots:
   '@oxc-parser/binding-win32-x64-msvc@0.119.0':
     optional: true
 
+  '@oxc-project/runtime@0.115.0': {}
+
   '@oxc-project/types@0.115.0': {}
 
   '@oxc-project/types@0.119.0': {}
@@ -3590,7 +3639,7 @@ snapshots:
   '@rolldown/binding-win32-x64-msvc@1.0.0-rc.9':
     optional: true
 
-  '@rolldown/plugin-babel@0.2.2(@babel/core@8.0.0-rc.3)(@babel/plugin-transform-runtime@8.0.0-rc.3(@babel/core@8.0.0-rc.3))(@babel/runtime@8.0.0-rc.3)(rolldown@1.0.0-rc.10)(vite@8.0.1(@types/node@24.12.0)(esbuild@0.27.3))':
+  '@rolldown/plugin-babel@0.2.2(@babel/core@8.0.0-rc.3)(@babel/plugin-transform-runtime@8.0.0-rc.3(@babel/core@8.0.0-rc.3))(@babel/runtime@8.0.0-rc.3)(rolldown@1.0.0-rc.10)(vite@8.0.0(@types/node@24.12.0)(esbuild@0.27.3))':
     dependencies:
       '@babel/core': 8.0.0-rc.3
       picomatch: 4.0.3
@@ -3598,7 +3647,7 @@ snapshots:
     optionalDependencies:
       '@babel/plugin-transform-runtime': 8.0.0-rc.3(@babel/core@8.0.0-rc.3)
       '@babel/runtime': 8.0.0-rc.3
-      vite: 8.0.1(@types/node@24.12.0)(esbuild@0.27.3)
+      vite: 8.0.0(@types/node@24.12.0)(esbuild@0.27.3)
     optional: true
 
   '@rolldown/plugin-babel@file:packages/babel(@babel/core@7.29.0)(@babel/plugin-transform-runtime@8.0.0-rc.3(@babel/core@7.29.0))(@babel/runtime@8.0.0-rc.3)(rolldown@1.0.0-rc.9)(vite@8.0.1(@types/node@24.12.0)(esbuild@0.27.3))':
@@ -3783,12 +3832,12 @@ snapshots:
       '@typescript/native-preview-win32-arm64': 7.0.0-dev.20260322.1
       '@typescript/native-preview-win32-x64': 7.0.0-dev.20260322.1
 
-  '@vitejs/plugin-react@6.0.1(@rolldown/plugin-babel@0.2.2(@babel/core@8.0.0-rc.3)(@babel/plugin-transform-runtime@8.0.0-rc.3(@babel/core@8.0.0-rc.3))(@babel/runtime@8.0.0-rc.3)(rolldown@1.0.0-rc.10)(vite@8.0.1(@types/node@24.12.0)(esbuild@0.27.3)))(vite@8.0.1(@types/node@24.12.0)(esbuild@0.27.3))':
+  '@vitejs/plugin-react@6.0.1(@rolldown/plugin-babel@0.2.2(@babel/core@8.0.0-rc.3)(@babel/plugin-transform-runtime@8.0.0-rc.3(@babel/core@8.0.0-rc.3))(@babel/runtime@8.0.0-rc.3)(rolldown@1.0.0-rc.10)(vite@8.0.0(@types/node@24.12.0)(esbuild@0.27.3)))(vite@8.0.0(@types/node@24.12.0)(esbuild@0.27.3))':
     dependencies:
       '@rolldown/pluginutils': 1.0.0-rc.7
-      vite: 8.0.1(@types/node@24.12.0)(esbuild@0.27.3)
+      vite: 8.0.0(@types/node@24.12.0)(esbuild@0.27.3)
     optionalDependencies:
-      '@rolldown/plugin-babel': 0.2.2(@babel/core@8.0.0-rc.3)(@babel/plugin-transform-runtime@8.0.0-rc.3(@babel/core@8.0.0-rc.3))(@babel/runtime@8.0.0-rc.3)(rolldown@1.0.0-rc.10)(vite@8.0.1(@types/node@24.12.0)(esbuild@0.27.3))
+      '@rolldown/plugin-babel': 0.2.2(@babel/core@8.0.0-rc.3)(@babel/plugin-transform-runtime@8.0.0-rc.3(@babel/core@8.0.0-rc.3))(@babel/runtime@8.0.0-rc.3)(rolldown@1.0.0-rc.10)(vite@8.0.0(@types/node@24.12.0)(esbuild@0.27.3))
 
   '@vitejs/release-scripts@1.6.0(patch_hash=934d3ff41c551b1d73703bec99c2edbc3a91ec064c86cb21dad311a998354ced)(conventional-commits-filter@5.0.0)':
     dependencies:
@@ -4635,15 +4684,29 @@ snapshots:
       spdx-correct: 3.2.0
       spdx-expression-parse: 3.0.1
 
-  vite@8.0.1(@types/node@22.19.15)(esbuild@0.27.3):
+  vite@8.0.0(@types/node@22.19.15)(esbuild@0.27.3):
     dependencies:
+      '@oxc-project/runtime': 0.115.0
       lightningcss: 1.32.0
       picomatch: 4.0.3
       postcss: 8.5.8
-      rolldown: 1.0.0-rc.10
+      rolldown: 1.0.0-rc.9
       tinyglobby: 0.2.15
     optionalDependencies:
       '@types/node': 22.19.15
+      esbuild: 0.27.3
+      fsevents: 2.3.3
+
+  vite@8.0.0(@types/node@24.12.0)(esbuild@0.27.3):
+    dependencies:
+      '@oxc-project/runtime': 0.115.0
+      lightningcss: 1.32.0
+      picomatch: 4.0.3
+      postcss: 8.5.8
+      rolldown: 1.0.0-rc.9
+      tinyglobby: 0.2.15
+    optionalDependencies:
+      '@types/node': 24.12.0
       esbuild: 0.27.3
       fsevents: 2.3.3
 
