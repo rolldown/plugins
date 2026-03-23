@@ -21,7 +21,7 @@
     "@rolldown/plugin-babel": "file:../../babel",
     "@rolldown/plugin-jsx-remove-attributes": "workspace:*",
     "@rollup/plugin-swc": "^0.4.0",
-    "@swc/core": "^1.15.18",
+    "@swc/core": "^1.15.21",
     "@swc/plugin-react-remove-properties": "^12.7.0",
     "@types/node": "^24.12.0",
     "@types/react": "^19.2.14",
