@@ -1,7 +1,7 @@
 import { withMagicString } from 'rolldown-string'
 import type { Plugin } from 'rolldown'
 import type { ESTree } from 'rolldown/utils'
-import { ScopedVisitor } from '@rolldown/oxc-unshadowed-visitor'
+import { ScopedVisitor } from 'oxc-unshadowed-visitor'
 import type { EmotionPluginOptions } from './types.js'
 import { minifyCSSString } from './css-minify.js'
 import { createSourceMap, getPos } from './source-map.js'

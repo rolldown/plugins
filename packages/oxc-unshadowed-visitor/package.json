@@ -1,0 +1,44 @@
+{
+  "name": "oxc-unshadowed-visitor",
+  "version": "0.0.0",
+  "description": "Scope-aware AST visitor that filters out references shadowed by local bindings",
+  "keywords": [
+    "ast",
+    "oxc",
+    "rolldown",
+    "scope",
+    "visitor"
+  ],
+  "homepage": "https://github.com/rolldown/plugins/tree/main/packages/oxc-unshadowed-visitor#readme",
+  "bugs": {
+    "url": "https://github.com/rolldown/plugins/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rolldown/plugins.git",
+    "directory": "packages/oxc-unshadowed-visitor"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "exports": "./dist/index.mjs",
+  "scripts": {
+    "dev": "tsdown --watch",
+    "build": "tsdown",
+    "bench": "vitest bench --project oxc-unshadowed-visitor",
+    "test": "vitest --project oxc-unshadowed-visitor",
+    "prepublishOnly": "pnpm run build"
+  },
+  "devDependencies": {
+    "oxc-walker": "^0.7.0",
+    "rolldown": "^1.0.0-rc.10"
+  },
+  "peerDependencies": {
+    "rolldown": "^1.0.0-rc.9"
+  },
+  "engines": {
+    "node": ">=22.12.0 || ^24.0.0"
+  }
+}
