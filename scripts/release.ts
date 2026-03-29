@@ -7,7 +7,12 @@ process.chdir(path.join(import.meta.dirname, '..'))
 
 await release({
   repo: 'rolldown/plugins',
-  packages: ['plugin-babel', 'plugin-emotion', 'plugin-jsx-remove-attributes', 'oxc-unshadowed-visitor'],
+  packages: [
+    'plugin-babel',
+    'plugin-emotion',
+    'plugin-jsx-remove-attributes',
+    'oxc-unshadowed-visitor',
+  ],
   toTag: (pkg, version) => `${pkg}@${version}`,
   logChangelog: (pkg) => logRecentCommits(pkg, getPkgDir(pkg)),
   getPkgDir,
