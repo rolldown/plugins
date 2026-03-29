@@ -1,12 +1,10 @@
-import type { ESTree } from 'rolldown/utils'
-import type { VisitorContext } from './types'
+import type * as ESTree from '@oxc-project/types'
+import type { SimpleVisitorObject, VisitorContext } from './types.ts'
 
 export type SimpleScopedVisitorObject<T> = {
   [key: string]: (node: ESTree.Node, ctx: VisitorContext<T>) => void
 }
-export type SimpleVisitorObject = {
-  [key: string]: (node: ESTree.Node) => void
-}
+export type { SimpleVisitorObject }
 
 /**
  * Merge user visitors with internal scope-tracking visitors.
