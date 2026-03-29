@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - 'plugin-*'
+      - 'oxc-unshadowed-visitor@*'
 
 jobs:
   publish:
