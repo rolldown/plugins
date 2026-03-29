@@ -1,6 +1,6 @@
 {
   "name": "oxc-unshadowed-visitor",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Scope-aware AST visitor that filters out references shadowed by local bindings",
   "keywords": [
     "ast",
