@@ -19,9 +19,15 @@ Official Rolldown plugins
 
 ## Packages
 
+### Plugin Packages
+
 - [`@rolldown/plugin-babel`](https://github.com/rolldown/plugins/tree/main/packages/babel) ([![NPM version][badge-npm-version-babel]][url-npm-babel]): transform code with Babel
 - [`@rolldown/plugin-emotion`](https://github.com/rolldown/plugins/tree/main/packages/emotion) ([![NPM version][badge-npm-version-emotion]][url-npm-emotion]): minification and optimization of Emotion styles
 - [`@rolldown/plugin-jsx-remove-attributes`](https://github.com/rolldown/plugins/tree/main/packages/jsx-remove-attributes) ([![NPM version][badge-npm-version-jsx-remove-attributes]][url-npm-jsx-remove-attributes]): remove JSX attributes (e.g. data-testid)
+
+### Other Packages
+
+- [`oxc-unshadowed-visitor`](https://github.com/rolldown/plugins/tree/main/packages/oxc-unshadowed-visitor): scope-aware AST visitor that tracks references to specified names, filtering out those shadowed by local bindings
 
 ## License
 

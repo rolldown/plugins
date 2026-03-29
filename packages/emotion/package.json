@@ -36,7 +36,7 @@
     "rolldown-string": "^0.3.0"
   },
   "devDependencies": {
-    "@rolldown/oxc-unshadowed-visitor": "workspace:*",
+    "oxc-unshadowed-visitor": "workspace:*",
     "rolldown": "^1.0.0-rc.10",
     "tinyglobby": "^0.2.15",
     "vite": "^8.0.1"

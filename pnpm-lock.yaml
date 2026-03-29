@@ -103,16 +103,6 @@ importers:
         specifier: ^0.0.35
         version: 0.0.35
 
-  internal-packages/oxc-unshadowed-visitor:
-    dependencies:
-      rolldown:
-        specifier: ^1.0.0-rc.9
-        version: 1.0.0-rc.10
-    devDependencies:
-      oxc-walker:
-        specifier: ^0.7.0
-        version: 0.7.0(oxc-parser@0.119.0)
-
   internal-packages/swc-output-gen:
     dependencies:
       '@oxc-node/cli':
@@ -180,9 +170,9 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0(rolldown@1.0.0-rc.10)
     devDependencies:
-      '@rolldown/oxc-unshadowed-visitor':
+      oxc-unshadowed-visitor:
         specifier: workspace:*
-        version: link:../../internal-packages/oxc-unshadowed-visitor
+        version: link:../oxc-unshadowed-visitor
       rolldown:
         specifier: ^1.0.0-rc.10
         version: 1.0.0-rc.10
@@ -309,6 +299,15 @@ importers:
       babel-plugin-react-remove-properties:
         specifier: ^0.3.1
         version: 0.3.1
+      rolldown:
+        specifier: ^1.0.0-rc.10
+        version: 1.0.0-rc.10
+
+  packages/oxc-unshadowed-visitor:
+    devDependencies:
+      oxc-walker:
+        specifier: ^0.7.0
+        version: 0.7.0(oxc-parser@0.119.0)
       rolldown:
         specifier: ^1.0.0-rc.10
         version: 1.0.0-rc.10
