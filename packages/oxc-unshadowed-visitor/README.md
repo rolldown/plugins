@@ -20,8 +20,6 @@ pnpm add -D oxc-parser
 
 ## Usage
 
-### With `rolldown`
-
 ```ts
 import { parseSync, Visitor } from 'oxc-parser' // or from 'rolldown/utils'
 import { ScopedVisitor } from 'oxc-unshadowed-visitor'
