@@ -9,3 +9,7 @@
 'plugin: jsx-remove-attributes':
   - changed-files:
       - any-glob-to-any-file: 'packages/jsx-remove-attributes/**'
+
+'package: oxc-unshadowed-visitor':
+  - changed-files:
+      - any-glob-to-any-file: 'packages/oxc-unshadowed-visitor/**'
