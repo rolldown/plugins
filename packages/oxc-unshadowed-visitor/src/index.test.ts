@@ -1,15 +1,19 @@
 import { describe, test, expect } from 'vitest'
-import { parseSync } from 'rolldown/utils'
+import { parseSync, Visitor } from 'rolldown/utils'
 import { ScopedVisitor } from './index.ts'
+import type { WalkFn } from './index.ts'
 
 function parse(code: string) {
   return parseSync('test.js', code).program
 }
 
+const walk: WalkFn = (program, visitor) => new Visitor(visitor).visit(program)
+
 function collectRecords(code: string, trackedNames = ['React']) {
   const program = parse(code)
   const sv = new ScopedVisitor<string>({
     trackedNames,
+    walk,
     visitor: {
       Identifier(node, ctx) {
         if (trackedNames.includes(node.name)) {
@@ -34,6 +38,7 @@ describe('ScopedVisitor', () => {
     const program = parse(code)
     const sv = new ScopedVisitor<string>({
       trackedNames: ['React'],
+      walk,
       visitor: {
         Identifier(node, ctx) {
           ctx.record({ name: node.name, node, data: 'ref' })
@@ -263,6 +268,7 @@ describe('ScopedVisitor', () => {
     }).program
     const sv = new ScopedVisitor<string>({
       trackedNames: ['React'],
+      walk,
       visitor: {
         Identifier(node, ctx) {
           if (node.name === 'React') {
@@ -280,6 +286,7 @@ describe('ScopedVisitor', () => {
     const events: string[] = []
     const sv = new ScopedVisitor<string>({
       trackedNames: ['React'],
+      walk,
       visitor: {
         FunctionDeclaration(node, _ctx) {
           events.push('enter:' + node.id!.name)
@@ -304,6 +311,7 @@ describe('ScopedVisitor', () => {
     const exitShadowState: boolean[] = []
     const sv = new ScopedVisitor<string>({
       trackedNames: ['React'],
+      walk,
       visitor: {
         Identifier(node, ctx) {
           if (node.name === 'React') {

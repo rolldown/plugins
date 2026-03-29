@@ -1,6 +1,6 @@
 import { withMagicString } from 'rolldown-string'
 import type { Plugin } from 'rolldown'
-import type { ESTree } from 'rolldown/utils'
+import { Visitor, type ESTree } from 'rolldown/utils'
 import { ScopedVisitor } from 'oxc-unshadowed-visitor'
 import type { EmotionPluginOptions } from './types.js'
 import { minifyCSSString } from './css-minify.js'
@@ -160,6 +160,7 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
         let inJsx = false
         const sv = new ScopedVisitor<RecordData>({
           trackedNames,
+          walk: (program, visitor) => new Visitor(visitor).visit(program),
           visitor: {
             VariableDeclarator(node) {
               let ctx = null

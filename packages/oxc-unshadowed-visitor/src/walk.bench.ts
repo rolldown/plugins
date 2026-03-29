@@ -1,5 +1,5 @@
 import { bench, describe } from 'vitest'
-import { parseSync } from 'rolldown/utils'
+import { parseSync, Visitor } from 'rolldown/utils'
 import { walk, ScopeTracker } from 'oxc-walker'
 import { ScopedVisitor } from './index.js'
 
@@ -34,6 +34,7 @@ describe('small (10)', () => {
   bench('single-pass (ScopedVisitor)', () => {
     const sv = new ScopedVisitor<string>({
       trackedNames: ['React'],
+      walk: (program, visitor) => new Visitor(visitor).visit(program),
       visitor: {
         Identifier(node, ctx) {
           if (node.name === 'React') {
@@ -68,6 +69,7 @@ describe('medium (100)', () => {
   bench('single-pass (ScopedVisitor)', () => {
     const sv = new ScopedVisitor<string>({
       trackedNames: ['React'],
+      walk: (program, visitor) => new Visitor(visitor).visit(program),
       visitor: {
         Identifier(node, ctx) {
           if (node.name === 'React') {
@@ -102,6 +104,7 @@ describe('large (500)', () => {
   bench('single-pass (ScopedVisitor)', () => {
     const sv = new ScopedVisitor<string>({
       trackedNames: ['React'],
+      walk: (program, visitor) => new Visitor(visitor).visit(program),
       visitor: {
         Identifier(node, ctx) {
           if (node.name === 'React') {

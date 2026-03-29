@@ -1,13 +1,9 @@
-import { Visitor } from 'rolldown/utils'
-import type { ESTree, VisitorObject } from 'rolldown/utils'
-import { ScopeTracker, type Invalidatable } from './scope-tracker.ts'
-import { extractBindingNames } from './binding-names.ts'
-import type { VisitorContext } from './types.ts'
-import {
-  mergeVisitors,
-  type SimpleScopedVisitorObject,
-  type SimpleVisitorObject,
-} from './merge-visitors.ts'
+import type * as ESTree from '@oxc-project/types'
+import type { Program, VisitorObject } from './oxcCompat.ts'
+import { ScopeTracker, type Invalidatable } from './scopeTracker.ts'
+import { extractBindingNames } from './bindingNames.ts'
+import type { VisitorContext, WalkFn, SimpleVisitorObject } from './types.ts'
+import { mergeVisitors, type SimpleScopedVisitorObject } from './mergeVisitors.ts'
 
 export interface TransformRecord<T> {
   name: string
@@ -33,18 +29,21 @@ export type ScopedVisitorObject<T> = {
 export interface ScopedVisitorOptions<T> {
   trackedNames: string[]
   visitor: ScopedVisitorObject<T>
+  walk: WalkFn
 }
 
 export class ScopedVisitor<T = unknown> {
   private trackedNames: string[]
   private userVisitor: ScopedVisitorObject<T>
+  private walkFn: WalkFn
 
   constructor(options: ScopedVisitorOptions<T>) {
     this.trackedNames = options.trackedNames
     this.userVisitor = options.visitor
+    this.walkFn = options.walk
   }
 
-  walk(program: ESTree.Program): TransformRecord<T>[] {
+  walk(program: Program): TransformRecord<T>[] {
     const records: InternalRecord<T>[] = []
     const trackedNames = this.trackedNames
     const tracker = new ScopeTracker(trackedNames.length)
@@ -163,8 +162,7 @@ export class ScopedVisitor<T = unknown> {
       scopeExit,
     )
 
-    const visitor = new Visitor(oxcVisitor)
-    visitor.visit(program)
+    this.walkFn(program, oxcVisitor)
 
     return records
       .filter((r) => !r.invalidated)

@@ -1,7 +1,3 @@
-export { ScopedVisitor } from './scoped-visitor.ts'
-export type {
-  TransformRecord,
-  ScopedVisitorObject,
-  ScopedVisitorOptions,
-} from './scoped-visitor.ts'
-export type { VisitorContext } from './types.ts'
+export { ScopedVisitor } from './scopedVisitor.ts'
+export type { TransformRecord, ScopedVisitorObject, ScopedVisitorOptions } from './scopedVisitor.ts'
+export type { VisitorContext, WalkFn, SimpleVisitorObject } from './types.ts'

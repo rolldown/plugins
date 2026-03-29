@@ -6,4 +6,7 @@ export default defineConfig({
     tsconfig: '../../tsconfig.common.json',
     tsgo: true,
   },
+  deps: {
+    onlyBundle: [],
+  },
 })

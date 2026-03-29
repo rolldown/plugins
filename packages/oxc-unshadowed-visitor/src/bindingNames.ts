@@ -1,4 +1,4 @@
-import type { ESTree } from 'rolldown/utils'
+import type * as ESTree from '@oxc-project/types'
 
 /**
  * Recursively extracts binding names from a pattern node.
