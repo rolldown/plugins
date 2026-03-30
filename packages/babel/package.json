@@ -30,7 +30,7 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "picomatch": "^4.0.3"
+    "picomatch": "^4.0.4"
   },
   "devDependencies": {
     "@babel/core": "^8.0.0-rc.3",
