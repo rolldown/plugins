@@ -37,9 +37,9 @@
   },
   "devDependencies": {
     "oxc-unshadowed-visitor": "workspace:*",
-    "rolldown": "^1.0.0-rc.10",
+    "rolldown": "^1.0.0-rc.12",
     "tinyglobby": "^0.2.15",
-    "vite": "^8.0.1"
+    "vite": "^8.0.3"
   },
   "peerDependencies": {
     "rolldown": "^1.0.0-rc.9",
