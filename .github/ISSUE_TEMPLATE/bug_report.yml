@@ -13,11 +13,11 @@ body:
       label: Related plugins
       description: Select the plugin which is related
       options:
-        - label: |
+        - label: |-
             [plugin-babel](https://github.com/rolldown/plugins/tree/main/packages/babel)
-        - label: |
+        - label: |-
             [plugin-emotion](https://github.com/rolldown/plugins/tree/main/packages/emotion)
-        - label: |
+        - label: |-
             [plugin-jsx-remove-attributes](https://github.com/rolldown/plugins/tree/main/packages/jsx-remove-attributes)
   - type: textarea
     id: bug-description
