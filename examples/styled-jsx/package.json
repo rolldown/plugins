@@ -1,0 +1,22 @@
+{
+  "name": "@rolldown/example-styled-jsx",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "styled-jsx": "^5.1.7"
+  },
+  "devDependencies": {
+    "@rolldown/plugin-styled-jsx": "workspace:*",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "vite": "^8.0.3"
+  }
+}

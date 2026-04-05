@@ -11,6 +11,7 @@ await release({
     'plugin-babel',
     'plugin-emotion',
     'plugin-jsx-remove-attributes',
+    'plugin-styled-jsx',
     'oxc-unshadowed-visitor',
   ],
   toTag: (pkg, version) => `${pkg}@${version}`,

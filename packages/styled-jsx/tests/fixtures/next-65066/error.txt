@@ -1,0 +1,1 @@
+Detected nested style tag styled-jsx only allows style tags to be direct descendants (children) of the outermost JSX element i.e. the subtree root.

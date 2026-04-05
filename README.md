@@ -24,6 +24,7 @@ Official Rolldown plugins
 - [`@rolldown/plugin-babel`](https://github.com/rolldown/plugins/tree/main/packages/babel) ([![NPM version][badge-npm-version-babel]][url-npm-babel]): transform code with Babel
 - [`@rolldown/plugin-emotion`](https://github.com/rolldown/plugins/tree/main/packages/emotion) ([![NPM version][badge-npm-version-emotion]][url-npm-emotion]): minification and optimization of Emotion styles
 - [`@rolldown/plugin-jsx-remove-attributes`](https://github.com/rolldown/plugins/tree/main/packages/jsx-remove-attributes) ([![NPM version][badge-npm-version-jsx-remove-attributes]][url-npm-jsx-remove-attributes]): remove JSX attributes (e.g. data-testid)
+- [`@rolldown/plugin-styled-jsx`](https://github.com/rolldown/plugins/tree/main/packages/styled-jsx) ([![NPM version][badge-npm-version-styled-jsx]][url-npm-styled-jsx]): Rolldown plugin for [styled-jsx](https://github.com/vercel/styled-jsx) CSS scoping
 
 ### Other Packages
 
@@ -36,8 +37,10 @@ Official Rolldown plugins
 [badge-npm-version-babel]: https://img.shields.io/npm/v/@rolldown/plugin-babel/latest?color=brightgreen
 [badge-npm-version-emotion]: https://img.shields.io/npm/v/@rolldown/plugin-emotion/latest?color=brightgreen
 [badge-npm-version-jsx-remove-attributes]: https://img.shields.io/npm/v/@rolldown/plugin-jsx-remove-attributes/latest?color=brightgreen
+[badge-npm-version-styled-jsx]: https://img.shields.io/npm/v/@rolldown/plugin-styled-jsx/latest?color=brightgreen
 [badge-npm-version-oxc-unshadowed-visitor]: https://img.shields.io/npm/v/oxc-unshadowed-visitor/latest?color=brightgreen
 [url-npm-babel]: https://npmx.dev/package/@rolldown/plugin-babel/v/latest
 [url-npm-emotion]: https://npmx.dev/package/@rolldown/plugin-emotion/v/latest
 [url-npm-jsx-remove-attributes]: https://npmx.dev/package/@rolldown/plugin-jsx-remove-attributes/v/latest
+[ulr-npm-styled-jsx]: https://npmx.dev/package/@rolldown/plugin-styled-jsx/v/latest
 [url-npm-oxc-unshadowed-visitor]: https://npmx.dev/package/oxc-unshadowed-visitor/v/latest

@@ -4,3 +4,5 @@
   - '/- \[x\] \[plugin-emotion\]/i'
 'plugin: jsx-remove-attributes':
   - '/- \[x\] \[plugin-jsx-remove-attributes\]/i'
+'plugin: styled-jsx':
+  - '/- \[x\] \[plugin-styled-jsx\]/i'

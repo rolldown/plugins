@@ -10,6 +10,10 @@
   - changed-files:
       - any-glob-to-any-file: 'packages/jsx-remove-attributes/**'
 
+'plugin: styled-jsx':
+  - changed-files:
+      - any-glob-to-any-file: 'packages/styled-jsx/**'
+
 'package: oxc-unshadowed-visitor':
   - changed-files:
       - any-glob-to-any-file: 'packages/oxc-unshadowed-visitor/**'

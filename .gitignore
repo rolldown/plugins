@@ -147,3 +147,4 @@ vite.config.ts.timestamp-*
 
 /examples-temp-*
 output.swc.*
+error.swc.txt

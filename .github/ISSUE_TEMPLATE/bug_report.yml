@@ -19,6 +19,8 @@ body:
             [plugin-emotion](https://github.com/rolldown/plugins/tree/main/packages/emotion)
         - label: |-
             [plugin-jsx-remove-attributes](https://github.com/rolldown/plugins/tree/main/packages/jsx-remove-attributes)
+        - label: |-
+            [plugin-styled-jsx](https://github.com/rolldown/plugins/tree/main/packages/styled-jsx)
   - type: textarea
     id: bug-description
     attributes:
