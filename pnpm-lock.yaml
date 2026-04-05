@@ -319,6 +319,58 @@ importers:
         specifier: ^8.0.0
         version: 8.0.3(@types/node@24.12.0)(esbuild@0.27.3)
 
+  packages/jotai/benchmark:
+    dependencies:
+      jotai:
+        specifier: ^2.18.0
+        version: 2.18.1(@babel/core@7.29.0)(@babel/template@7.28.6)(@types/react@19.2.14)(react@19.2.4)
+      react:
+        specifier: ^19.2.4
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.2.4
+        version: 19.2.4(react@19.2.4)
+    devDependencies:
+      '@babel/core':
+        specifier: ^7.29.0
+        version: 7.29.0
+      '@oxc-node/cli':
+        specifier: ^0.0.35
+        version: 0.0.35
+      '@rolldown/benchmark-utils':
+        specifier: workspace:*
+        version: link:../../../internal-packages/benchmark-utils
+      '@rolldown/plugin-babel':
+        specifier: file:../../babel
+        version: file:packages/babel(@babel/core@7.29.0)(@babel/plugin-transform-runtime@8.0.0-rc.3(@babel/core@7.29.0))(@babel/runtime@8.0.0-rc.3)(rolldown@1.0.0-rc.13)(vite@8.0.3(@types/node@24.12.0)(esbuild@0.27.3))
+      '@rolldown/plugin-jotai':
+        specifier: workspace:*
+        version: link:..
+      '@rollup/plugin-swc':
+        specifier: ^0.4.0
+        version: 0.4.0(@swc/core@1.15.24)
+      '@swc-jotai/debug-label':
+        specifier: ^0.5.0
+        version: 0.5.0
+      '@swc-jotai/react-refresh':
+        specifier: ^0.5.0
+        version: 0.5.0
+      '@swc/core':
+        specifier: ^1.15.18
+        version: 1.15.24
+      '@types/node':
+        specifier: ^24.10.13
+        version: 24.12.0
+      '@types/react':
+        specifier: ^19.2.14
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.2.3
+        version: 19.2.3(@types/react@19.2.14)
+      rolldown:
+        specifier: ^1.0.0-rc.9
+        version: 1.0.0-rc.13
+
   packages/jsx-remove-attributes:
     dependencies:
       rolldown-string:
