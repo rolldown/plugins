@@ -7,11 +7,11 @@
     "generate": "oxnode src/index.ts"
   },
   "dependencies": {
-    "@oxc-node/cli": "^0.0.35",
+    "@oxc-node/cli": "^0.1.0",
     "@rollup/plugin-swc": "^0.4.0",
-    "@swc/core": "^1.15.21",
-    "@swc/plugin-emotion": "^14.7.0",
-    "@swc/plugin-react-remove-properties": "^12.7.0",
+    "@swc/core": "^1.15.24",
+    "@swc/plugin-emotion": "^14.8.0",
+    "@swc/plugin-react-remove-properties": "^12.8.0",
     "@swc/plugin-styled-jsx": "^13.8.0",
     "rolldown": "^1.0.0-rc.12",
     "tinyglobby": "^0.2.15"
