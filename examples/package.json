@@ -8,7 +8,7 @@
     "test:build": "vitest --project=e2e:build"
   },
   "devDependencies": {
-    "playwright-chromium": "^1.58.2",
+    "playwright-chromium": "^1.59.1",
     "vite": "^8.0.3"
   }
 }
