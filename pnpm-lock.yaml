@@ -160,6 +160,9 @@ importers:
       '@swc/plugin-styled-jsx':
         specifier: ^13.8.0
         version: 13.8.0
+      '@swc/plugin-transform-imports':
+        specifier: ^12.8.0
+        version: 12.8.0
       rolldown:
         specifier: ^1.0.0-rc.13
         version: 1.0.0-rc.13
