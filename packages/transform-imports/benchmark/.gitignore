@@ -1,0 +1,9 @@
+# Build outputs
+dist/
+
+# Generated modules (regenerated with pnpm generate)
+shared-app/src/index.js
+shared-app/src/modules/
+
+# SWC plugin cache
+.swc/

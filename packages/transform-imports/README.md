@@ -194,6 +194,29 @@ const mod = await import('lodash')
 // source is rewritten based on the transform template
 ```
 
+## Benchmark
+
+Results of the benchmark that can be run by `pnpm bench` in `./benchmark` directory:
+
+```
+  name                                     hz      min      max     mean      p75      p99     p995     p999     rme  samples
+· @rolldown/plugin-transform-imports  14.9081  65.9831  69.8849  67.0775  67.5907  69.8849  69.8849  69.8849  ±1.29%       10
+· babel-plugin-transform-imports       5.1254   184.90   246.64   195.11   191.14   246.64   246.64   246.64  ±6.84%       10
+· @swc/plugin-transform-imports       10.9555  88.5649  98.1298  91.2780  92.9843  98.1298  98.1298  98.1298  ±2.50%       10
+
+@rolldown/plugin-transform-imports - bench/transform-imports.bench.ts > Transform Imports Benchmark
+  1.36x faster than @swc/plugin-transform-imports
+  2.91x faster than babel-plugin-transform-imports
+```
+
+The benchmark was ran on the following environment:
+
+```
+OS: macOS Tahoe 26.3
+CPU: Apple M4
+Memory: LPDDR5X-7500 32GB
+```
+
 ## License
 
 MIT
