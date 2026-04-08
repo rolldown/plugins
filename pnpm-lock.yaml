@@ -125,6 +125,15 @@ importers:
         specifier: ^8.0.7
         version: 8.0.7(@types/node@24.12.2)(esbuild@0.27.3)
 
+  examples/transform-imports:
+    devDependencies:
+      '@rolldown/plugin-transform-imports':
+        specifier: workspace:*
+        version: link:../../packages/transform-imports
+      vite:
+        specifier: ^8.0.7
+        version: 8.0.7(@types/node@24.12.2)(esbuild@0.27.3)
+
   internal-packages/benchmark-utils:
     devDependencies:
       '@oxc-node/core':
