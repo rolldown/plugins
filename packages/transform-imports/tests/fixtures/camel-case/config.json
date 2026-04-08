@@ -1,0 +1,6 @@
+{
+  "my-library-2": {
+    "transform": "my-library-2/{{ camelCase member }}",
+    "skipDefaultConversion": true
+  }
+}

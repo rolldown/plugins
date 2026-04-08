@@ -1,0 +1,7 @@
+{
+  "my-(module-namespace|default|mixed-(named|star))": {
+    "transform": "transformed-{{matches.[1]}}",
+    "skipDefaultConversion": true,
+    "handleNamespaceImport": true
+  }
+}

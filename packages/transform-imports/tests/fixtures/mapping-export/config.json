@@ -1,0 +1,12 @@
+{
+  "my-library-4": {
+    "transform": [
+      ["foo", "my-library-4/this_is_foo"],
+      ["bar", "my-library-4/bar"],
+      ["use(\\w*)", "my-library-4/{{ kebabCase member }}/{{ kebabCase memberMatches.[1] }}"],
+      ["(\\w*)Icon", "my-library-4/{{ kebabCase memberMatches.[1] }}"],
+      ["*", "my-library-4/{{ upperCase member }}"]
+    ],
+    "skipDefaultConversion": true
+  }
+}

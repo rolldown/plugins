@@ -423,6 +423,22 @@ importers:
         specifier: ^1.0.0-rc.13
         version: 1.0.0-rc.13
 
+  packages/transform-imports:
+    dependencies:
+      rolldown-string:
+        specifier: ^0.3.0
+        version: 0.3.0(rolldown@1.0.0-rc.13)
+      vite:
+        specifier: ^8.0.0
+        version: 8.0.7(@types/node@24.12.2)(esbuild@0.27.3)
+    devDependencies:
+      rolldown:
+        specifier: ^1.0.0-rc.13
+        version: 1.0.0-rc.13
+      tinyglobby:
+        specifier: ^0.2.15
+        version: 0.2.15
+
   scripts:
     devDependencies:
       '@vitejs/release-scripts':

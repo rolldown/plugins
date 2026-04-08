@@ -1,0 +1,6 @@
+{
+  "antd": {
+    "transform": "antd/lib/{{ kebabCase member }}",
+    "style": "style"
+  }
+}
