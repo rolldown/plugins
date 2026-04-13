@@ -5,7 +5,8 @@
     "suspicious": "error"
   },
   "rules": {
-    "no-shadow": "off"
+    "no-shadow": "off",
+    "typescript/consistent-return": "off"
   },
   "ignorePatterns": ["**/dist/**", "**/fixtures/**", "**/fixtures-labels/**", "**/benchmark/**"]
 }
