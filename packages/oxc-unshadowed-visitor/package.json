@@ -35,7 +35,7 @@
     "@oxc-project/types": "^0.124.0",
     "oxc-parser": "^0.124.0",
     "oxc-walker": "^0.7.0",
-    "rolldown": "^1.0.0-rc.13"
+    "rolldown": "^1.0.0-rc.15"
   },
   "peerDependencies": {
     "oxc-parser": "^0.121.0",

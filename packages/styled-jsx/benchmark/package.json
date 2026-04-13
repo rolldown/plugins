@@ -27,6 +27,6 @@
     "@types/node": "^24.12.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "rolldown": "^1.0.0-rc.13"
+    "rolldown": "^1.0.0-rc.15"
   }
 }
