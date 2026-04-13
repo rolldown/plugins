@@ -46,9 +46,9 @@ Note that this option receives [the syntax supported by babel](https://babeljs.i
 ### `exclude`
 
 - **Type:** `string | RegExp | (string | RegExp)[]`
-- **Default:** `/[\/\\]node_modules[\/\\]/`
+- **Default:** `/[\/\\]node_modules[\/\\]|\0rolldown\/runtime\.js/`
 
-Files matching the pattern will be skipped.
+Files matching the pattern will be skipped. The default also excludes Rolldown's runtime helper module (`\0rolldown/runtime.js`) so that Babel does not transform Rolldown's internal runtime code. If you override `exclude`, you are responsible for re-adding any of these entries you still want to skip.
 
 Note that this option receives [the syntax supported by babel](https://babeljs.io/docs/options#matchpattern) instead of picomatch.
 

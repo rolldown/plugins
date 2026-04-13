@@ -148,6 +148,49 @@ test('exclude allows transformation for non-matching files', async () => {
   expect(result.code).toContain('const result = true')
 })
 
+test('default exclude skips rolldown virtual runtime module', async () => {
+  const seenIds: string[] = []
+  const trackingPlugin: babel.PluginItem = (): babel.PluginObject => ({
+    visitor: {
+      Program(_p, state) {
+        seenIds.push(state.file.opts.filename ?? '<unknown>')
+      },
+    },
+  })
+
+  // A CJS dep forces rolldown to emit its `\0rolldown/runtime.js` helper
+  // region (for `__toESM` / `__commonJSMin`) into the chunk.
+  const files: Record<string, string> = {
+    'entry.js': `import dep from './dep.js'\nexport const result = dep.value`,
+    'dep.js': `module.exports = { value: 42 }`,
+  }
+  const bundle = await rolldown({
+    input: 'entry.js',
+    plugins: [
+      {
+        name: 'virtual',
+        resolveId(id) {
+          if (id in files) return id
+          if (id === './dep.js') return 'dep.js'
+        },
+        load(id) {
+          if (id in files) return files[id]
+        },
+      },
+      babelPlugin({ plugins: [trackingPlugin] }),
+    ],
+  })
+  const { output } = await bundle.generate()
+  const chunk = output.find((o) => o.type === 'chunk')
+  assert(chunk, 'expected a chunk in output')
+
+  // Sanity: rolldown must have actually emitted its runtime region, otherwise
+  // the assertion below would be vacuous.
+  expect(chunk.code).toContain('rolldown/runtime.js')
+
+  expect(seenIds).not.toContainEqual(expect.stringMatching(/rolldown[/\\]runtime\.js/))
+})
+
 test('include activates config only for matching files', async () => {
   const result = await build('foo.js', 'export const result = foo', {
     include: [/\.js$/],
