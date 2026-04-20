@@ -1,6 +1,6 @@
 {
   "name": "@rolldown/plugin-transform-imports",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Rolldown plugin for transforming import/exports to barrel files",
   "keywords": [
     "imports",
