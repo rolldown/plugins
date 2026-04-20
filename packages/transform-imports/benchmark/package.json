@@ -20,6 +20,6 @@
     "@swc/plugin-transform-imports": "^12.8.0",
     "@types/node": "^24.12.2",
     "babel-plugin-transform-imports": "^2.0.0",
-    "rolldown": "^1.0.0-rc.13"
+    "rolldown": "^1.0.0-rc.16"
   }
 }
