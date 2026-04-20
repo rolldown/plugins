@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { rolldown } from 'rolldown'
-import { transformImportsPlugin, type PluginConfig } from '../src/index.ts'
+import { transformImportsPlugin, type TransformImportsOptions } from '../src/index.ts'
 import { globSync } from 'tinyglobby'
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
@@ -49,7 +49,7 @@ describe('fixtures', () => {
   }
 })
 
-async function transform(code: string, modules: PluginConfig): Promise<string> {
+async function transform(code: string, modules: TransformImportsOptions): Promise<string> {
   const build = await rolldown({
     input: 'virtual:entry.ts',
     plugins: [
@@ -64,7 +64,7 @@ async function transform(code: string, modules: PluginConfig): Promise<string> {
           if (id === 'virtual:entry.ts') return code
         },
       },
-      transformImportsPlugin({ modules }),
+      transformImportsPlugin(modules),
     ],
   })
 

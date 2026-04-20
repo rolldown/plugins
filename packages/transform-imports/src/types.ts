@@ -13,8 +13,4 @@ export interface TransformConfig {
   handleNamespaceImport?: boolean
 }
 
-export type PluginConfig = Record<string, TransformConfig>
-
-export interface TransformImportsOptions {
-  modules: PluginConfig
-}
+export type TransformImportsOptions = Record<string, TransformConfig>

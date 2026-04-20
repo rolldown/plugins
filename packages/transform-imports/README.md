@@ -16,10 +16,8 @@ import transformImports from '@rolldown/plugin-transform-imports'
 export default {
   plugins: [
     transformImports({
-      modules: {
-        lodash: {
-          transform: 'lodash/{{member}}',
-        },
+      lodash: {
+        transform: 'lodash/{{member}}',
       },
     }),
   ],
@@ -41,11 +39,7 @@ import filter from 'lodash/filter'
 
 ## Options
 
-### `modules`
-
-- **Type:** `Record<string, TransformConfig>`
-
-A map of module names (or regex patterns) to their transform configuration.
+The plugin takes a `Record<string, TransformConfig>` — a map of module names (or regex patterns) to their transform configuration.
 
 Module names are converted to regex patterns: `lodash` matches exactly `lodash`, while `^lodash(/.*)?$` allows custom regex patterns (must start with `^` and end with `$`).
 
@@ -153,10 +147,8 @@ Apply a case transform by prefixing the variable:
 
 ```js
 {
-  modules: {
-    '^my-lib/(.+)$': {
-      transform: 'my-lib/dist/{{matches.[1]}}/{{kebabCase member}}',
-    },
+  '^my-lib/(.+)$': {
+    transform: 'my-lib/dist/{{matches.[1]}}/{{kebabCase member}}',
   },
 }
 // import { MyButton } from 'my-lib/components'

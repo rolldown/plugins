@@ -5,12 +5,7 @@ import type { ESTree } from 'rolldown/utils'
 import type { TransformImportsOptions, TransformConfig, TransformPattern } from './types.js'
 import { processTemplate } from './template.js'
 
-export type {
-  TransformImportsOptions,
-  TransformConfig,
-  PluginConfig,
-  TransformPattern,
-} from './types.js'
+export type { TransformImportsOptions, TransformConfig, TransformPattern } from './types.js'
 
 function getName(node: ESTree.ModuleExportName): string {
   return node.type === 'Literal' ? node.value : node.name
@@ -21,7 +16,7 @@ interface CompiledModule {
   config: TransformConfig
 }
 
-function compileModulePatterns(modules: Record<string, TransformConfig>): CompiledModule[] {
+function compileModulePatterns(modules: TransformImportsOptions): CompiledModule[] {
   return Object.entries(modules).map(([pattern, config]) => ({
     regex:
       pattern.startsWith('^') && pattern.endsWith('$')
@@ -31,7 +26,7 @@ function compileModulePatterns(modules: Record<string, TransformConfig>): Compil
   }))
 }
 
-function buildCodeFilter(modules: Record<string, TransformConfig>): RegExp | undefined {
+function buildCodeFilter(modules: TransformImportsOptions): RegExp | undefined {
   const literals = Object.keys(modules)
     .map((pattern) => {
       // Extract literal prefix before first regex metacharacter
@@ -234,8 +229,8 @@ function processImportExpression(
 }
 
 export function transformImportsPlugin(options: TransformImportsOptions): Plugin {
-  const compiledModules = compileModulePatterns(options.modules)
-  const codeFilter = buildCodeFilter(options.modules)
+  const compiledModules = compileModulePatterns(options)
+  const codeFilter = buildCodeFilter(options)
 
   return {
     name: 'rolldown-plugin-transform-imports',

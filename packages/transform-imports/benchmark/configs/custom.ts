@@ -16,5 +16,5 @@ export default defineConfig({
   output: {
     dir: resolve(import.meta.dirname, '../dist/custom'),
   },
-  plugins: [transformImports({ modules })],
+  plugins: [transformImports(modules)],
 })

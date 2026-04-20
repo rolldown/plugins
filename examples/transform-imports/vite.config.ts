@@ -5,10 +5,8 @@ import path from 'node:path'
 export default defineConfig({
   plugins: [
     transformImports({
-      modules: {
-        'mock-lib': {
-          transform: 'mock-lib/{{kebabCase member}}',
-        },
+      'mock-lib': {
+        transform: 'mock-lib/{{kebabCase member}}',
       },
     }),
   ],
