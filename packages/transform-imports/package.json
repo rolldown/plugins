@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "rolldown": "^1.0.0-rc.13",
-    "tinyglobby": "^0.2.15"
+    "tinyglobby": "^0.2.16"
   },
   "peerDependencies": {
     "rolldown": "^1.0.0-rc.13",

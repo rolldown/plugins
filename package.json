@@ -15,10 +15,10 @@
     "generate:swc-outputs": "pnpm run --filter=@rolldown/swc-output-gen generate"
   },
   "devDependencies": {
-    "@typescript/native-preview": "7.0.0-dev.20260412.1",
-    "oxfmt": "^0.44.0",
-    "oxlint": "^1.59.0",
-    "oxlint-tsgolint": "^0.20.0",
+    "@typescript/native-preview": "7.0.0-dev.20260419.1",
+    "oxfmt": "^0.45.0",
+    "oxlint": "^1.60.0",
+    "oxlint-tsgolint": "^0.21.1",
     "tsdown": "^0.21.7",
     "vitest": "^4.1.4"
   },
