@@ -83,7 +83,8 @@ export type ResolvedPluginOptions = PluginOptions &
   Required<Pick<PluginOptions, 'include' | 'exclude' | 'sourceMap'>>
 
 export const DEFAULT_INCLUDE = [/\.(?:[jt]sx?|[cm][jt]s)(?:$|\?)/]
-export const DEFAULT_EXCLUDE = [/[/\\]node_modules[/\\]/]
+// oxlint-disable-next-line no-control-regex
+export const DEFAULT_EXCLUDE = [/[/\\]node_modules[/\\]|^\0rolldown\/runtime\.js$/]
 
 export function resolveOptions(options: PluginOptions): ResolvedPluginOptions {
   return {

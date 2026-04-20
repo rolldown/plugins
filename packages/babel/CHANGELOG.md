@@ -1,3 +1,19 @@
+## <small>[0.2.3](https://github.com/rolldown/plugins/compare/plugin-babel@0.2.2...plugin-babel@0.2.3) (2026-04-13)</small>
+### Bug Fixes
+
+* **babel:** exclude rolldown runtime module by default ([#57](https://github.com/rolldown/plugins/issues/57)) ([d42ec45](https://github.com/rolldown/plugins/commit/d42ec45ded69e93870d1dfc2977ae11f5ab01e01))
+* **deps:** update all non-major dependencies ([#35](https://github.com/rolldown/plugins/issues/35)) ([f359c39](https://github.com/rolldown/plugins/commit/f359c3923b3802e4efa68da6c9e85aec1fda96d3))
+* **deps:** update all non-major dependencies ([#40](https://github.com/rolldown/plugins/issues/40)) ([1963ed1](https://github.com/rolldown/plugins/commit/1963ed13059fb08caf33ca96739c3b90f5b10099))
+* **deps:** update all non-major dependencies ([#49](https://github.com/rolldown/plugins/issues/49)) ([8047e05](https://github.com/rolldown/plugins/commit/8047e05a978ba7e0544111d8c2deb7ca335af076))
+* **deps:** update rolldown-related dependencies ([#36](https://github.com/rolldown/plugins/issues/36)) ([b2bf24b](https://github.com/rolldown/plugins/commit/b2bf24bd65d23bd051aa2f7b3cdee22ca1d58e2f))
+* **deps:** update rolldown-related dependencies ([#46](https://github.com/rolldown/plugins/issues/46)) ([6b7fcfc](https://github.com/rolldown/plugins/commit/6b7fcfcc8f0107c0c698ead7d29a65d4ea7c46cd))
+* **deps:** update rolldown-related dependencies ([#50](https://github.com/rolldown/plugins/issues/50)) ([232515f](https://github.com/rolldown/plugins/commit/232515f251da54c60e0e139d655677f62c3868e5))
+* **deps:** update rolldown-related dependencies ([#55](https://github.com/rolldown/plugins/issues/55)) ([c432590](https://github.com/rolldown/plugins/commit/c43259004d90b7a0e5eb9b8ede94de3e651f25c1))
+
+### Miscellaneous Chores
+
+* **deps:** update dependency @types/node to v24 ([#38](https://github.com/rolldown/plugins/issues/38)) ([d6b8baa](https://github.com/rolldown/plugins/commit/d6b8baaf69d80604a9204e018db6cd4a1e4809ba))
+
 ## <small>[0.2.2](https://github.com/rolldown/plugins/compare/plugin-babel@0.2.1...plugin-babel@0.2.2) (2026-03-18)</small>
 ### Features
 

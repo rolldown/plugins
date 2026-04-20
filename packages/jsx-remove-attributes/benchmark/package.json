@@ -11,8 +11,8 @@
     "build:swc": "rolldown -c configs/swc.ts"
   },
   "dependencies": {
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
@@ -27,6 +27,6 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "babel-plugin-react-remove-properties": "^0.3.1",
-    "rolldown": "^1.0.0-rc.13"
+    "rolldown": "^1.0.0-rc.15"
   }
 }

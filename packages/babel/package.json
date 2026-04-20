@@ -1,6 +1,6 @@
 {
   "name": "@rolldown/plugin-babel",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Rolldown plugin for Babel",
   "keywords": [
     "babel",
@@ -39,8 +39,8 @@
     "@babel/runtime": "^8.0.0-rc.3",
     "@types/node": "^24.12.2",
     "@types/picomatch": "^4.0.3",
-    "rolldown": "1.0.0-rc.13",
-    "vite": "^8.0.7"
+    "rolldown": "1.0.0-rc.15",
+    "vite": "^8.0.8"
   },
   "peerDependencies": {
     "@babel/core": "^7.29.0 || ^8.0.0-rc.1",
