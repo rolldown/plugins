@@ -16,7 +16,7 @@
     "@rolldown/plugin-babel": "file:../../babel",
     "@rolldown/plugin-transform-imports": "workspace:*",
     "@rollup/plugin-swc": "^0.4.0",
-    "@swc/core": "^1.15.24",
+    "@swc/core": "^1.15.30",
     "@swc/plugin-transform-imports": "^12.8.0",
     "@types/node": "^24.12.2",
     "babel-plugin-transform-imports": "^2.0.0",
