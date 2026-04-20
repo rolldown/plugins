@@ -1,0 +1,6 @@
+{
+  "my-library-3": {
+    "transform": "my-library-3/{{ kebabCase member }}",
+    "skipDefaultConversion": true
+  }
+}

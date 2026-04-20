@@ -25,6 +25,7 @@ Official Rolldown plugins
 - [`@rolldown/plugin-emotion`](https://github.com/rolldown/plugins/tree/main/packages/emotion) ([![NPM version][badge-npm-version-emotion]][url-npm-emotion]): minification and optimization of Emotion styles
 - [`@rolldown/plugin-jsx-remove-attributes`](https://github.com/rolldown/plugins/tree/main/packages/jsx-remove-attributes) ([![NPM version][badge-npm-version-jsx-remove-attributes]][url-npm-jsx-remove-attributes]): remove JSX attributes (e.g. data-testid)
 - [`@rolldown/plugin-styled-jsx`](https://github.com/rolldown/plugins/tree/main/packages/styled-jsx) ([![NPM version][badge-npm-version-styled-jsx]][url-npm-styled-jsx]): Rolldown plugin for styled-jsx CSS scoping
+- [`@rolldown/plugin-transform-imports`](https://github.com/rolldown/plugins/tree/main/packages/transform-imports) ([![NPM version][badge-npm-version-transform-imports]][url-npm-transform-imports]): transform imports/exports to barrel files
 
 ### Other Packages
 
@@ -38,9 +39,11 @@ Official Rolldown plugins
 [badge-npm-version-emotion]: https://img.shields.io/npm/v/@rolldown/plugin-emotion?color=brightgreen
 [badge-npm-version-jsx-remove-attributes]: https://img.shields.io/npm/v/@rolldown/plugin-jsx-remove-attributes?color=brightgreen
 [badge-npm-version-styled-jsx]: https://img.shields.io/npm/v/@rolldown/plugin-styled-jsx?color=brightgreen
+[badge-npm-version-transform-imports]: https://img.shields.io/npm/v/@rolldown/plugin-transform-imports?color=brightgreen
 [badge-npm-version-oxc-unshadowed-visitor]: https://img.shields.io/npm/v/oxc-unshadowed-visitor?color=brightgreen
 [url-npm-babel]: https://npmx.dev/package/@rolldown/plugin-babel
 [url-npm-emotion]: https://npmx.dev/package/@rolldown/plugin-emotion
 [url-npm-jsx-remove-attributes]: https://npmx.dev/package/@rolldown/plugin-jsx-remove-attributes
 [url-npm-styled-jsx]: https://npmx.dev/package/@rolldown/plugin-styled-jsx
+[url-npm-transform-imports]: https://npmx.dev/package/@rolldown/plugin-transform-imports
 [url-npm-oxc-unshadowed-visitor]: https://npmx.dev/package/oxc-unshadowed-visitor

@@ -1,0 +1,5 @@
+{
+  "my-library/?(((\\w*)?/?)*)": {
+    "transform": "my-library/{{ matches.[1] }}/{{member}}"
+  }
+}

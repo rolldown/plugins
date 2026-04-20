@@ -21,6 +21,8 @@ body:
             [plugin-jsx-remove-attributes](https://github.com/rolldown/plugins/tree/main/packages/jsx-remove-attributes)
         - label: |-
             [plugin-styled-jsx](https://github.com/rolldown/plugins/tree/main/packages/styled-jsx)
+        - label: |-
+            [plugin-transform-imports](https://github.com/rolldown/plugins/tree/main/packages/transform-imports)
   - type: textarea
     id: feature-description
     attributes:

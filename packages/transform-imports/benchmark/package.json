@@ -1,0 +1,25 @@
+{
+  "name": "@rolldown/benchmark-transform-imports",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "oxnode scripts/generate-app.ts",
+    "bench": "vitest bench --run",
+    "build:custom": "rolldown -c configs/custom.ts",
+    "build:babel": "rolldown -c configs/babel.ts",
+    "build:swc": "rolldown -c configs/swc.ts"
+  },
+  "devDependencies": {
+    "@oxc-node/cli": "^0.1.0",
+    "@rolldown/benchmark-utils": "workspace:*",
+    "@rolldown/plugin-babel": "file:../../babel",
+    "@rolldown/plugin-transform-imports": "workspace:*",
+    "@rollup/plugin-swc": "^0.4.0",
+    "@swc/core": "^1.15.24",
+    "@swc/plugin-transform-imports": "^12.8.0",
+    "@types/node": "^24.12.2",
+    "babel-plugin-transform-imports": "^2.0.0",
+    "rolldown": "^1.0.0-rc.13"
+  }
+}

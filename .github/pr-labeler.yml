@@ -14,6 +14,10 @@
   - changed-files:
       - any-glob-to-any-file: 'packages/styled-jsx/**'
 
+'plugin: transform-imports':
+  - changed-files:
+      - any-glob-to-any-file: 'packages/transform-imports/**'
+
 'package: oxc-unshadowed-visitor':
   - changed-files:
       - any-glob-to-any-file: 'packages/oxc-unshadowed-visitor/**'

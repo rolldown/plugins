@@ -1,0 +1,61 @@
+{
+  "name": "@rolldown/plugin-transform-imports",
+  "version": "0.1.0",
+  "description": "Rolldown plugin for transforming import/exports to barrel files",
+  "keywords": [
+    "imports",
+    "modularize",
+    "plugin",
+    "rolldown",
+    "rolldown-plugin",
+    "transform-imports",
+    "tree-shaking"
+  ],
+  "homepage": "https://github.com/rolldown/plugins/tree/main/packages/transform-imports#readme",
+  "bugs": {
+    "url": "https://github.com/rolldown/plugins/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rolldown/plugins.git",
+    "directory": "packages/transform-imports"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "exports": "./dist/index.mjs",
+  "scripts": {
+    "dev": "tsdown --watch",
+    "build": "tsdown",
+    "test": "vitest --project transform-imports",
+    "prepublishOnly": "pnpm run build"
+  },
+  "dependencies": {
+    "rolldown-string": "^0.3.0"
+  },
+  "devDependencies": {
+    "rolldown": "^1.0.0-rc.13",
+    "tinyglobby": "^0.2.15"
+  },
+  "peerDependencies": {
+    "rolldown": "^1.0.0-rc.13",
+    "vite": "^8.0.0"
+  },
+  "peerDependenciesMeta": {
+    "vite": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=22.12.0 || ^24.0.0"
+  },
+  "compatiblePackages": {
+    "schemaVersion": 1,
+    "rollup": {
+      "type": "incompatible",
+      "reason": "Uses Rolldown-specific APIs"
+    }
+  }
+}

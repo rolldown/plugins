@@ -1,0 +1,6 @@
+{
+  "my-lib": {
+    "transform": "my-lib/{{member}}",
+    "handleDefaultImport": true
+  }
+}

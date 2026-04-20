@@ -6,3 +6,5 @@
   - '/- \[x\] \[plugin-jsx-remove-attributes\]/i'
 'plugin: styled-jsx':
   - '/- \[x\] \[plugin-styled-jsx\]/i'
+'plugin: transform-imports':
+  - '/- \[x\] \[plugin-transform-imports\]/i'

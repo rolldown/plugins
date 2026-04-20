@@ -46,6 +46,17 @@ export const pluginRegistry: Record<string, PluginConfig> = {
       return [['@swc/plugin-styled-jsx', swcConfig]]
     },
   },
+  'transform-imports': {
+    packages: ['@swc/plugin-transform-imports'],
+    mapOptions: (config) => [['@swc/plugin-transform-imports', config]],
+    shouldSkip: (config) => {
+      // SWC plugin only supports camelCase and kebabCase helpers
+      // Our ported plugin also supports snakeCase, lowerCase, upperCase
+      const unsupportedHelpers = ['snakeCase', 'lowerCase', 'upperCase']
+      const configStr = JSON.stringify(config)
+      return unsupportedHelpers.some((helper) => configStr.includes(helper))
+    },
+  },
 }
 
 /** Get list of all supported plugin names */

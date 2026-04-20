@@ -1,0 +1,5 @@
+{
+  "react-bootstrap": {
+    "transform": "react-bootstrap/lib/{{member}}"
+  }
+}

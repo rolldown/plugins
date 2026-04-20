@@ -1,0 +1,6 @@
+{
+  "test-snake-case": {
+    "transform": "test-snake-case/{{ snakeCase member }}",
+    "skipDefaultConversion": true
+  }
+}
