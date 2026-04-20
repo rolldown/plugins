@@ -1,6 +1,11 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended", "schedule:weekly", "group:allNonMajor"],
+  "extends": [
+    "github>Boshen/renovate",
+    "config:recommended",
+    "schedule:weekly",
+    "group:allNonMajor"
+  ],
   "labels": ["dependencies"],
   "ignorePaths": ["**/__tests__/**"],
   "rangeStrategy": "bump",
@@ -27,8 +32,5 @@
       ]
     }
   ],
-  "ignoreDeps": [
-    // manually bumping
-    "node"
-  ]
+  "ignoreDeps": ["node"]
 }
