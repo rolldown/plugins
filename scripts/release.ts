@@ -12,6 +12,7 @@ await release({
     'plugin-emotion',
     'plugin-jsx-remove-attributes',
     'plugin-styled-jsx',
+    'plugin-transform-imports',
     'oxc-unshadowed-visitor',
   ],
   toTag: (pkg, version) => `${pkg}@${version}`,

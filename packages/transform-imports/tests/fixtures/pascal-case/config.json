@@ -1,0 +1,6 @@
+{
+  "test-pascal-case": {
+    "transform": "test-pascal-case/{{ member }}",
+    "skipDefaultConversion": true
+  }
+}

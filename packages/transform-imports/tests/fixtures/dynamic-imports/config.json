@@ -1,0 +1,5 @@
+{
+  "antd": {
+    "transform": "antd/es/{{member}}"
+  }
+}
