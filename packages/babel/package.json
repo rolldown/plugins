@@ -39,7 +39,7 @@
     "@babel/runtime": "^8.0.0-rc.3",
     "@types/node": "^24.12.2",
     "@types/picomatch": "^4.0.3",
-    "rolldown": "1.0.0-rc.15",
+    "rolldown": "1.0.0-rc.16",
     "vite": "^8.0.8"
   },
   "peerDependencies": {
