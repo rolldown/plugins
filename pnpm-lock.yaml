@@ -27,7 +27,7 @@ importers:
         version: 0.21.1
       tsdown:
         specifier: ^0.21.9
-        version: 0.21.9(@typescript/native-preview@7.0.0-dev.20260419.1)(publint@0.3.17)
+        version: 0.21.9(@typescript/native-preview@7.0.0-dev.20260419.1)(publint@0.3.17)(typescript@5.9.3)
       vitest:
         specifier: ^4.1.4
         version: 4.1.4(@types/node@24.12.2)(vite@8.0.9(@types/node@24.12.2)(esbuild@0.27.3))
@@ -360,6 +360,18 @@ importers:
       rolldown:
         specifier: ^1.0.0-rc.16
         version: 1.0.0-rc.16
+
+  packages/pluginutils:
+    devDependencies:
+      '@types/picomatch':
+        specifier: ^4.0.3
+        version: 4.0.3
+      picomatch:
+        specifier: ^4.0.4
+        version: 4.0.4
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
 
   packages/styled-jsx:
     dependencies:
@@ -2662,6 +2674,11 @@ packages:
   type-level-regexp@0.1.17:
     resolution: {integrity: sha512-wTk4DH3cxwk196uGLK/E9pE45aLfeKJacKmcEgEOA/q5dnPGNxXt0cfYdFxb57L+sEpf1oJH4Dnx/pnRcku9jg==}
 
+  typescript@5.9.3:
+    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
   ufo@1.6.3:
     resolution: {integrity: sha512-yDJTmhydvl5lJzBmy/hyOAA0d+aqCBuwl818haVdYCRrWV84o7YyeVm4QlVHStqNrrJSTb6jKuFAVqAFsr+K3Q==}
 
@@ -4518,7 +4535,7 @@ snapshots:
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
 
-  rolldown-plugin-dts@0.23.2(@typescript/native-preview@7.0.0-dev.20260419.1)(rolldown@1.0.0-rc.16):
+  rolldown-plugin-dts@0.23.2(@typescript/native-preview@7.0.0-dev.20260419.1)(rolldown@1.0.0-rc.16)(typescript@5.9.3):
     dependencies:
       '@babel/generator': 8.0.0-rc.3
       '@babel/helper-validator-identifier': 8.0.0-rc.3
@@ -4533,6 +4550,7 @@ snapshots:
       rolldown: 1.0.0-rc.16
     optionalDependencies:
       '@typescript/native-preview': 7.0.0-dev.20260419.1
+      typescript: 5.9.3
     transitivePeerDependencies:
       - oxc-resolver
 
@@ -4648,7 +4666,7 @@ snapshots:
 
   tree-kill@1.2.2: {}
 
-  tsdown@0.21.9(@typescript/native-preview@7.0.0-dev.20260419.1)(publint@0.3.17):
+  tsdown@0.21.9(@typescript/native-preview@7.0.0-dev.20260419.1)(publint@0.3.17)(typescript@5.9.3):
     dependencies:
       ansis: 4.2.0
       cac: 7.0.0
@@ -4659,7 +4677,7 @@ snapshots:
       obug: 2.1.1
       picomatch: 4.0.4
       rolldown: 1.0.0-rc.16
-      rolldown-plugin-dts: 0.23.2(@typescript/native-preview@7.0.0-dev.20260419.1)(rolldown@1.0.0-rc.16)
+      rolldown-plugin-dts: 0.23.2(@typescript/native-preview@7.0.0-dev.20260419.1)(rolldown@1.0.0-rc.16)(typescript@5.9.3)
       semver: 7.7.4
       tinyexec: 1.1.1
       tinyglobby: 0.2.16
@@ -4668,6 +4686,7 @@ snapshots:
       unrun: 0.2.36
     optionalDependencies:
       publint: 0.3.17
+      typescript: 5.9.3
     transitivePeerDependencies:
       - '@ts-macro/tsc'
       - '@typescript/native-preview'
@@ -4679,6 +4698,8 @@ snapshots:
     optional: true
 
   type-level-regexp@0.1.17: {}
+
+  typescript@5.9.3: {}
 
   ufo@1.6.3: {}
 
