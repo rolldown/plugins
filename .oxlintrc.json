@@ -6,6 +6,7 @@
   },
   "rules": {
     "no-shadow": "off",
+    "no-underscore-dangle": "off",
     "typescript/consistent-return": "off"
   },
   "ignorePatterns": ["**/dist/**", "**/fixtures/**", "**/fixtures-labels/**", "**/benchmark/**"]
