@@ -12,7 +12,7 @@ const styles = /* @__PURE__ */ emotionReact.css({
 	color: "red",
 	width: "20px"
 }, "label:styles", "/*# sourceMappingURL=[sourcemap] */");
-const styles2 = /* @__PURE__ */ emotionReact.css("color:red;width:20px;", "label:styles2", "/*# sourceMappingURL=[sourcemap] */");
+const styles2 = /* @__PURE__ */ emotionReact.css("color:red;width:20px;", "label:styles2;", "/*# sourceMappingURL=[sourcemap] */");
 var SimpleComponent = class extends PureComponent {
 	render() {
 		return /* @__PURE__ */ jsx("div", {

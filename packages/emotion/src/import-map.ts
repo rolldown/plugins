@@ -10,7 +10,11 @@ export type EmotionImportMap = Record<
 const EMOTION_OFFICIAL_LIBRARIES: EmotionImportMap = {
   '@emotion/css': { css: ExprKind.Css, default: ExprKind.Css },
   '@emotion/styled': { default: ExprKind.Styled },
-  '@emotion/react': { css: ExprKind.Css, keyframes: ExprKind.Css, Global: ExprKind.GlobalJSX },
+  '@emotion/react': {
+    css: ExprKind.Css,
+    keyframes: ExprKind.Keyframes,
+    Global: ExprKind.GlobalJSX,
+  },
   '@emotion/primitives': { css: ExprKind.Css, default: ExprKind.Styled },
   '@emotion/native': { css: ExprKind.Css, default: ExprKind.Styled },
 }

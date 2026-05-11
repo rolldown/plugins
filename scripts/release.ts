@@ -6,7 +6,8 @@ import path from 'node:path'
 process.chdir(path.join(import.meta.dirname, '..'))
 
 await release({
-  repo: 'rolldown/plugins',
+  org: 'rolldown',
+  repo: 'plugins',
   packages: [
     'plugin-babel',
     'plugin-emotion',
