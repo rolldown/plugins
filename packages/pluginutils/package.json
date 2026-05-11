@@ -5,8 +5,7 @@
   "keywords": [
     "filter",
     "plugin",
-    "rolldown",
-    "rolldown-plugin"
+    "rolldown"
   ],
   "homepage": "https://github.com/rolldown/plugins/tree/main/packages/pluginutils#readme",
   "bugs": {
