@@ -9,7 +9,7 @@ function myStyled(Component) {
 	})("background-color:red;", "/*# sourceMappingURL=[sourcemap] */");
 }
 function myCss(color) {
-	return /* @__PURE__ */ css("background-color:", color, ";", "myCss", "/*# sourceMappingURL=[sourcemap] */");
+	return /* @__PURE__ */ css("background-color:", color, ";", "label:myCss;", "/*# sourceMappingURL=[sourcemap] */");
 }
 myCss("red");
 myStyled("div");

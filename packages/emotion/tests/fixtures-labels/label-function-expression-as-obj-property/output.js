@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 //#region virtual:entry.ts
 const styles = { colorFn1: function() {
-	return /* @__PURE__ */ css("color:hotpink;", "colorFn1", "/*# sourceMappingURL=[sourcemap] */");
+	return /* @__PURE__ */ css("color:hotpink;", "label:colorFn1;", "/*# sourceMappingURL=[sourcemap] */");
 } };
 //#endregion
 export { styles };

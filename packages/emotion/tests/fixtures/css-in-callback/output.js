@@ -13,7 +13,7 @@ const styles = /* @__PURE__ */ css({
 	color: "red",
 	width: "20px"
 }, "label:styles", "/*# sourceMappingURL=[sourcemap] */");
-const styles2 = /* @__PURE__ */ css("color:red;width:20px;", "styles2", "/*# sourceMappingURL=[sourcemap] */");
+const styles2 = /* @__PURE__ */ css("color:red;width:20px;", "label:styles2;", "/*# sourceMappingURL=[sourcemap] */");
 const DivContainer = /* @__PURE__ */ styled("div", {
 	target: "e1i4ntoh0",
 	label: "DivContainer"
@@ -50,7 +50,7 @@ const Container2 = /* @__PURE__ */ styled("div", {
 var SimpleComponent = class extends PureComponent {
 	render() {
 		return /* @__PURE__ */ jsxs(Container, {
-			css: /* @__PURE__ */ css("color:hotpink;", "SimpleComponent", "/*# sourceMappingURL=[sourcemap] */"),
+			css: /* @__PURE__ */ css("color:hotpink;", "label:SimpleComponent;", "/*# sourceMappingURL=[sourcemap] */"),
 			children: [/* @__PURE__ */ jsx(Global, { styles: [css("html,body{padding:3rem 1rem;margin:0;background:papayawhip;min-height:100%;font-family:Helvetica,Arial,sans-serif;font-size:24px;}"), "/*# sourceMappingURL=[sourcemap] */"] }), /* @__PURE__ */ jsx("span", { children: "hello" })]
 		});
 	}

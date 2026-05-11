@@ -2,6 +2,7 @@ export const ExprKind = {
   Css: 0,
   Styled: 1,
   GlobalJSX: 2,
+  Keyframes: 3,
 } as const
 export type ExprKind = (typeof ExprKind)[keyof typeof ExprKind]
 

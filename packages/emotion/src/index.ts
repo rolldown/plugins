@@ -92,6 +92,25 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
           return createLabelWithInfo(labelFormat, context, fileStem, dirName ?? '', withPrefix)
         }
 
+        function createRuntimeLabel(
+          kind: ExprKind,
+          context: string | null,
+          terminateBeforeSourcemap: boolean,
+        ): string {
+          const isCss = kind === ExprKind.Css
+          let label = createLabel(context, isCss)
+          if (
+            terminateBeforeSourcemap &&
+            isCss &&
+            label.length > 0 &&
+            (sourceMapEnabled ?? isDev) &&
+            !label.endsWith(';')
+          ) {
+            label += ';'
+          }
+          return label
+        }
+
         function makeSourceMap(offset: number): string | null {
           if (!(sourceMapEnabled ?? isDev)) return null
           const pos = getPos(sourceContent, offset)
@@ -103,7 +122,7 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
           inJsx: boolean,
           labelContext: string | null,
           sourceMapOffset: number,
-          withLabelPrefix: boolean,
+          kind: ExprKind,
           includeLabel: boolean = true,
         ): string {
           const quasis = quasi.quasis
@@ -136,7 +155,7 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
           // Add label and source map (unless in JSX element context)
           if (!inJsx) {
             if (includeLabel && shouldAddLabel()) {
-              const label = createLabel(labelContext, withLabelPrefix)
+              const label = createRuntimeLabel(kind, labelContext, true)
               parts.push(`"${escapeJSString(label)}"`)
             }
             const sm = makeSourceMap(sourceMapOffset)
@@ -299,7 +318,11 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
               // --- css`...` / keyframes`...` ---
               if (tag.type === 'Identifier') {
                 const meta = importMap.get(tag.name)
-                if (meta?.type === 'named' && meta.kind === ExprKind.Css) {
+                if (
+                  meta?.type === 'named' &&
+                  (meta.kind === ExprKind.Css || meta.kind === ExprKind.Keyframes)
+                ) {
+                  const kind = meta.kind
                   let wasInJsx = inJsx
                   ctx.record({
                     name: tag.name,
@@ -314,7 +337,7 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
                           wasInJsx,
                           labelContext,
                           node.start,
-                          false,
+                          kind,
                         )
                         const tagText = s.slice(tag.start, tag.end)
                         s.update(node.start, node.end, `${tagText}(${args})`)
@@ -355,7 +378,7 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
                           false,
                           labelContext,
                           node.start,
-                          false,
+                          ExprKind.Css,
                           false,
                         )
                         const styledName = s.slice(tag.object.start, tag.object.end)
@@ -372,11 +395,13 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
                   return
                 }
 
-                // --- namespace.css`...` ---
+                // --- namespace.css`...` / namespace.keyframes`...` ---
                 if (meta?.type === 'namespace') {
                   const propName = tag.property.type === 'Identifier' ? tag.property.name : null
-                  if (!propName || meta.config[propName] !== ExprKind.Css) return
+                  const propKind = propName ? meta.config[propName] : undefined
+                  if (propKind !== ExprKind.Css && propKind !== ExprKind.Keyframes) return
 
+                  const kind = propKind
                   let wasInJsx = inJsx
                   ctx.record({
                     name: tag.object.name,
@@ -392,7 +417,7 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
                           wasInJsx,
                           labelContext,
                           node.start,
-                          true,
+                          kind,
                         )
                         s.update(node.start, node.end, `${tagText}(${args})`)
                         s.appendLeft(node.start, '/* @__PURE__ */ ')
@@ -458,7 +483,7 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
                           false,
                           labelContext,
                           node.start,
-                          false,
+                          ExprKind.Css,
                           false,
                         )
                         s.update(node.start, node.end, `${innerCallText}(${styledArgs})`)
@@ -476,15 +501,16 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
               const args = node.arguments
               const labelContext = labelContextStack[labelContextStack.length - 1]
 
-              // --- css({...}) ---
+              // --- css({...}) / keyframes({...}) ---
               if (callee.type === 'Identifier') {
                 const meta = importMap.get(callee.name)
                 if (
                   meta?.type === 'named' &&
-                  meta.kind === ExprKind.Css &&
+                  (meta.kind === ExprKind.Css || meta.kind === ExprKind.Keyframes) &&
                   args.length > 0 &&
                   !inJsx
                 ) {
+                  const kind = meta.kind
                   ctx.record({
                     name: callee.name,
                     node,
@@ -496,7 +522,7 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
                         s.appendLeft(node.start, '/* @__PURE__ */ ')
                         let hasTrailingComma = checkTrailingCommaExistence(s.original, node.end - 1)
                         if (shouldAddLabel()) {
-                          const label = createLabel(labelContext, true)
+                          const label = createRuntimeLabel(kind, labelContext, false)
                           s.appendRight(
                             node.end - 1,
                             `${maybeComma(!hasTrailingComma)}"${escapeJSString(label)}"`,
@@ -651,12 +677,14 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
                   return
                 }
 
-                // --- namespace.css({...}) ---
+                // --- namespace.css({...}) / namespace.keyframes({...}) ---
                 if (meta?.type === 'namespace') {
                   const propName =
                     callee.property.type === 'Identifier' ? callee.property.name : null
-                  if (!propName || meta.config[propName] !== ExprKind.Css) return
+                  const propKind = propName ? meta.config[propName] : undefined
+                  if (propKind !== ExprKind.Css && propKind !== ExprKind.Keyframes) return
 
+                  const kind = propKind
                   ctx.record({
                     name: callee.object.name,
                     node,
@@ -668,7 +696,7 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
                         s.appendLeft(node.start, '/* @__PURE__ */ ')
                         let hasTrailingComma = checkTrailingCommaExistence(s.original, node.end - 1)
                         if (shouldAddLabel()) {
-                          const label = createLabel(labelContext, true)
+                          const label = createRuntimeLabel(kind, labelContext, false)
                           s.appendRight(
                             node.end - 1,
                             `${maybeComma(!hasTrailingComma)}"${escapeJSString(label)}"`,
