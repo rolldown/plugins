@@ -22,10 +22,7 @@ importers:
         version: 0.22.1
       tsdown:
         specifier: ^0.22.0
-        version: 0.22.0(@typescript/native-preview@7.0.0-dev.20260510.1)(publint@0.3.20)(typescript@5.9.3)(unrun@0.2.36)
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
+        version: 0.22.0(@typescript/native-preview@7.0.0-dev.20260510.1)(publint@0.3.20)(unrun@0.2.36)
       vitest:
         specifier: ^4.1.5
         version: 4.1.5(@types/node@24.12.3)(vite@8.0.12(@types/node@24.12.3)(esbuild@0.27.3))
@@ -4645,7 +4642,7 @@ snapshots:
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
 
-  rolldown-plugin-dts@0.25.0(@typescript/native-preview@7.0.0-dev.20260510.1)(rolldown@1.0.0)(typescript@5.9.3):
+  rolldown-plugin-dts@0.25.0(@typescript/native-preview@7.0.0-dev.20260510.1)(rolldown@1.0.0):
     dependencies:
       '@babel/generator': 8.0.0-rc.4
       '@babel/helper-validator-identifier': 8.0.0-rc.4
@@ -4658,7 +4655,6 @@ snapshots:
       rolldown: 1.0.0
     optionalDependencies:
       '@typescript/native-preview': 7.0.0-dev.20260510.1
-      typescript: 5.9.3
     transitivePeerDependencies:
       - oxc-resolver
 
@@ -4794,7 +4790,7 @@ snapshots:
 
   tree-kill@1.2.2: {}
 
-  tsdown@0.22.0(@typescript/native-preview@7.0.0-dev.20260510.1)(publint@0.3.20)(typescript@5.9.3)(unrun@0.2.36):
+  tsdown@0.22.0(@typescript/native-preview@7.0.0-dev.20260510.1)(publint@0.3.20)(unrun@0.2.36):
     dependencies:
       ansis: 4.2.0
       cac: 7.0.0
@@ -4805,7 +4801,7 @@ snapshots:
       obug: 2.1.1
       picomatch: 4.0.4
       rolldown: 1.0.0
-      rolldown-plugin-dts: 0.25.0(@typescript/native-preview@7.0.0-dev.20260510.1)(rolldown@1.0.0)(typescript@5.9.3)
+      rolldown-plugin-dts: 0.25.0(@typescript/native-preview@7.0.0-dev.20260510.1)(rolldown@1.0.0)
       semver: 7.7.4
       tinyexec: 1.1.2
       tinyglobby: 0.2.16
@@ -4813,7 +4809,6 @@ snapshots:
       unconfig-core: 7.5.0
     optionalDependencies:
       publint: 0.3.20
-      typescript: 5.9.3
       unrun: 0.2.36
     transitivePeerDependencies:
       - '@ts-macro/tsc'
