@@ -88,32 +88,26 @@ const plugin = {
 ```ts
 import { and, code, id, include, interpreter, moduleType, or } from '@rolldown/pluginutils'
 
-const expr = include(
-  and(
-    or(id(/\.tsx?$/), id(/\.jsx?$/)),
-    moduleType('tsx'),
-    code(/import React/),
-  ),
-)
+const expr = include(and(or(id(/\.tsx?$/), id(/\.jsx?$/)), moduleType('tsx'), code(/import React/)))
 
 interpreter(expr, sourceCode, sourceId, 'tsx') // boolean
 ```
 
 ### Builders
 
-| Builder | Description |
-| --- | --- |
-| `and(...exprs)` | All operands must match. |
-| `or(...exprs)` | At least one operand must match. |
-| `not(expr)` | Negates the operand. |
-| `id(pattern, params?)` | Match the module id. `pattern` is `string` or `RegExp`. `params.cleanUrl` strips the query/hash before matching. |
-| `importerId(pattern, params?)` | Match the importer's id. Same shape as `id`. |
-| `moduleType(type)` | Match Rolldown's module type (`'js'`, `'jsx'`, `'ts'`, `'tsx'`, `'json'`, `'text'`, `'base64'`, `'dataurl'`, `'binary'`, `'empty'`, or a custom string). |
-| `code(pattern)` | Match the module source. `string` matches with `includes`; `RegExp` with `test`. |
-| `query(key, pattern)` | Match a single query parameter. `pattern` is `boolean` (key presence/truthiness), `string` (exact value), or `RegExp` (value pattern). |
-| `queries(obj)` | Shorthand for `and(...)` over multiple `query` entries. |
-| `include(expr)` | Top-level wrapper marking `expr` as an inclusion rule. |
-| `exclude(expr)` | Top-level wrapper marking `expr` as an exclusion rule. |
+| Builder                        | Description                                                                                                                                              |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `and(...exprs)`                | All operands must match.                                                                                                                                 |
+| `or(...exprs)`                 | At least one operand must match.                                                                                                                         |
+| `not(expr)`                    | Negates the operand.                                                                                                                                     |
+| `id(pattern, params?)`         | Match the module id. `pattern` is `string` or `RegExp`. `params.cleanUrl` strips the query/hash before matching.                                         |
+| `importerId(pattern, params?)` | Match the importer's id. Same shape as `id`.                                                                                                             |
+| `moduleType(type)`             | Match Rolldown's module type (`'js'`, `'jsx'`, `'ts'`, `'tsx'`, `'json'`, `'text'`, `'base64'`, `'dataurl'`, `'binary'`, `'empty'`, or a custom string). |
+| `code(pattern)`                | Match the module source. `string` matches with `includes`; `RegExp` with `test`.                                                                         |
+| `query(key, pattern)`          | Match a single query parameter. `pattern` is `boolean` (key presence/truthiness), `string` (exact value), or `RegExp` (value pattern).                   |
+| `queries(obj)`                 | Shorthand for `and(...)` over multiple `query` entries.                                                                                                  |
+| `include(expr)`                | Top-level wrapper marking `expr` as an inclusion rule.                                                                                                   |
+| `exclude(expr)`                | Top-level wrapper marking `expr` as an exclusion rule.                                                                                                   |
 
 ### `interpreter`
 
