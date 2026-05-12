@@ -1,6 +1,6 @@
 {
   "name": "oxc-unshadowed-visitor",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Scope-aware AST visitor that filters out references shadowed by local bindings",
   "keywords": [
     "ast",
@@ -32,10 +32,10 @@
     "prepublishOnly": "pnpm run build"
   },
   "devDependencies": {
-    "@oxc-project/types": "^0.126.0",
-    "oxc-parser": "^0.126.0",
+    "@oxc-project/types": "^0.129.0",
+    "oxc-parser": "^0.129.0",
     "oxc-walker": "^1.0.0",
-    "rolldown": "^1.0.0-rc.16"
+    "rolldown": "^1.0.0"
   },
   "peerDependencies": {
     "oxc-parser": "^0.121.0",

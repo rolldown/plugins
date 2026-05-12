@@ -18,7 +18,7 @@ const myStyles = myCss("red");
 
 const Div = myStyled("div");
 
-function App() {
+export function App() {
   return (
     <>
       <Div>one</Div>
@@ -36,4 +36,4 @@ const styles = {
     margin: 0,
   }),
 };
-const App2 = () => <div classname={styles.keyA}>hello world</div>;
+export const App2 = () => <div classname={styles.keyA}>hello world</div>;

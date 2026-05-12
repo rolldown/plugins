@@ -1,0 +1,34 @@
+name: Lint PR Title
+
+permissions: {}
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - reopened
+
+jobs:
+  lint-pr-title:
+    name: Validating PR title
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          PATTERN='^(build|chore|ci|docs|feat|fix|perf|refactor|release|revert|style|test)(\([a-z0-9/_-]+\))?!?: .+'
+          if ! printf '%s' "$TITLE" | grep -Eq "$PATTERN"; then
+            {
+              echo "::error title=Invalid PR title::PR title must follow Conventional Commits."
+              echo ""
+              echo "Got:      $TITLE"
+              echo "Expected: <type>(<scope>): <subject>    e.g.  fix(parser): handle trailing comma"
+              echo "          <type>: <subject>             e.g.  fix: handle trailing comma"
+              echo ""
+              echo "Allowed types: build, chore, ci, docs, feat, fix, perf, refactor, release, revert, style, test"
+              echo "Scope:         optional; chars a-z 0-9 / _ -"
+              echo "Breaking:      append ! before the colon (e.g. feat(ast)!: ... or feat!: ...)"
+            } >&2
+            exit 1
+          fi

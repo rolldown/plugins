@@ -1,10 +1,7 @@
 name: PR Labeler
 
 on:
-  # SAFETY: pull_request_target is used here because:
-  # - The workflow does NOT check out PR code
-  # - Need access to github.token with write permissions to add labels
-  pull_request_target:
+  pull_request:
     types: [opened, synchronize, reopened]
 
 permissions:
@@ -13,6 +10,13 @@ permissions:
 
 jobs:
   label:
+    # Skip on PRs from forks.
+    # In `pull_request` events, `GITHUB_TOKEN` is read-only for PRs from forks, so adding labels would fail.
+    # This means labeling only runs on internal PRs (i.e. from core contributors who have write access to the repo).
+    # The simplest way to extend it to external contributors making PRs from forks would be to switch to
+    # `pull_request_target` event, but we don't want to do that due to the security risks of `pull_request_target`.
+    # (see https://github.com/oxc-project/oxc/pull/21566)
+    if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-slim
     steps:
       - uses: actions/labeler@f27b608878404679385c85cfa523b85ccb86e213 # v6
