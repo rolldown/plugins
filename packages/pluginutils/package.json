@@ -30,6 +30,7 @@
     "dev": "tsdown --watch",
     "build": "tsdown",
     "test": "vitest --project pluginutils",
+    "test:types": "vitest --project pluginutils --typecheck.only",
     "prepublishOnly": "pnpm run build"
   },
   "devDependencies": {
