@@ -1,5 +1,5 @@
 name: "\U0001F41E Bug report"
-description: Report an issue with a plugin in this repository
+description: Report an issue with a plugin or package in this repository
 labels: [pending triage]
 type: Bug
 body:
@@ -10,8 +10,8 @@ body:
   - type: checkboxes
     id: plugins
     attributes:
-      label: Related plugins
-      description: Select the plugin which is related
+      label: Related packages
+      description: Select the package which is related
       options:
         - label: |-
             [plugin-babel](https://github.com/rolldown/plugins/tree/main/packages/babel)
@@ -23,6 +23,10 @@ body:
             [plugin-styled-jsx](https://github.com/rolldown/plugins/tree/main/packages/styled-jsx)
         - label: |-
             [plugin-transform-imports](https://github.com/rolldown/plugins/tree/main/packages/transform-imports)
+        - label: |-
+            [oxc-unshadowed-visitor](https://github.com/rolldown/plugins/tree/main/packages/oxc-unshadowed-visitor)
+        - label: |-
+            [pluginutils](https://github.com/rolldown/plugins/tree/main/packages/pluginutils)
   - type: textarea
     id: bug-description
     attributes:

@@ -8,3 +8,7 @@
   - '/- \[x\] \[plugin-styled-jsx\]/i'
 'plugin: transform-imports':
   - '/- \[x\] \[plugin-transform-imports\]/i'
+'package: oxc-unshadowed-visitor':
+  - '/- \[x\] \[oxc-unshadowed-visitor\]/i'
+'package: pluginutils':
+  - '/- \[x\] \[pluginutils\]/i'
