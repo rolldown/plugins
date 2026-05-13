@@ -42,5 +42,6 @@ jobs:
       - name: Build packages
         run: pnpm build
 
-      # zizmor: ignore[use-trusted-publishing] false-positive
-      - run: pnpm dlx pkg-pr-new@0.0 publish --pnpm './packages/*' --packageManager=pnpm,npm,yarn --commentWithDev
+      - name: Publish preview release
+        # zizmor: ignore[use-trusted-publishing]
+        run: pnpm dlx pkg-pr-new@0.0 publish --pnpm './packages/*' --packageManager=pnpm,npm,yarn --commentWithDev
