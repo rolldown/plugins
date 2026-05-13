@@ -15,6 +15,7 @@ await release({
     'plugin-styled-jsx',
     'plugin-transform-imports',
     'oxc-unshadowed-visitor',
+    'pluginutils',
   ],
   toTag: (pkg, version) => `${pkg}@${version}`,
   logChangelog: (pkg) => logRecentCommits(pkg, getPkgDir(pkg)),

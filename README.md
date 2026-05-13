@@ -29,6 +29,7 @@ Official Rolldown plugins
 
 ### Other Packages
 
+- [`@rolldown/pluginutils`](https://github.com/rolldown/plugins/tree/main/packages/pluginutils) ([![NPM version][badge-npm-version-pluginutils]][url-npm-pluginutils]): plugin utilities (regex helpers, composable filters, Vite plugin filtering)
 - [`oxc-unshadowed-visitor`](https://github.com/rolldown/plugins/tree/main/packages/oxc-unshadowed-visitor) ([![NPM version][badge-npm-version-oxc-unshadowed-visitor]][url-npm-oxc-unshadowed-visitor]): scope-aware AST visitor that tracks references to specified names, filtering out those shadowed by local bindings
 
 ## License
@@ -41,9 +42,11 @@ Official Rolldown plugins
 [badge-npm-version-styled-jsx]: https://img.shields.io/npm/v/@rolldown/plugin-styled-jsx?color=brightgreen
 [badge-npm-version-transform-imports]: https://img.shields.io/npm/v/@rolldown/plugin-transform-imports?color=brightgreen
 [badge-npm-version-oxc-unshadowed-visitor]: https://img.shields.io/npm/v/oxc-unshadowed-visitor?color=brightgreen
+[badge-npm-version-pluginutils]: https://img.shields.io/npm/v/@rolldown/pluginutils?color=brightgreen
 [url-npm-babel]: https://npmx.dev/package/@rolldown/plugin-babel
 [url-npm-emotion]: https://npmx.dev/package/@rolldown/plugin-emotion
 [url-npm-jsx-remove-attributes]: https://npmx.dev/package/@rolldown/plugin-jsx-remove-attributes
 [url-npm-styled-jsx]: https://npmx.dev/package/@rolldown/plugin-styled-jsx
 [url-npm-transform-imports]: https://npmx.dev/package/@rolldown/plugin-transform-imports
 [url-npm-oxc-unshadowed-visitor]: https://npmx.dev/package/oxc-unshadowed-visitor
+[url-npm-pluginutils]: https://npmx.dev/package/@rolldown/pluginutils

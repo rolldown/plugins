@@ -21,3 +21,7 @@
 'package: oxc-unshadowed-visitor':
   - changed-files:
       - any-glob-to-any-file: 'packages/oxc-unshadowed-visitor/**'
+
+'package: pluginutils':
+  - changed-files:
+      - any-glob-to-any-file: 'packages/pluginutils/**'

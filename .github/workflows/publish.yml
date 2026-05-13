@@ -5,6 +5,7 @@ on:
     tags:
       - 'plugin-*'
       - 'oxc-unshadowed-visitor@*'
+      - 'pluginutils@*'
 
 jobs:
   publish:

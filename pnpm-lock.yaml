@@ -356,6 +356,18 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
 
+  packages/pluginutils:
+    devDependencies:
+      '@types/picomatch':
+        specifier: ^4.0.3
+        version: 4.0.3
+      picomatch:
+        specifier: ^4.0.4
+        version: 4.0.4
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+
   packages/styled-jsx:
     dependencies:
       '@jridgewell/gen-mapping':
@@ -2745,6 +2757,11 @@ packages:
   type-level-regexp@0.1.17:
     resolution: {integrity: sha512-wTk4DH3cxwk196uGLK/E9pE45aLfeKJacKmcEgEOA/q5dnPGNxXt0cfYdFxb57L+sEpf1oJH4Dnx/pnRcku9jg==}
 
+  typescript@5.9.3:
+    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
   uglify-js@3.19.3:
     resolution: {integrity: sha512-v3Xu+yuwBXisp6QYTcH4UbH+xYJXqnq2m/LtQVWKWzYc1iehYnLixoQDN9FH6/j9/oybfd6W9Ghwkl8+UMKTKQ==}
     engines: {node: '>=0.8.0'}
@@ -4803,6 +4820,8 @@ snapshots:
     optional: true
 
   type-level-regexp@0.1.17: {}
+
+  typescript@5.9.3: {}
 
   uglify-js@3.19.3:
     optional: true

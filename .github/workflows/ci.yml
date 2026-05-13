@@ -57,6 +57,9 @@ jobs:
       - name: Test
         run: pnpm run test
 
+      - name: Type Tests
+        run: pnpm run test:types
+
   test-babel7:
     timeout-minutes: 20
     runs-on: ubuntu-latest
@@ -91,6 +94,9 @@ jobs:
 
       - name: Test
         run: pnpm run test
+
+      - name: Type Tests
+        run: pnpm run test:types
 
       - name: Lint (type check)
         run: pnpm run lint

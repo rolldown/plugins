@@ -8,6 +8,7 @@
     "lint": "oxlint --type-aware --type-check .",
     "test": "vitest",
     "test:e2e": "pnpm run --filter=./examples test",
+    "test:types": "pnpm -r test:types",
     "dev": "pnpm -r --parallel --filter=\"./packages/*\" run dev",
     "build": "pnpm -r --filter=\"./packages/*\" run build",
     "release": "pnpm run --filter=./scripts release",
