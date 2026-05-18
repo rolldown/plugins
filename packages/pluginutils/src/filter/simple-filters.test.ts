@@ -65,6 +65,7 @@ describe('prefixRegex', () => {
 })
 
 describe('makeIdFiltersToMatchWithQuery', () => {
+  // oxlint-disable-next-line unicorn/consistent-function-scoping
   function expectWithAnyQuery(matcher: (path: string) => boolean, path: string, expected: boolean) {
     expect(matcher(path), path).toBe(expected)
     expect(matcher(`${path}?foo`), `${path}?foo`).toBe(expected)
