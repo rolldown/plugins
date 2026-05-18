@@ -6,10 +6,6 @@ packages:
   - examples/*
   - scripts
 
-allowBuilds:
-  '@swc/core': true
-  playwright-chromium: true
-
 catalogs:
   babel7:
     '@babel/core': ^7.29.0
