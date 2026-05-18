@@ -34,9 +34,9 @@
     "rolldown-string": "^0.3.0"
   },
   "devDependencies": {
-    "rolldown": "^1.0.1",
+    "rolldown": "catalog:",
     "tinyglobby": "^0.2.16",
-    "vite": "^8.0.13"
+    "vite": "catalog:"
   },
   "peerDependencies": {
     "rolldown": "^1.0.0-rc.9",

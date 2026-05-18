@@ -4,6 +4,39 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    '@oxc-node/cli':
+      specifier: ^0.1.0
+      version: 0.1.0
+    '@oxc-node/core':
+      specifier: ^0.1.0
+      version: 0.1.0
+    '@rollup/plugin-swc':
+      specifier: ^0.4.0
+      version: 0.4.0
+    '@swc/core':
+      specifier: ^1.15.33
+      version: 1.15.33
+    '@swc/plugin-emotion':
+      specifier: ^14.9.0
+      version: 14.9.0
+    '@swc/plugin-react-remove-properties':
+      specifier: ^12.9.0
+      version: 12.9.0
+    '@swc/plugin-styled-jsx':
+      specifier: ^13.9.0
+      version: 13.9.0
+    '@swc/plugin-transform-imports':
+      specifier: ^12.9.0
+      version: 12.9.0
+    rolldown:
+      specifier: ^1.0.1
+      version: 1.0.1
+    vite:
+      specifier: ^8.0.13
+      version: 8.0.13
+
 importers:
 
   .:
@@ -33,7 +66,7 @@ importers:
         specifier: ^1.60.0
         version: 1.60.0
       vite:
-        specifier: ^8.0.13
+        specifier: 'catalog:'
         version: 8.0.13(@types/node@24.12.4)(esbuild@0.27.3)
 
   examples/emotion:
@@ -64,7 +97,7 @@ importers:
         specifier: ^6.0.2
         version: 6.0.2(@rolldown/plugin-babel@0.2.3(@babel/core@8.0.0-rc.5)(@babel/plugin-transform-runtime@8.0.0-rc.5(@babel/core@8.0.0-rc.5))(@babel/runtime@8.0.0-rc.5)(rolldown@1.0.1)(vite@8.0.13(@types/node@24.12.4)(esbuild@0.27.3)))(vite@8.0.13(@types/node@24.12.4)(esbuild@0.27.3))
       vite:
-        specifier: ^8.0.13
+        specifier: 'catalog:'
         version: 8.0.13(@types/node@24.12.4)(esbuild@0.27.3)
 
   examples/jsx-remove-attributes:
@@ -89,7 +122,7 @@ importers:
         specifier: ^6.0.2
         version: 6.0.2(@rolldown/plugin-babel@0.2.3(@babel/core@8.0.0-rc.5)(@babel/plugin-transform-runtime@8.0.0-rc.5(@babel/core@8.0.0-rc.5))(@babel/runtime@8.0.0-rc.5)(rolldown@1.0.1)(vite@8.0.13(@types/node@24.12.4)(esbuild@0.27.3)))(vite@8.0.13(@types/node@24.12.4)(esbuild@0.27.3))
       vite:
-        specifier: ^8.0.13
+        specifier: 'catalog:'
         version: 8.0.13(@types/node@24.12.4)(esbuild@0.27.3)
 
   examples/styled-jsx:
@@ -117,7 +150,7 @@ importers:
         specifier: ^6.0.2
         version: 6.0.2(@rolldown/plugin-babel@0.2.3(@babel/core@8.0.0-rc.5)(@babel/plugin-transform-runtime@8.0.0-rc.5(@babel/core@8.0.0-rc.5))(@babel/runtime@8.0.0-rc.5)(rolldown@1.0.1)(vite@8.0.13(@types/node@24.12.4)(esbuild@0.27.3)))(vite@8.0.13(@types/node@24.12.4)(esbuild@0.27.3))
       vite:
-        specifier: ^8.0.13
+        specifier: 'catalog:'
         version: 8.0.13(@types/node@24.12.4)(esbuild@0.27.3)
 
   examples/transform-imports:
@@ -126,40 +159,40 @@ importers:
         specifier: workspace:*
         version: link:../../packages/transform-imports
       vite:
-        specifier: ^8.0.13
+        specifier: 'catalog:'
         version: 8.0.13(@types/node@24.12.4)(esbuild@0.27.3)
 
   internal-packages/benchmark-utils:
     devDependencies:
       '@oxc-node/core':
-        specifier: ^0.1.0
+        specifier: 'catalog:'
         version: 0.1.0
 
   internal-packages/swc-output-gen:
     dependencies:
       '@oxc-node/cli':
-        specifier: ^0.1.0
+        specifier: 'catalog:'
         version: 0.1.0
       '@rollup/plugin-swc':
-        specifier: ^0.4.0
+        specifier: 'catalog:'
         version: 0.4.0(@swc/core@1.15.33)
       '@swc/core':
-        specifier: ^1.15.33
+        specifier: 'catalog:'
         version: 1.15.33
       '@swc/plugin-emotion':
-        specifier: ^14.9.0
+        specifier: 'catalog:'
         version: 14.9.0
       '@swc/plugin-react-remove-properties':
-        specifier: ^12.9.0
+        specifier: 'catalog:'
         version: 12.9.0
       '@swc/plugin-styled-jsx':
-        specifier: ^13.9.0
+        specifier: 'catalog:'
         version: 13.9.0
       '@swc/plugin-transform-imports':
-        specifier: ^12.9.0
+        specifier: 'catalog:'
         version: 12.9.0
       rolldown:
-        specifier: ^1.0.1
+        specifier: 'catalog:'
         version: 1.0.1
       tinyglobby:
         specifier: ^0.2.16
@@ -190,10 +223,10 @@ importers:
         specifier: ^4.0.3
         version: 4.0.3
       rolldown:
-        specifier: 1.0.1
+        specifier: 'catalog:'
         version: 1.0.1
       vite:
-        specifier: ^8.0.13
+        specifier: 'catalog:'
         version: 8.0.13(@types/node@24.12.4)(esbuild@0.27.3)
 
   packages/emotion:
@@ -212,13 +245,13 @@ importers:
         specifier: workspace:*
         version: link:../oxc-unshadowed-visitor
       rolldown:
-        specifier: ^1.0.1
+        specifier: 'catalog:'
         version: 1.0.1
       tinyglobby:
         specifier: ^0.2.16
         version: 0.2.16
       vite:
-        specifier: ^8.0.13
+        specifier: 'catalog:'
         version: 8.0.13(@types/node@24.12.4)(esbuild@0.27.3)
 
   packages/emotion/benchmark:
@@ -243,7 +276,7 @@ importers:
         specifier: ^11.13.5
         version: 11.13.5
       '@oxc-node/cli':
-        specifier: ^0.1.0
+        specifier: 'catalog:'
         version: 0.1.0
       '@rolldown/benchmark-utils':
         specifier: workspace:*
@@ -255,13 +288,13 @@ importers:
         specifier: workspace:*
         version: link:..
       '@rollup/plugin-swc':
-        specifier: ^0.4.0
+        specifier: 'catalog:'
         version: 0.4.0(@swc/core@1.15.33)
       '@swc/core':
-        specifier: ^1.15.33
+        specifier: 'catalog:'
         version: 1.15.33
       '@swc/plugin-emotion':
-        specifier: ^14.9.0
+        specifier: 'catalog:'
         version: 14.9.0
       '@types/node':
         specifier: ^24.12.4
@@ -273,7 +306,7 @@ importers:
         specifier: ^19.2.3
         version: 19.2.3(@types/react@19.2.14)
       rolldown:
-        specifier: ^1.0.1
+        specifier: 'catalog:'
         version: 1.0.1
 
   packages/jsx-remove-attributes:
@@ -283,13 +316,13 @@ importers:
         version: 0.3.0(rolldown@1.0.1)
     devDependencies:
       rolldown:
-        specifier: ^1.0.1
+        specifier: 'catalog:'
         version: 1.0.1
       tinyglobby:
         specifier: ^0.2.16
         version: 0.2.16
       vite:
-        specifier: ^8.0.13
+        specifier: 'catalog:'
         version: 8.0.13(@types/node@24.12.4)(esbuild@0.27.3)
 
   packages/jsx-remove-attributes/benchmark:
@@ -305,7 +338,7 @@ importers:
         specifier: ^7.29.0
         version: 7.29.0
       '@oxc-node/cli':
-        specifier: ^0.1.0
+        specifier: 'catalog:'
         version: 0.1.0
       '@rolldown/benchmark-utils':
         specifier: workspace:*
@@ -317,13 +350,13 @@ importers:
         specifier: workspace:*
         version: link:..
       '@rollup/plugin-swc':
-        specifier: ^0.4.0
+        specifier: 'catalog:'
         version: 0.4.0(@swc/core@1.15.33)
       '@swc/core':
-        specifier: ^1.15.33
+        specifier: 'catalog:'
         version: 1.15.33
       '@swc/plugin-react-remove-properties':
-        specifier: ^12.9.0
+        specifier: 'catalog:'
         version: 12.9.0
       '@types/node':
         specifier: ^24.12.4
@@ -338,7 +371,7 @@ importers:
         specifier: ^0.3.1
         version: 0.3.1
       rolldown:
-        specifier: ^1.0.1
+        specifier: 'catalog:'
         version: 1.0.1
 
   packages/oxc-unshadowed-visitor:
@@ -353,7 +386,7 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0(oxc-parser@0.131.0)(rolldown@1.0.1)
       rolldown:
-        specifier: ^1.0.1
+        specifier: 'catalog:'
         version: 1.0.1
 
   packages/pluginutils:
@@ -384,13 +417,13 @@ importers:
         version: 0.3.0(rolldown@1.0.1)
     devDependencies:
       rolldown:
-        specifier: ^1.0.1
+        specifier: 'catalog:'
         version: 1.0.1
       tinyglobby:
         specifier: ^0.2.16
         version: 0.2.16
       vite:
-        specifier: ^8.0.13
+        specifier: 'catalog:'
         version: 8.0.13(@types/node@24.12.4)(esbuild@0.27.3)
 
   packages/styled-jsx/benchmark:
@@ -409,7 +442,7 @@ importers:
         specifier: ^7.29.0
         version: 7.29.0
       '@oxc-node/cli':
-        specifier: ^0.1.0
+        specifier: 'catalog:'
         version: 0.1.0
       '@rolldown/benchmark-utils':
         specifier: workspace:*
@@ -421,13 +454,13 @@ importers:
         specifier: workspace:*
         version: link:..
       '@rollup/plugin-swc':
-        specifier: ^0.4.0
+        specifier: 'catalog:'
         version: 0.4.0(@swc/core@1.15.33)
       '@swc/core':
-        specifier: ^1.15.33
+        specifier: 'catalog:'
         version: 1.15.33
       '@swc/plugin-styled-jsx':
-        specifier: ^13.9.0
+        specifier: 'catalog:'
         version: 13.9.0
       '@types/node':
         specifier: ^24.12.4
@@ -439,7 +472,7 @@ importers:
         specifier: ^19.2.3
         version: 19.2.3(@types/react@19.2.14)
       rolldown:
-        specifier: ^1.0.1
+        specifier: 'catalog:'
         version: 1.0.1
 
   packages/transform-imports:
@@ -452,7 +485,7 @@ importers:
         version: 8.0.13(@types/node@24.12.4)(esbuild@0.27.3)
     devDependencies:
       rolldown:
-        specifier: ^1.0.1
+        specifier: 'catalog:'
         version: 1.0.1
       tinyglobby:
         specifier: ^0.2.16
@@ -461,7 +494,7 @@ importers:
   packages/transform-imports/benchmark:
     devDependencies:
       '@oxc-node/cli':
-        specifier: ^0.1.0
+        specifier: 'catalog:'
         version: 0.1.0
       '@rolldown/benchmark-utils':
         specifier: workspace:*
@@ -473,13 +506,13 @@ importers:
         specifier: workspace:*
         version: link:..
       '@rollup/plugin-swc':
-        specifier: ^0.4.0
+        specifier: 'catalog:'
         version: 0.4.0(@swc/core@1.15.33)
       '@swc/core':
-        specifier: ^1.15.33
+        specifier: 'catalog:'
         version: 1.15.33
       '@swc/plugin-transform-imports':
-        specifier: ^12.9.0
+        specifier: 'catalog:'
         version: 12.9.0
       '@types/node':
         specifier: ^24.12.4
@@ -488,7 +521,7 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
       rolldown:
-        specifier: ^1.0.1
+        specifier: 'catalog:'
         version: 1.0.1
 
   scripts:
