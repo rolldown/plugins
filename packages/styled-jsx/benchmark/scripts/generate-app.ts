@@ -275,7 +275,10 @@ function main() {
   mkdirSync(componentsDir, { recursive: true })
 
   const components: Array<{ type: ComponentType; index: number }> = []
-  const TOTAL = 100
+  const totalArg = process.argv.find((a) => a.startsWith('--total='))
+  const TOTAL = totalArg
+    ? Number.parseInt(totalArg.slice('--total='.length), 10)
+    : 100
   const perType = Math.floor(TOTAL / COMPONENT_TYPES.length)
   const remainder = TOTAL % COMPONENT_TYPES.length
 

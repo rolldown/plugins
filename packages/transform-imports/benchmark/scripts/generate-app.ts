@@ -166,7 +166,10 @@ function main() {
   if (existsSync(appDir)) rmSync(appDir, { recursive: true })
   mkdirSync(join(appDir, 'modules'), { recursive: true })
 
-  const TOTAL = 100
+  const totalArg = process.argv.find((a) => a.startsWith('--total='))
+  const TOTAL = totalArg
+    ? Number.parseInt(totalArg.slice('--total='.length), 10)
+    : 100
   const files: string[] = []
 
   for (let i = 0; i < TOTAL; i++) {

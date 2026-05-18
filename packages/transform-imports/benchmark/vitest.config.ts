@@ -3,6 +3,5 @@ import { defineConfig } from 'vitest/config'
 export default defineConfig({
   test: {
     name: 'benchmark-transform-imports',
-    testTimeout: 60_000,
   },
 })

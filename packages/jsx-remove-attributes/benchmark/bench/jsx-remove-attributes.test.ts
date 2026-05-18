@@ -1,15 +1,11 @@
 import { describe, test } from 'vitest'
 import { execSync } from 'node:child_process'
-import { existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { runBuild } from '@rolldown/benchmark-utils/run-build'
 
 const baseDir = resolve(import.meta.dirname, '..')
-const componentsDir = resolve(baseDir, 'shared-app/src/components')
 
-if (!existsSync(componentsDir)) {
-  execSync('pnpm generate', { cwd: baseDir, stdio: 'inherit' })
-}
+execSync('pnpm generate -- --total=10', { cwd: baseDir, stdio: 'inherit' })
 
 describe('JSX Remove Attributes build', () => {
   test.for(['custom', 'babel', 'swc'] as const)(
