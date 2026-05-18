@@ -1,5 +1,6 @@
 import { execSync } from 'node:child_process'
 import { Buffer } from 'node:buffer'
+import { delimiter, resolve } from 'node:path'
 
 function asString(value: unknown): string {
   if (typeof value === 'string') return value
@@ -8,10 +9,16 @@ function asString(value: unknown): string {
 }
 
 export function runBuild(configName: string, baseDir: string): void {
+  const localBin = resolve(baseDir, 'node_modules/.bin')
+  const env = {
+    ...process.env,
+    PATH: `${localBin}${delimiter}${process.env.PATH ?? ''}`,
+  }
   try {
     execSync(`rolldown -c configs/${configName}.ts`, {
       cwd: baseDir,
       stdio: 'pipe',
+      env,
     })
   } catch (err) {
     const isObject = typeof err === 'object' && err !== null
