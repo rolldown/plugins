@@ -2,6 +2,7 @@ import { bench, describe } from 'vitest'
 import { execSync } from 'node:child_process'
 import { existsSync, rmSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { runBuild } from '@rolldown/benchmark-utils/run-build'
 
 const baseDir = resolve(import.meta.dirname, '..')
 const distBase = resolve(baseDir, 'dist')
@@ -18,18 +19,11 @@ function cleanDist(name: string) {
   }
 }
 
-function runBuild(name: string) {
-  execSync(`rolldown -c configs/${name}.ts`, {
-    cwd: baseDir,
-    stdio: 'pipe',
-  })
-}
-
 describe('Emotion Benchmark', () => {
   bench(
     '@rolldown/plugin-emotion',
     () => {
-      runBuild('custom')
+      runBuild('custom', baseDir)
     },
     { teardown: () => cleanDist('custom') },
   )
@@ -37,7 +31,7 @@ describe('Emotion Benchmark', () => {
   bench(
     '@rolldown/plugin-babel',
     () => {
-      runBuild('babel')
+      runBuild('babel', baseDir)
     },
     { teardown: () => cleanDist('babel') },
   )
@@ -45,7 +39,7 @@ describe('Emotion Benchmark', () => {
   bench(
     '@rollup/plugin-swc',
     () => {
-      runBuild('swc')
+      runBuild('swc', baseDir)
     },
     { teardown: () => cleanDist('swc') },
   )
