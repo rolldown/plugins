@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "exports": {
+    "./run-build": "./src/run-build.ts",
     "./seeded-random": "./src/seeded-random.ts"
   },
   "devDependencies": {

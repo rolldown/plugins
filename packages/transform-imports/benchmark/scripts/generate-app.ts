@@ -166,7 +166,9 @@ function main() {
   if (existsSync(appDir)) rmSync(appDir, { recursive: true })
   mkdirSync(join(appDir, 'modules'), { recursive: true })
 
-  const TOTAL = 100
+  const totalArg = process.argv.find((a) => a.startsWith('--total='))
+  const TOTAL = totalArg ? Number.parseInt(totalArg.slice('--total='.length), 10) : 100
+  const silent = process.argv.includes('--silent')
   const files: string[] = []
 
   for (let i = 0; i < TOTAL; i++) {
@@ -185,9 +187,11 @@ function main() {
     .join('\n')
   writeFileSync(join(appDir, 'index.js'), entry + '\n')
 
-  console.log(`Generated ${TOTAL} modules in ${appDir}/modules/`)
-  for (const type of PATTERN_TYPES) {
-    console.log(`  Pattern distribution includes: ${type}`)
+  if (!silent) {
+    console.log(`Generated ${TOTAL} modules in ${appDir}/modules/`)
+    for (const type of PATTERN_TYPES) {
+      console.log(`  Pattern distribution includes: ${type}`)
+    }
   }
 }
 
