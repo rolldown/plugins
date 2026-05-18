@@ -1,3 +1,24 @@
+## <small>[0.1.4](https://github.com/rolldown/plugins/compare/plugin-emotion@0.1.3...plugin-emotion@0.1.4) (2026-05-18)</small>
+### Bug Fixes
+
+* **deps:** update rolldown-related dependencies ([#78](https://github.com/rolldown/plugins/issues/78)) ([6a57129](https://github.com/rolldown/plugins/commit/6a57129a927c1fd548d03644114801c0f1e2c424))
+* **emotion:** build `oxc-unshadowed-visitor` before publish ([#84](https://github.com/rolldown/plugins/issues/84)) ([e11de0b](https://github.com/rolldown/plugins/commit/e11de0bfa4bbd86886141373ad2525b8bc776486)), closes [#83](https://github.com/rolldown/plugins/issues/83)
+
+### Reverts
+
+* "chore: bump root pnpm to 11.1.2" ([#80](https://github.com/rolldown/plugins/issues/80)) ([0a63e15](https://github.com/rolldown/plugins/commit/0a63e1565c03da8e1ad0e7b1d19556552dc61d61))
+
+### Miscellaneous Chores
+
+* bump root pnpm to 11.1.2 ([#76](https://github.com/rolldown/plugins/issues/76)) ([e3cf1ad](https://github.com/rolldown/plugins/commit/e3cf1adc4126fbd4e393e7cb3010367adf707a8d)), closes [pnpm/pnpm#11663](https://github.com/pnpm/pnpm/issues/11663) [pnpm/pnpm#11662](https://github.com/pnpm/pnpm/issues/11662)
+* **deps:** update all non-major dependencies ([#77](https://github.com/rolldown/plugins/issues/77)) ([0b70858](https://github.com/rolldown/plugins/commit/0b70858300ac4b7227611303f036b3684256fb31))
+* remove irrelevant commits from changelog ([#70](https://github.com/rolldown/plugins/issues/70)) ([fa0800c](https://github.com/rolldown/plugins/commit/fa0800cd569887409275bc524bd7f6781700c279))
+* use pnpm catalog for some packages ([#82](https://github.com/rolldown/plugins/issues/82)) ([d717e25](https://github.com/rolldown/plugins/commit/d717e2507bce0250702674a138801141d453e4d6))
+
+### Tests
+
+* benchmark smoke test ([#81](https://github.com/rolldown/plugins/issues/81)) ([c235c00](https://github.com/rolldown/plugins/commit/c235c00714de52a02570d3cfb0cffff4dd3eb5c2))
+
 ## <small>[0.1.3](https://github.com/rolldown/plugins/compare/plugin-emotion@0.1.2...plugin-emotion@0.1.3) (2026-05-11)</small>
 ### Features
 
