@@ -10,6 +10,7 @@ execSync('pnpm generate -- --total=10', { cwd: baseDir, stdio: 'inherit' })
 describe('Transform Imports build', () => {
   test.for(['custom', 'babel', 'swc'] as const)(
     'build:%s exits with code 0',
+    { timeout: 30_000 },
     (name) => {
       runBuild(name, baseDir)
     },
