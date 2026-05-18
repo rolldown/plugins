@@ -16,17 +16,17 @@
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
-    "@oxc-node/cli": "^0.1.0",
+    "@oxc-node/cli": "catalog:",
     "@rolldown/benchmark-utils": "workspace:*",
     "@rolldown/plugin-babel": "file:../../babel",
     "@rolldown/plugin-jsx-remove-attributes": "workspace:*",
-    "@rollup/plugin-swc": "^0.4.0",
-    "@swc/core": "^1.15.33",
-    "@swc/plugin-react-remove-properties": "^12.9.0",
+    "@rollup/plugin-swc": "catalog:",
+    "@swc/core": "catalog:",
+    "@swc/plugin-react-remove-properties": "catalog:",
     "@types/node": "^24.12.4",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "babel-plugin-react-remove-properties": "^0.3.1",
-    "rolldown": "^1.0.1"
+    "rolldown": "catalog:"
   }
 }

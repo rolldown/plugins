@@ -8,6 +8,6 @@
     "./seeded-random": "./src/seeded-random.ts"
   },
   "devDependencies": {
-    "@oxc-node/core": "^0.1.0"
+    "@oxc-node/core": "catalog:"
   }
 }
