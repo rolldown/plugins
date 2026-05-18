@@ -185,9 +185,8 @@ function main() {
 
   const components: Array<{ type: ComponentType; index: number }> = []
   const totalArg = process.argv.find((a) => a.startsWith('--total='))
-  const TOTAL = totalArg
-    ? Number.parseInt(totalArg.slice('--total='.length), 10)
-    : 100
+  const TOTAL = totalArg ? Number.parseInt(totalArg.slice('--total='.length), 10) : 100
+  const silent = process.argv.includes('--silent')
   const perType = Math.floor(TOTAL / COMPONENT_TYPES.length)
   const remainder = TOTAL % COMPONENT_TYPES.length
 
@@ -206,9 +205,11 @@ function main() {
     .join('\n')
   writeFileSync(join(componentsDir, 'index.ts'), exports + '\n')
 
-  console.log(`Generated ${components.length} components in ${componentsDir}`)
-  for (const type of COMPONENT_TYPES) {
-    console.log(`  ${type}: ${components.filter((c) => c.type === type).length}`)
+  if (!silent) {
+    console.log(`Generated ${components.length} components in ${componentsDir}`)
+    for (const type of COMPONENT_TYPES) {
+      console.log(`  ${type}: ${components.filter((c) => c.type === type).length}`)
+    }
   }
 }
 

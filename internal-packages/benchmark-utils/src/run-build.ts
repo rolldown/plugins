@@ -22,16 +22,9 @@ export function runBuild(configName: string, baseDir: string): void {
     })
   } catch (err) {
     const isObject = typeof err === 'object' && err !== null
-    const status =
-      isObject && 'status' in err && typeof err.status === 'number'
-        ? err.status
-        : null
-    const stdout = asString(
-      isObject && 'stdout' in err ? err.stdout : undefined,
-    )
-    const stderr = asString(
-      isObject && 'stderr' in err ? err.stderr : undefined,
-    )
+    const status = isObject && 'status' in err && typeof err.status === 'number' ? err.status : null
+    const stdout = asString(isObject && 'stdout' in err ? err.stdout : undefined)
+    const stderr = asString(isObject && 'stderr' in err ? err.stderr : undefined)
     throw new Error(
       `build:${configName} failed (exit ${status ?? 'unknown'}):\n${stdout}${stderr}`,
       { cause: err },

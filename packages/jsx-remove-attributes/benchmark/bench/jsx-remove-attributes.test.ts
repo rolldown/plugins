@@ -5,7 +5,10 @@ import { runBuild } from '@rolldown/benchmark-utils/run-build'
 
 const baseDir = resolve(import.meta.dirname, '..')
 
-execSync('pnpm generate -- --total=10', { cwd: baseDir, stdio: 'inherit' })
+execSync('pnpm generate -- --total=10 --silent', {
+  cwd: baseDir,
+  stdio: 'inherit',
+})
 
 describe('JSX Remove Attributes build', () => {
   test.for(['custom', 'babel', 'swc'] as const)(
