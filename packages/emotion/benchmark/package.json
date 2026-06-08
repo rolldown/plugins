@@ -13,11 +13,11 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "react": "^19.2.6",
-    "react-dom": "^19.2.6"
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.29.0",
+    "@babel/core": "^7.29.7",
     "@emotion/babel-plugin": "^11.13.5",
     "@oxc-node/cli": "catalog:",
     "@rolldown/benchmark-utils": "workspace:*",
@@ -26,8 +26,8 @@
     "@rollup/plugin-swc": "catalog:",
     "@swc/core": "catalog:",
     "@swc/plugin-emotion": "catalog:",
-    "@types/node": "^24.12.4",
-    "@types/react": "^19.2.15",
+    "@types/node": "^24.13.1",
+    "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "rolldown": "catalog:"
   }
