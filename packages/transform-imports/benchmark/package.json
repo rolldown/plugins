@@ -18,7 +18,7 @@
     "@rollup/plugin-swc": "catalog:",
     "@swc/core": "catalog:",
     "@swc/plugin-transform-imports": "catalog:",
-    "@types/node": "^24.12.4",
+    "@types/node": "^24.13.1",
     "babel-plugin-transform-imports": "^2.0.0",
     "rolldown": "catalog:"
   }
