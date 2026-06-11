@@ -32,8 +32,8 @@
     "prepublishOnly": "pnpm run build"
   },
   "devDependencies": {
-    "@oxc-project/types": "^0.132.0",
-    "oxc-parser": "^0.132.0",
+    "@oxc-project/types": "^0.135.0",
+    "oxc-parser": "^0.135.0",
     "oxc-walker": "^1.0.0",
     "rolldown": "catalog:"
   },
