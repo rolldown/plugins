@@ -6,6 +6,11 @@ packages:
   - examples/*
   - scripts
 
+allowBuilds:
+  '@swc/core': true
+  esbuild: true
+  playwright-chromium: true
+
 catalogs:
   default:
     '@oxc-node/core': ^0.1.0
