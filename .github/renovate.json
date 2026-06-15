@@ -11,6 +11,10 @@
       "enabled": false
     },
     {
+      "matchDepTypes": ["npm"],
+      "minimumReleaseAge": "1440 minutes"
+    },
+    {
       "matchDepTypes": ["action"],
       "pinDigests": true
     },
