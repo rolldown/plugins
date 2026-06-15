@@ -6,6 +6,11 @@ packages:
   - examples/*
   - scripts
 
+allowBuilds:
+  '@swc/core': true
+  esbuild: true
+  playwright-chromium: true
+
 catalogs:
   default:
     '@oxc-node/core': ^0.1.0
@@ -22,3 +27,7 @@ catalogs:
     '@babel/core': ^7.29.7
     '@babel/plugin-transform-runtime': ^7.29.7
     '@babel/runtime': ^7.29.7
+
+minimumReleaseAgeExclude:
+  - '@typescript/native-preview'
+  - '@typescript/native-preview-*'
