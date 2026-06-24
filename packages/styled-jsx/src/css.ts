@@ -180,6 +180,14 @@ function scopeSelector(
         // Lone pseudo-element (e.g. bare `::before`) — skip scoping, matching SWC
         if (compound.length === 1 && compound[0].type === 'pseudo-element') {
           result.push(compound[0])
+        } else if (
+          compound.length === 1 &&
+          compound[0].type === 'pseudo-class' &&
+          (compound[0] as { type: 'pseudo-class'; kind: string }).kind === 'scope'
+        ) {
+          // Lone :scope (originated from leading `&` via CSS nesting expansion) —
+          // replace with scope class instead of prepending to avoid `.jsx-HASH:scope`
+          result.push({ type: 'class', name: scopeClass } as SelectorComponent)
         } else {
           // Find insertion point — before trailing pseudo-classes/pseudo-elements
           let insertAt = compound.length
