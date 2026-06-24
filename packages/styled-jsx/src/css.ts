@@ -121,10 +121,10 @@ function isScopePseudo(comp: SelectorComponent): boolean {
  *     `parseGlobalTokens` and inline the result (which may include
  *     combinators). Any leading `:scope` (from `&`) before `:global()`
  *     is also stripped. No scope class is added.
- *   - Otherwise: strip any `:scope` pseudo-class that originated from a
- *     top-level `&` via CSS nesting expansion (lightningcss expands a
- *     root-level `&` to `:scope`). After stripping, insert `.jsx-{hash}`
- *     before any trailing pseudo-classes/pseudo-elements.
+ *   - Otherwise: if the compound contains a `:scope` pseudo-class (from a
+ *     top-level `&` via CSS nesting expansion), replace it in-place with
+ *     `.jsx-{hash}`. Otherwise insert `.jsx-{hash}` before any trailing
+ *     pseudo-classes/pseudo-elements.
  *
  * When `isGlobal` is true, only `:global()` unwrapping is performed
  * (no scope class insertion).
@@ -198,31 +198,31 @@ function scopeSelector(
         if (compound.length === 1 && compound[0].type === 'pseudo-element') {
           result.push(compound[0])
         } else {
-          // Strip any :scope pseudo-class that originated from a top-level `&`.
-          // e.g. `&.foo` → `:scope.foo`, `&:hover` → `:scope:hover`,
-          //      `&::before` → `:scope::before`, `& {}` → `:scope`
-          const hasScopeComponent = compound.some(isScopePseudo)
-          const effective = hasScopeComponent
-            ? compound.filter((c) => !isScopePseudo(c))
-            : compound
-
-          if (effective.length === 0) {
-            // Was a lone :scope (from bare `&`) — emit just the scope class
-            result.push({ type: 'class', name: scopeClass } as SelectorComponent)
+          // Replace any :scope pseudo-class (from a top-level `&`) with the scope
+          // class in place. e.g. `&:hover` → `:scope:hover` → `.jsx-HASH:hover`,
+          // `&::before` → `:scope::before` → `.jsx-HASH::before`,
+          // `& {}` → `:scope` → `.jsx-HASH`.
+          const scopeIdx = compound.findIndex(isScopePseudo)
+          if (scopeIdx >= 0) {
+            result.push(
+              ...compound.slice(0, scopeIdx),
+              { type: 'class', name: scopeClass } as SelectorComponent,
+              ...compound.slice(scopeIdx + 1),
+            )
           } else {
-            // Insert scope class before trailing pseudo-classes/pseudo-elements
-            let insertAt = effective.length
+            // No :scope — insert scope class before trailing pseudo-classes/pseudo-elements
+            let insertAt = compound.length
             while (insertAt > 0) {
-              const prev = effective[insertAt - 1]
+              const prev = compound[insertAt - 1]
               if (prev.type === 'pseudo-class' || prev.type === 'pseudo-element') {
                 insertAt--
               } else {
                 break
               }
             }
-            result.push(...effective.slice(0, insertAt))
+            result.push(...compound.slice(0, insertAt))
             result.push({ type: 'class', name: scopeClass } as SelectorComponent)
-            result.push(...effective.slice(insertAt))
+            result.push(...compound.slice(insertAt))
           }
         }
       }

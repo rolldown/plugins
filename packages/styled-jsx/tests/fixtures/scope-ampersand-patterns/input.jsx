@@ -1,6 +1,6 @@
 import css from 'styled-jsx/css'
 
-// Top-level & with additional class — &.foo should become .foo.jsx-HASH
+// Top-level & with additional class — &.foo should become .jsx-HASH.foo
 export const s1 = css`
   &.active {
     color: blue;
@@ -28,7 +28,7 @@ export const s4 = css`
   }
 `
 
-// Top-level & with combined class + pseudo — &.foo:hover should become .foo.jsx-HASH:hover
+// Top-level & with combined class + pseudo — &.foo:hover should become .jsx-HASH.foo:hover
 export const s5 = css`
   &.active:hover {
     color: green;
