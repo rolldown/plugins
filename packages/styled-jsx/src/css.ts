@@ -104,14 +104,27 @@ function isGlobalPseudo(comp: SelectorComponent): boolean {
 }
 
 /**
+ * Check if a component is a `:scope` pseudo-class.
+ * `:scope` appears in the selector AST after lightningcss expands a top-level
+ * `&` nesting selector (CSS Nesting spec: bare `&` → `:scope` in a flat sheet).
+ */
+function isScopePseudo(comp: SelectorComponent): boolean {
+  return comp.type === 'pseudo-class' && (comp as { type: 'pseudo-class'; kind: string }).kind === 'scope'
+}
+
+/**
  * Scope a selector by walking its components linearly, matching SWC's
  * `get_transformed_selectors` approach.
  *
  * For each compound (segment between combinators):
  *   - If it contains `:global()`: unwrap the inner selector via
  *     `parseGlobalTokens` and inline the result (which may include
- *     combinators). No scope class is added.
- *   - Otherwise: insert `.jsx-{hash}` before any trailing pseudo-classes.
+ *     combinators). Any leading `:scope` (from `&`) before `:global()`
+ *     is also stripped. No scope class is added.
+ *   - Otherwise: strip any `:scope` pseudo-class that originated from a
+ *     top-level `&` via CSS nesting expansion (lightningcss expands a
+ *     root-level `&` to `:scope`). After stripping, insert `.jsx-{hash}`
+ *     before any trailing pseudo-classes/pseudo-elements.
  *
  * When `isGlobal` is true, only `:global()` unwrapping is performed
  * (no scope class insertion).
@@ -147,9 +160,12 @@ function scopeSelector(
     }
 
     if (globalIdx >= 0) {
-      // Emit any components before :global() in this compound
+      // Emit any components before :global() in this compound, skipping any
+      // leading :scope (originated from `&` — e.g. `&:global(.foo)` → `:scope:global(.foo)`)
       for (let j = 0; j < globalIdx; j++) {
-        result.push(compound[j])
+        if (!isScopePseudo(compound[j])) {
+          result.push(compound[j])
+        }
       }
 
       // Unwrap :global() — inline the parsed result (may include combinators)
@@ -177,31 +193,37 @@ function scopeSelector(
       if (isGlobal) {
         result.push(...compound)
       } else {
-        // Lone pseudo-element (e.g. bare `::before`) — skip scoping, matching SWC
+        // Lone pseudo-element (e.g. bare `::before`) without a preceding `&`/:scope
+        // — skip scoping entirely, matching SWC
         if (compound.length === 1 && compound[0].type === 'pseudo-element') {
           result.push(compound[0])
-        } else if (
-          compound.length === 1 &&
-          compound[0].type === 'pseudo-class' &&
-          (compound[0] as { type: 'pseudo-class'; kind: string }).kind === 'scope'
-        ) {
-          // Lone :scope (originated from leading `&` via CSS nesting expansion) —
-          // replace with scope class instead of prepending to avoid `.jsx-HASH:scope`
-          result.push({ type: 'class', name: scopeClass } as SelectorComponent)
         } else {
-          // Find insertion point — before trailing pseudo-classes/pseudo-elements
-          let insertAt = compound.length
-          while (insertAt > 0) {
-            const prev = compound[insertAt - 1]
-            if (prev.type === 'pseudo-class' || prev.type === 'pseudo-element') {
-              insertAt--
-            } else {
-              break
+          // Strip any :scope pseudo-class that originated from a top-level `&`.
+          // e.g. `&.foo` → `:scope.foo`, `&:hover` → `:scope:hover`,
+          //      `&::before` → `:scope::before`, `& {}` → `:scope`
+          const hasScopeComponent = compound.some(isScopePseudo)
+          const effective = hasScopeComponent
+            ? compound.filter((c) => !isScopePseudo(c))
+            : compound
+
+          if (effective.length === 0) {
+            // Was a lone :scope (from bare `&`) — emit just the scope class
+            result.push({ type: 'class', name: scopeClass } as SelectorComponent)
+          } else {
+            // Insert scope class before trailing pseudo-classes/pseudo-elements
+            let insertAt = effective.length
+            while (insertAt > 0) {
+              const prev = effective[insertAt - 1]
+              if (prev.type === 'pseudo-class' || prev.type === 'pseudo-element') {
+                insertAt--
+              } else {
+                break
+              }
             }
+            result.push(...effective.slice(0, insertAt))
+            result.push({ type: 'class', name: scopeClass } as SelectorComponent)
+            result.push(...effective.slice(insertAt))
           }
-          result.push(...compound.slice(0, insertAt))
-          result.push({ type: 'class', name: scopeClass } as SelectorComponent)
-          result.push(...compound.slice(insertAt))
         }
       }
     }
