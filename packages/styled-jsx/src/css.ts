@@ -109,7 +109,7 @@ function isGlobalPseudo(comp: SelectorComponent): boolean {
  * `&` nesting selector (CSS Nesting spec: bare `&` → `:scope` in a flat sheet).
  */
 function isScopePseudo(comp: SelectorComponent): boolean {
-  return comp.type === 'pseudo-class' && (comp as { type: 'pseudo-class'; kind: string }).kind === 'scope'
+  return comp.type === 'pseudo-class' && comp.kind === 'scope'
 }
 
 /**
