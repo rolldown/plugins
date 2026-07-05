@@ -32,13 +32,21 @@ describe('fixtures', () => {
   }
 })
 
+describe('query-suffixed ids', () => {
+  it('removes attributes when the module id carries a query (e.g. Vite `file.tsx?query`)', async () => {
+    const code = 'export const App = () => <div data-testid="app">ok</div>\n'
+    const result = await transform(code, {}, 'virtual:entry.tsx?some-query=1')
+    expect(result).not.toContain('data-testid')
+  })
+})
+
 async function transform(
   code: string,
   options: JsxRemoveAttributesOptions,
   filename = 'virtual:entry.jsx',
 ): Promise<string> {
-  const ext = filename.match(/\.[jt]sx?$/)?.[0] ?? '.jsx'
-  const virtualEntry = `virtual:entry${ext}`
+  const ext = filename.match(/\.[jt]sx?(?=$|\?)/)?.[0] ?? '.jsx'
+  const virtualEntry = filename.includes('?') ? filename : `virtual:entry${ext}`
 
   const build = await rolldown({
     input: virtualEntry,
@@ -50,7 +58,11 @@ async function transform(
           return { id, external: true }
         },
         load(id) {
-          if (id === virtualEntry) return code
+          if (id === virtualEntry) {
+            // query-suffixed ids defeat rolldown's extension-based module type
+            // inference, so set it explicitly (as Vite does in real pipelines)
+            return virtualEntry.includes('?') ? { code, moduleType: ext.slice(1) } : code
+          }
         },
       },
       jsxRemoveAttributesPlugin(options),

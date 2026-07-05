@@ -51,7 +51,8 @@ export default function jsxRemoveAttributesPlugin(
 
     transform: {
       filter: {
-        id: /\.[jt]sx$/,
+        // also match query-suffixed ids (e.g. Vite's `file.tsx?query`)
+        id: /\.[jt]sx(?:$|\?)/,
         ...(codeFilter && {
           code: {
             include: codeFilter,
@@ -60,14 +61,18 @@ export default function jsxRemoveAttributesPlugin(
       },
 
       handler: withMagicString(function (this, s, id, meta) {
-        const lang = id.endsWith('.tsx')
+        const [filepath] = id.split('?')
+        const lang = filepath.endsWith('.tsx')
           ? 'tsx'
-          : id.endsWith('.ts')
+          : filepath.endsWith('.ts')
             ? 'ts'
-            : id.endsWith('.jsx')
+            : filepath.endsWith('.jsx')
               ? 'jsx'
               : 'js'
-        const program = meta?.ast ?? this.parse(s.original, { lang })
+        // meta.ast is lazily parsed with the module type inferred from the raw id,
+        // which is wrong for query-suffixed ids — parse explicitly in that case
+        const program =
+          (filepath === id ? meta?.ast : undefined) ?? this.parse(s.original, { lang })
 
         new Visitor({
           JSXOpeningElement(node: ESTree.JSXOpeningElement) {
