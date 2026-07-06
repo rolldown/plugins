@@ -114,11 +114,7 @@ async function babelPlugin(rawOptions: PluginOptions): Promise<Plugin> {
 
         let result: babel.FileResult | null
         try {
-          result = await babel.transformAsync(
-            code,
-            // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-            loadedOptions as unknown as babel.InputOptions,
-          )
+          result = await babel.transformAsync(code, loadedOptions)
         } catch (err: any) {
           this.error({
             message: `[BabelError] ${err.message}`,

@@ -206,7 +206,7 @@ function scopeSelector(
           if (scopeIdx >= 0) {
             result.push(
               ...compound.slice(0, scopeIdx),
-              { type: 'class', name: scopeClass } as SelectorComponent,
+              { type: 'class', name: scopeClass },
               ...compound.slice(scopeIdx + 1),
             )
           } else {
@@ -221,7 +221,7 @@ function scopeSelector(
               }
             }
             result.push(...compound.slice(0, insertAt))
-            result.push({ type: 'class', name: scopeClass } as SelectorComponent)
+            result.push({ type: 'class', name: scopeClass })
             result.push(...compound.slice(insertAt))
           }
         }

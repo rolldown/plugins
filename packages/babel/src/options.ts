@@ -204,7 +204,8 @@ export function createBabelOptionsConverter(options: ResolvedPluginOptions) {
                 convertToBabelPresetItem(ctx, preset, overridePresetFilters![i]![j]),
               ),
             }
-          : (override as Omit<InnerTransformOptions, 'presets'>),
+          : // oxlint-disable-next-line typescript/no-unnecessary-type-assertion
+            (override as Omit<InnerTransformOptions, 'presets'>),
       ),
     }
   }
