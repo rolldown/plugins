@@ -116,8 +116,7 @@ async function babelPlugin(rawOptions: PluginOptions): Promise<Plugin> {
         try {
           result = await babel.transformAsync(
             code,
-            // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-            loadedOptions as unknown as babel.InputOptions,
+            loadedOptions,
           )
         } catch (err: any) {
           this.error({

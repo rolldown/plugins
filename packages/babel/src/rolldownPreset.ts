@@ -64,7 +64,7 @@ function compileGeneralHookFilter(
   if (typeof filter === 'string' || filter instanceof RegExp) {
     include = [filter]
   } else if (Array.isArray(filter)) {
-    include = filter as StringOrRegExp[]
+    include = filter
   } else {
     include = filter.include != null ? arrayify(filter.include) : undefined
     exclude = filter.exclude != null ? arrayify(filter.exclude) : undefined
