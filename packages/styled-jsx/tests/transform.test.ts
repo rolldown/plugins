@@ -59,9 +59,28 @@ describe('fixtures', () => {
   }
 })
 
-async function transform(code: string, config: StyledJsxPluginOptions = {}): Promise<string> {
-  const virtualEntry = 'virtual:entry.jsx'
+describe('query-suffixed ids', () => {
+  it('transforms ids with a query suffix', async () => {
+    const input = `export default function App() {
+  return (
+    <div>
+      <p>test</p>
+      <style jsx>{\`p { color: red; }\`}</style>
+    </div>
+  );
+}
+`
+    const result = await transform(input, {}, 'virtual:entry.jsx?some-query=1')
+    expect(result).toContain('import _JSXStyle from "styled-jsx/style"')
+    expect(result).toMatch(/className: "jsx-/)
+  })
+})
 
+async function transform(
+  code: string,
+  config: StyledJsxPluginOptions = {},
+  virtualEntry = 'virtual:entry.jsx',
+): Promise<string> {
   const build = await rolldown({
     input: virtualEntry,
     plugins: [
@@ -72,7 +91,10 @@ async function transform(code: string, config: StyledJsxPluginOptions = {}): Pro
           return { id, external: true }
         },
         load(id) {
-          if (id === virtualEntry) return code
+          if (id !== virtualEntry) return
+          // query-suffixed ids are not inferred by rolldown, so set it explicitly
+          if (id.includes('?')) return { code, moduleType: 'jsx' }
+          return code
         },
       },
       styledJsxPlugin(config),
