@@ -1,3 +1,14 @@
+## <small>[0.1.5](https://github.com/rolldown/plugins/compare/plugin-emotion@0.1.4...plugin-emotion@0.1.5) (2026-07-06)</small>
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#88](https://github.com/rolldown/plugins/issues/88)) ([0032957](https://github.com/rolldown/plugins/commit/0032957d949511d815308a8d60345f826f993c96))
+* **emotion:** handle query-suffixed module ids ([#103](https://github.com/rolldown/plugins/issues/103)) ([ac977c9](https://github.com/rolldown/plugins/commit/ac977c965524534ed67ae1ab18f588be601edf5d)), closes [#98](https://github.com/rolldown/plugins/issues/98)
+
+### Miscellaneous Chores
+
+* **deps:** update all non-major dependencies ([#85](https://github.com/rolldown/plugins/issues/85)) ([4aed109](https://github.com/rolldown/plugins/commit/4aed1096de9f4333cccb74247af5817f18980a06))
+* **deps:** update all non-major dependencies ([#90](https://github.com/rolldown/plugins/issues/90)) ([b73d0dd](https://github.com/rolldown/plugins/commit/b73d0dda75d5b013daf03ebf9636a69aa372c7b4))
+
 ## <small>[0.1.4](https://github.com/rolldown/plugins/compare/plugin-emotion@0.1.3...plugin-emotion@0.1.4) (2026-05-18)</small>
 ### Bug Fixes
 
