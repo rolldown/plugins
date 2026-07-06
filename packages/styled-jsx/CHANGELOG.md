@@ -1,3 +1,9 @@
+## <small>[0.1.3](https://github.com/rolldown/plugins/compare/plugin-styled-jsx@0.1.2...plugin-styled-jsx@0.1.3) (2026-07-06)</small>
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#99](https://github.com/rolldown/plugins/issues/99)) ([fa5b6df](https://github.com/rolldown/plugins/commit/fa5b6df52a03a284a3c0950b56f50b8bae9305cb))
+* **styled-jsx:** handle query-suffixed module ids ([#104](https://github.com/rolldown/plugins/issues/104)) ([f5065d6](https://github.com/rolldown/plugins/commit/f5065d6bb4d1376bad52f3645cbeeaa8209132e5))
+
 ## <small>[0.1.2](https://github.com/rolldown/plugins/compare/plugin-styled-jsx@0.1.1...plugin-styled-jsx@0.1.2) (2026-06-29)</small>
 ### Bug Fixes
 
