@@ -27,7 +27,8 @@ describe('fixtures', () => {
       : {}
 
     it(fixtureName, async () => {
-      const result = await transform(input, config, fullInputPath)
+      const ext = fullInputPath.match(/\.[jt]sx?$/)?.[0] ?? '.ts'
+      const result = await transform(input, config, `virtual:entry${ext}`)
       await expect(result).toMatchFileSnapshot(join(fixturesDir, fixtureName, 'output.js'))
     })
   }
@@ -50,20 +51,31 @@ describe('fixtures-labels', () => {
       : {}
 
     it(fixtureName, async () => {
-      const result = await transform(input, config, fullInputPath)
+      const ext = fullInputPath.match(/\.[jt]sx?$/)?.[0] ?? '.ts'
+      const result = await transform(input, config, `virtual:entry${ext}`)
       await expect(result).toMatchFileSnapshot(join(fixturesLabelsDir, fixtureName, 'output.js'))
     })
   }
 })
 
+describe('query-suffixed ids', () => {
+  it('compiles templates when the module id carries a query (e.g. Vite `file.tsx?query`)', async () => {
+    const code = "import { css } from '@emotion/react'\nexport const c = css`color: red;`\n"
+    const result = await transform(code, {}, 'virtual:entry.tsx?some-query=1')
+    // The tagged template must have been compiled into a css(...) call.
+    expect(result).toContain('css(')
+    expect(result).not.toContain('css`')
+  })
+})
+
 async function transform(
   code: string,
   options: EmotionPluginOptions,
-  filename = 'virtual:entry.tsx',
+  virtualEntry = 'virtual:entry.tsx',
 ): Promise<string> {
-  // Use extension from original filename for virtual entry to ensure correct parsing
-  const ext = filename.match(/\.[jt]sx?$/)?.[0] ?? '.ts'
-  const virtualEntry = `virtual:entry${ext}`
+  // Derive the module type from the entry extension so rolldown can parse it
+  // even when the id carries a query (rolldown can't infer through a query).
+  const ext = virtualEntry.match(/\.[jt]sx?$/)?.[0] ?? '.ts'
 
   const build = await rolldown({
     input: virtualEntry,
@@ -76,7 +88,10 @@ async function transform(
           return { id, external: true }
         },
         load(id) {
-          if (id === virtualEntry) return code
+          if (id === virtualEntry) {
+            // query-suffixed ids are not inferred by rolldown, so set it explicitly
+            return virtualEntry.includes('?') ? { code, moduleType: ext.slice(1) } : code
+          }
         },
       },
       emotionPlugin({
