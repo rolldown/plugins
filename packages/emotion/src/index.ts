@@ -52,16 +52,17 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
 
     transform: {
       filter: {
-        id: /\.[jt]sx?$/,
+        id: /\.[jt]sx?(?:$|\?)/,
         code: new RegExp(Object.keys(registeredImports).map(regexEscape).join('|')),
       },
 
       handler: withMagicString(function (this, s, id, meta) {
-        const lang = id.endsWith('.tsx')
+        const [filepath] = id.split('?')
+        const lang = filepath.endsWith('.tsx')
           ? 'tsx'
-          : id.endsWith('.ts')
+          : filepath.endsWith('.ts')
             ? 'ts'
-            : id.endsWith('.jsx')
+            : filepath.endsWith('.jsx')
               ? 'jsx'
               : 'js'
         const program = meta?.ast ?? this.parse(s.original, { lang })
