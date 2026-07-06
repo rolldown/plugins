@@ -15,7 +15,7 @@
     "react-dom": "^19.2.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.29.7",
+    "@babel/core": "^8.0.1",
     "@oxc-node/cli": "catalog:",
     "@rolldown/benchmark-utils": "workspace:*",
     "@rolldown/plugin-babel": "file:../../babel",
