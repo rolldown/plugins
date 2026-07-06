@@ -51,7 +51,6 @@ export default function jsxRemoveAttributesPlugin(
 
     transform: {
       filter: {
-        // also match query-suffixed ids (e.g. Vite's `file.tsx?query`)
         id: /\.[jt]sx(?:$|\?)/,
         ...(codeFilter && {
           code: {
@@ -69,10 +68,7 @@ export default function jsxRemoveAttributesPlugin(
             : filepath.endsWith('.jsx')
               ? 'jsx'
               : 'js'
-        // meta.ast is lazily parsed with the module type inferred from the raw id,
-        // which is wrong for query-suffixed ids — parse explicitly in that case
-        const program =
-          (filepath === id ? meta?.ast : undefined) ?? this.parse(s.original, { lang })
+        const program = meta?.ast ?? this.parse(s.original, { lang })
 
         new Visitor({
           JSXOpeningElement(node: ESTree.JSXOpeningElement) {

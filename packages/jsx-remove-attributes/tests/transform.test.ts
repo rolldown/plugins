@@ -26,7 +26,9 @@ describe('fixtures', () => {
     config.attributes = config.attributes?.map((pattern) => new RegExp(pattern))
 
     it(fixtureName, async () => {
-      const result = await transform(input, config, fullInputPath)
+      const ext = fullInputPath.match(/\.[jt]sx?$/)?.[0] ?? '.jsx'
+      const virtualEntry = `virtual:entry${ext}`
+      const result = await transform(input, config, virtualEntry)
       await expect(result).toMatchFileSnapshot(join(fixturesDir, fixtureName, 'output.js'))
     })
   }
@@ -43,11 +45,9 @@ describe('query-suffixed ids', () => {
 async function transform(
   code: string,
   options: JsxRemoveAttributesOptions,
-  filename = 'virtual:entry.jsx',
+  virtualEntry: string,
 ): Promise<string> {
-  const ext = filename.match(/\.[jt]sx?(?=$|\?)/)?.[0] ?? '.jsx'
-  const virtualEntry = filename.includes('?') ? filename : `virtual:entry${ext}`
-
+  const ext = virtualEntry.match(/\.[jt]sx?$/)?.[0] ?? '.jsx'
   const build = await rolldown({
     input: virtualEntry,
     plugins: [
@@ -59,8 +59,7 @@ async function transform(
         },
         load(id) {
           if (id === virtualEntry) {
-            // query-suffixed ids defeat rolldown's extension-based module type
-            // inference, so set it explicitly (as Vite does in real pipelines)
+            // query-suffixed ids are not inferred by rolldown, so set it explicitly
             return virtualEntry.includes('?') ? { code, moduleType: ext.slice(1) } : code
           }
         },
