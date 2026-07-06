@@ -51,7 +51,7 @@ export default function jsxRemoveAttributesPlugin(
 
     transform: {
       filter: {
-        id: /\.[jt]sx$/,
+        id: /\.[jt]sx(?:$|\?)/,
         ...(codeFilter && {
           code: {
             include: codeFilter,
@@ -60,11 +60,12 @@ export default function jsxRemoveAttributesPlugin(
       },
 
       handler: withMagicString(function (this, s, id, meta) {
-        const lang = id.endsWith('.tsx')
+        const [filepath] = id.split('?')
+        const lang = filepath.endsWith('.tsx')
           ? 'tsx'
-          : id.endsWith('.ts')
+          : filepath.endsWith('.ts')
             ? 'ts'
-            : id.endsWith('.jsx')
+            : filepath.endsWith('.jsx')
               ? 'jsx'
               : 'js'
         const program = meta?.ast ?? this.parse(s.original, { lang })

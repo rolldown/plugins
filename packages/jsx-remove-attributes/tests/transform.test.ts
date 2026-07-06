@@ -26,20 +26,28 @@ describe('fixtures', () => {
     config.attributes = config.attributes?.map((pattern) => new RegExp(pattern))
 
     it(fixtureName, async () => {
-      const result = await transform(input, config, fullInputPath)
+      const ext = fullInputPath.match(/\.[jt]sx?$/)?.[0] ?? '.jsx'
+      const virtualEntry = `virtual:entry${ext}`
+      const result = await transform(input, config, virtualEntry)
       await expect(result).toMatchFileSnapshot(join(fixturesDir, fixtureName, 'output.js'))
     })
   }
 })
 
+describe('query-suffixed ids', () => {
+  it('removes attributes when the module id carries a query (e.g. Vite `file.tsx?query`)', async () => {
+    const code = 'export const App = () => <div data-testid="app">ok</div>\n'
+    const result = await transform(code, {}, 'virtual:entry.tsx?some-query=1')
+    expect(result).not.toContain('data-testid')
+  })
+})
+
 async function transform(
   code: string,
   options: JsxRemoveAttributesOptions,
-  filename = 'virtual:entry.jsx',
+  virtualEntry: string,
 ): Promise<string> {
-  const ext = filename.match(/\.[jt]sx?$/)?.[0] ?? '.jsx'
-  const virtualEntry = `virtual:entry${ext}`
-
+  const ext = virtualEntry.match(/\.[jt]sx?$/)?.[0] ?? '.jsx'
   const build = await rolldown({
     input: virtualEntry,
     plugins: [
@@ -50,7 +58,10 @@ async function transform(
           return { id, external: true }
         },
         load(id) {
-          if (id === virtualEntry) return code
+          if (id === virtualEntry) {
+            // query-suffixed ids are not inferred by rolldown, so set it explicitly
+            return virtualEntry.includes('?') ? { code, moduleType: ext.slice(1) } : code
+          }
         },
       },
       jsxRemoveAttributesPlugin(options),
