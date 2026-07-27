@@ -17,7 +17,7 @@ function IndexPage() {
 			}),
 			/* @__PURE__ */ jsx(_JSXStyle, {
 				id: "38aea2b98e40317a",
-				children: "a.jsx-38aea2b98e40317a{color:rgba(171,205,239,.07)}"
+				children: "a.jsx-38aea2b98e40317a{color:#abcdef12}"
 			})
 		]
 	});
