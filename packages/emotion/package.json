@@ -33,7 +33,7 @@
   "dependencies": {
     "@emotion/hash": "^0.9.2",
     "@jridgewell/gen-mapping": "^0.3.13",
-    "rolldown-string": "^0.3.0"
+    "rolldown-string": "^0.3.1"
   },
   "devDependencies": {
     "oxc-unshadowed-visitor": "workspace:*",
