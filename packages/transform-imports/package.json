@@ -33,7 +33,7 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "rolldown-string": "^0.3.0"
+    "rolldown-string": "^0.3.1"
   },
   "devDependencies": {
     "rolldown": "catalog:",
