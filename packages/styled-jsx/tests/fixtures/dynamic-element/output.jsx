@@ -2,7 +2,8 @@ import _JSXStyle from "styled-jsx/style";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region virtual:entry.jsx
 var virtual_entry_default = ({ level = 1 }) => {
-	return /* @__PURE__ */ jsxs(`h${level}`, {
+	const Element = `h${level}`;
+	return /* @__PURE__ */ jsxs(Element, {
 		className: "jsx-b6ec9074c87ab384 root",
 		children: [/* @__PURE__ */ jsx("p", {
 			className: "jsx-b6ec9074c87ab384",

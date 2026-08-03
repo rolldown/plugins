@@ -3,7 +3,8 @@ import styles from "./styles2";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region virtual:entry.jsx
 var virtual_entry_default = ({ level = 1 }) => {
-	return /* @__PURE__ */ jsxs(`h${level}`, {
+	const Element = `h${level}`;
+	return /* @__PURE__ */ jsxs(Element, {
 		className: `jsx-${styles.__hash} root`,
 		children: [/* @__PURE__ */ jsx("p", {
 			className: `jsx-${styles.__hash}`,

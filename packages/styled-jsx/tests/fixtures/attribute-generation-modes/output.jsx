@@ -169,20 +169,21 @@ const Test10 = () => /* @__PURE__ */ jsxs("div", {
 	})]
 });
 const Test11 = ({ color }) => {
+	const items = Array.from({ length: 5 }).map((item, i) => /* @__PURE__ */ jsxs("li", {
+		className: _JSXStyle.dynamic([["08e051f98bc93b44", [color]]]) + " item",
+		children: [
+			/* @__PURE__ */ jsx(_JSXStyle, {
+				id: "08e051f98bc93b44",
+				dynamic: [color],
+				children: `.item.__jsx-style-dynamic-selector{color:${color}}`
+			}),
+			"Item #",
+			i + 1
+		]
+	}, i));
 	return /* @__PURE__ */ jsx("ul", {
 		className: "items",
-		children: Array.from({ length: 5 }).map((item, i) => /* @__PURE__ */ jsxs("li", {
-			className: _JSXStyle.dynamic([["08e051f98bc93b44", [color]]]) + " item",
-			children: [
-				/* @__PURE__ */ jsx(_JSXStyle, {
-					id: "08e051f98bc93b44",
-					dynamic: [color],
-					children: `.item.__jsx-style-dynamic-selector{color:${color}}`
-				}),
-				"Item #",
-				i + 1
-			]
-		}, i))
+		children: items
 	});
 };
 //#endregion
