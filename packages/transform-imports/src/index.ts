@@ -132,7 +132,7 @@ function processImportDeclaration(
   for (const spec of specifiers) {
     if (spec.type === 'ImportSpecifier') {
       const imported = getName(spec.imported)
-      const local = getName(spec.local)
+      const local = spec.local.name
       const transformedPath = resolveTransformPath(config.transform, imported, matches)
 
       if (config.skipDefaultConversion) {
@@ -142,14 +142,14 @@ function processImportDeclaration(
       }
     } else if (spec.type === 'ImportDefaultSpecifier') {
       if (config.handleDefaultImport) {
-        const local = getName(spec.local)
+        const local = spec.local.name
         const transformedPath = resolveTransformPath(config.transform, local, matches)
         newImports.push(`import ${local} from "${transformedPath}";`)
       }
       // Non-handled defaults in mixed imports are dropped
     } else if (spec.type === 'ImportNamespaceSpecifier') {
       if (config.handleNamespaceImport) {
-        const local = getName(spec.local)
+        const local = spec.local.name
         const transformedPath = resolveTransformPath(config.transform, local, matches)
         newImports.push(`import * as ${local} from "${transformedPath}";`)
       }
