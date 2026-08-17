@@ -19,17 +19,17 @@ catalogs:
       specifier: ^1.15.47
       version: 1.15.47
     '@swc/plugin-emotion':
-      specifier: ^14.15.0
-      version: 14.15.0
+      specifier: ^15.0.0
+      version: 15.0.0
     '@swc/plugin-react-remove-properties':
-      specifier: ^12.15.0
-      version: 12.15.0
+      specifier: ^13.0.0
+      version: 13.0.0
     '@swc/plugin-styled-jsx':
-      specifier: ^13.15.0
-      version: 13.15.0
+      specifier: ^14.0.0
+      version: 14.0.0
     '@swc/plugin-transform-imports':
-      specifier: ^12.15.0
-      version: 12.15.0
+      specifier: ^13.0.0
+      version: 13.0.0
     rolldown:
       specifier: ^1.2.1
       version: 1.2.1
@@ -181,16 +181,16 @@ importers:
         version: 1.15.47
       '@swc/plugin-emotion':
         specifier: 'catalog:'
-        version: 14.15.0
+        version: 15.0.0
       '@swc/plugin-react-remove-properties':
         specifier: 'catalog:'
-        version: 12.15.0
+        version: 13.0.0
       '@swc/plugin-styled-jsx':
         specifier: 'catalog:'
-        version: 13.15.0
+        version: 14.0.0
       '@swc/plugin-transform-imports':
         specifier: 'catalog:'
-        version: 12.15.0
+        version: 13.0.0
       rolldown:
         specifier: 'catalog:'
         version: 1.2.1
@@ -295,7 +295,7 @@ importers:
         version: 1.15.47
       '@swc/plugin-emotion':
         specifier: 'catalog:'
-        version: 14.15.0
+        version: 15.0.0
       '@types/node':
         specifier: ^24.13.3
         version: 24.13.3
@@ -357,7 +357,7 @@ importers:
         version: 1.15.47
       '@swc/plugin-react-remove-properties':
         specifier: 'catalog:'
-        version: 12.15.0
+        version: 13.0.0
       '@types/node':
         specifier: ^24.13.3
         version: 24.13.3
@@ -461,7 +461,7 @@ importers:
         version: 1.15.47
       '@swc/plugin-styled-jsx':
         specifier: 'catalog:'
-        version: 13.15.0
+        version: 14.0.0
       '@types/node':
         specifier: ^24.13.3
         version: 24.13.3
@@ -513,7 +513,7 @@ importers:
         version: 1.15.47
       '@swc/plugin-transform-imports':
         specifier: 'catalog:'
-        version: 12.15.0
+        version: 13.0.0
       '@types/node':
         specifier: ^24.13.3
         version: 24.13.3
@@ -1886,17 +1886,17 @@ packages:
   '@swc/counter@0.1.3':
     resolution: {integrity: sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==}
 
-  '@swc/plugin-emotion@14.15.0':
-    resolution: {integrity: sha512-nCsTO7mOOPz2UnT3N6YWb014uI0CVxeKg53A/KM/CvuSIE6H3KPkhaziJQ3q2jI3u3LfFuDKEnU5ZmB1330Dqg==}
+  '@swc/plugin-emotion@15.0.0':
+    resolution: {integrity: sha512-B0L0KuItii5XatOskjeFW4kNPXYEDo5JYm+k5Lze3LEY46q4L7foVkXiUFbNn0GjbKJCOv+nU2nM57k4LYLbHw==}
 
-  '@swc/plugin-react-remove-properties@12.15.0':
-    resolution: {integrity: sha512-NAMFus9kEOmFcDcKaizPrVkn7Xw+oihIJXt4oTbLoCc061Ek8Xvbj41eplFu+c0uy2EgAA0tgMH7P9HTV843BA==}
+  '@swc/plugin-react-remove-properties@13.0.0':
+    resolution: {integrity: sha512-dTvA40qY8S5AB+L/0QvLw4i7v3iNmFYMsfRqIRWj+jrDmoq5j28IDxTCYJ8js5ugoLJvSAArxdA3Ca9JOfrIcA==}
 
-  '@swc/plugin-styled-jsx@13.15.0':
-    resolution: {integrity: sha512-/qj/v+bIj3v9DSCsbCXZlCMFPV6LkHdH5ONP43EffIFXIw0rBk3gXOjpV7LAhf19lrzkAf8dj1RmzEzhAAJr6A==}
+  '@swc/plugin-styled-jsx@14.0.0':
+    resolution: {integrity: sha512-Wl6UhAxoSss+RP3AhQP36wOCIUTMPbWTiRKxG6t2Bgjqwb2xd/AuPMwS3EFprDV473hqfVGMntzIpz0iMBGnZQ==}
 
-  '@swc/plugin-transform-imports@12.15.0':
-    resolution: {integrity: sha512-b4cij2hX7/RcaA7JWhVU6fdPzNeH9iTKtwPL4j+TNJauZ72BFu+LIe64MRuTGsk4+1/dzSRDnpoukuJf8uJSnw==}
+  '@swc/plugin-transform-imports@13.0.0':
+    resolution: {integrity: sha512-G8Wp8zX92O5F2YQ8OSqoAbNqPiU7VTLKFBtmN4W0y29SaNUDi8rLwvos5P5J1qdrQP3BmnQnS1wdZioMZXlJmw==}
 
   '@swc/types@0.1.27':
     resolution: {integrity: sha512-K6h3iUlqeM946U4sXFYeahefR1YBbXJvko+hv8WS8/0BNJ4OHiHRywMnQUJCqkR7Y9+hqQ1TvEpiKqUhz7NEFg==}
@@ -4121,19 +4121,19 @@ snapshots:
 
   '@swc/counter@0.1.3': {}
 
-  '@swc/plugin-emotion@14.15.0':
+  '@swc/plugin-emotion@15.0.0':
     dependencies:
       '@swc/counter': 0.1.3
 
-  '@swc/plugin-react-remove-properties@12.15.0':
+  '@swc/plugin-react-remove-properties@13.0.0':
     dependencies:
       '@swc/counter': 0.1.3
 
-  '@swc/plugin-styled-jsx@13.15.0':
+  '@swc/plugin-styled-jsx@14.0.0':
     dependencies:
       '@swc/counter': 0.1.3
 
-  '@swc/plugin-transform-imports@12.15.0':
+  '@swc/plugin-transform-imports@13.0.0':
     dependencies:
       '@swc/counter': 0.1.3
 
