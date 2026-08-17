@@ -1,0 +1,19 @@
+docs/superpowers/specs/2026-08-17-emotion-runtime-labels-design.md
+  s_111b0cfdf1239a::t_2b7a55d0227854 1-30
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "461e0f6d893791e4aeeaacd5abb778652af25573",
+  "prompts": {},
+  "sessions": {
+    "s_111b0cfdf1239a": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a00d5a-5c21-7350-84a0-47b58cf841b9",
+        "model": "unknown"
+      },
+      "human_author": "sapphi-red <green@sapphi.red>"
+    }
+  }
+}
