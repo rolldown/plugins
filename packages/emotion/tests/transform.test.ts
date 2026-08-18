@@ -79,6 +79,11 @@ async function transform(
 
   const build = await rolldown({
     input: virtualEntry,
+    transform: {
+      define: {
+        'process.env.NODE_ENV': 'process.env.NODE_ENV',
+      },
+    },
     plugins: [
       {
         name: 'virtual',

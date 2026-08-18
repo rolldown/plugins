@@ -26,13 +26,14 @@ export interface EmotionPluginOptions {
   sourceMap?: boolean
 
   /**
-   * When to add debug labels to styled components.
+   * When to add debug labels to styled components, `css`, and `keyframes`.
    * - 'never': Never add labels
    * - 'dev-only': Only add labels in development mode (default)
    * - 'always': Always add labels
+   * - 'runtime': Add labels unless `process.env.NODE_ENV` is 'production' at runtime
    * @default 'dev-only'
    */
-  autoLabel?: 'never' | 'dev-only' | 'always'
+  autoLabel?: 'never' | 'dev-only' | 'always' | 'runtime'
 
   /**
    * Label format template.
