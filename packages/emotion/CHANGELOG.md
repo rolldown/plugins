@@ -1,3 +1,17 @@
+## [0.2.0](https://github.com/rolldown/plugins/compare/plugin-emotion%400.1.5...plugin-emotion%400.2.0) (2026-08-21)
+### Features
+
+* **emotion:** add `autoLabel: 'runtime'` option ([#121](https://github.com/rolldown/plugins/issues/121)) ([91499aa](https://github.com/rolldown/plugins/commit/91499aa7a20846d6b87701fd79fbd82a55d2f73f))
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#109](https://github.com/rolldown/plugins/issues/109)) ([9f2d75e](https://github.com/rolldown/plugins/commit/9f2d75e750f3520a8766fb22f8e23e907e98c26b))
+
+### Miscellaneous Chores
+
+* **deps:** update all non-major dependencies ([#106](https://github.com/rolldown/plugins/issues/106)) ([6b89bca](https://github.com/rolldown/plugins/commit/6b89bcaa8ee477f0471697e04a55f10683f13702))
+* **deps:** update all non-major dependencies ([#116](https://github.com/rolldown/plugins/issues/116)) ([eb536e7](https://github.com/rolldown/plugins/commit/eb536e7885e7554bf6897dd28d30b8d856602b81))
+
 ## <small>[0.1.5](https://github.com/rolldown/plugins/compare/plugin-emotion@0.1.4...plugin-emotion@0.1.5) (2026-07-06)</small>
 ### Bug Fixes
 
