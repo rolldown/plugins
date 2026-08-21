@@ -18,6 +18,8 @@ import { createLabelWithInfo } from './label.js'
 import path from 'node:path'
 import hashString from '@emotion/hash'
 
+const RUNTIME_PRODUCTION_CONDITION = 'process.env.NODE_ENV === "production"'
+
 export type { EmotionPluginOptions } from './types.js'
 
 interface RecordData {
@@ -83,6 +85,8 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
               return false
             case 'dev-only':
               return isDev
+            case 'runtime':
+              return false
             default:
               autoLabel satisfies never
               return false
@@ -110,6 +114,26 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
             label += ';'
           }
           return label
+        }
+
+        function createLabelProperty(context: string | null): string | null {
+          const label = escapeJSString(createLabel(context, false))
+          if (autoLabel === 'runtime') {
+            return `...(${RUNTIME_PRODUCTION_CONDITION} ? {} : { label: "${label}" })`
+          }
+          return shouldAddLabel() ? `label: "${label}"` : null
+        }
+
+        function createLabelArgument(
+          kind: ExprKind,
+          context: string | null,
+          terminateBeforeSourcemap: boolean,
+        ): string | null {
+          const label = escapeJSString(createRuntimeLabel(kind, context, terminateBeforeSourcemap))
+          if (autoLabel === 'runtime') {
+            return `...(${RUNTIME_PRODUCTION_CONDITION} ? [] : ["${label}"])`
+          }
+          return shouldAddLabel() ? `"${label}"` : null
         }
 
         function makeSourceMap(offset: number): string | null {
@@ -155,9 +179,9 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
 
           // Add label and source map (unless in JSX element context)
           if (!inJsx) {
-            if (includeLabel && shouldAddLabel()) {
-              const label = createRuntimeLabel(kind, labelContext, true)
-              parts.push(`"${escapeJSString(label)}"`)
+            if (includeLabel) {
+              const labelArgument = createLabelArgument(kind, labelContext, true)
+              if (labelArgument) parts.push(labelArgument)
             }
             const sm = makeSourceMap(sourceMapOffset)
             if (sm) {
@@ -369,10 +393,8 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
                       isFullReplace: true,
                       apply: (getTarget) => {
                         let labelObj = `target: "${getTarget()}"`
-                        if (shouldAddLabel()) {
-                          const label = createLabel(labelContext, false)
-                          labelObj += `, label: "${escapeJSString(label)}"`
-                        }
+                        const labelProperty = createLabelProperty(labelContext)
+                        if (labelProperty) labelObj += `, ${labelProperty}`
 
                         const styledArgs = buildTaggedTemplateArgs(
                           quasi,
@@ -444,10 +466,8 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
                         const styledName = s.slice(tag.callee.start, tag.callee.end)
                         const target = getTarget()
                         let labelObj = `target: "${target}"`
-                        if (shouldAddLabel()) {
-                          const label = createLabel(labelContext, false)
-                          labelObj += `, label: "${escapeJSString(label)}"`
-                        }
+                        const labelProperty = createLabelProperty(labelContext)
+                        if (labelProperty) labelObj += `, ${labelProperty}`
 
                         // Extract existing args from styled(Component, ...)
                         const existingArgs = tag.arguments
@@ -522,11 +542,11 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
                       apply: () => {
                         s.appendLeft(node.start, '/* @__PURE__ */ ')
                         let hasTrailingComma = checkTrailingCommaExistence(s.original, node.end - 1)
-                        if (shouldAddLabel()) {
-                          const label = createRuntimeLabel(kind, labelContext, false)
+                        const labelArgument = createLabelArgument(kind, labelContext, false)
+                        if (labelArgument) {
                           s.appendRight(
                             node.end - 1,
-                            `${maybeComma(!hasTrailingComma)}"${escapeJSString(label)}"`,
+                            `${maybeComma(!hasTrailingComma)}${labelArgument}`,
                           )
                           hasTrailingComma = false
                         }
@@ -564,10 +584,8 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
                         apply: (getTarget) => {
                           s.appendLeft(node.start, '/* @__PURE__ */ ')
                           let labelObj = `target: "${getTarget()}"`
-                          if (shouldAddLabel()) {
-                            const label = createLabel(labelContext, false)
-                            labelObj += `, label: "${escapeJSString(label)}"`
-                          }
+                          const labelProperty = createLabelProperty(labelContext)
+                          if (labelProperty) labelObj += `, ${labelProperty}`
                           // Add { target, label } as second arg to inner call
                           if (callee.arguments.length === 1) {
                             // Insert before inner call's closing )
@@ -646,10 +664,8 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
                         if (!wasInJsx) {
                           labelObj += `target: "${getTarget()}"`
                           s.appendLeft(node.start, '/* @__PURE__ */ ')
-                          if (shouldAddLabel()) {
-                            const label = createLabel(labelContext, false)
-                            labelObj += `, label: "${escapeJSString(label)}"`
-                          }
+                          const labelProperty = createLabelProperty(labelContext)
+                          if (labelProperty) labelObj += `, ${labelProperty}`
                         }
                         const styledName = s.slice(callee.object.start, callee.object.end)
                         const propName = callee.property.name
@@ -696,11 +712,11 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
                       apply: () => {
                         s.appendLeft(node.start, '/* @__PURE__ */ ')
                         let hasTrailingComma = checkTrailingCommaExistence(s.original, node.end - 1)
-                        if (shouldAddLabel()) {
-                          const label = createRuntimeLabel(kind, labelContext, false)
+                        const labelArgument = createLabelArgument(kind, labelContext, false)
+                        if (labelArgument) {
                           s.appendRight(
                             node.end - 1,
-                            `${maybeComma(!hasTrailingComma)}"${escapeJSString(label)}"`,
+                            `${maybeComma(!hasTrailingComma)}${labelArgument}`,
                           )
                           hasTrailingComma = false
                         }

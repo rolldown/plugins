@@ -45,14 +45,15 @@ Generate source maps for Emotion CSS. Source maps help trace styles back to thei
 
 ### `autoLabel`
 
-- **Type:** `'never' | 'dev-only' | 'always'`
+- **Type:** `'never' | 'dev-only' | 'always' | 'runtime'`
 - **Default:** `'dev-only'`
 
-Controls when debug labels are added to styled components and `css` calls.
+Controls when debug labels are added to styled components, `css`, and `keyframes` calls.
 
 - `'never'` — Never add labels
 - `'dev-only'` — Only add labels in development mode
 - `'always'` — Always add labels
+- `'runtime'` — Add labels unless `process.env.NODE_ENV === "production"` at runtime
 
 ### `labelFormat`
 
