@@ -16,7 +16,7 @@ catalogs:
     '@oxc-node/core': ^0.1.0
     '@oxc-node/cli': ^0.1.0
     '@rollup/plugin-swc': ^0.4.1
-    '@swc/core': ^1.16.0
+    '@swc/core': ^1.16.1
     '@swc/plugin-emotion': ^15.0.0
     '@swc/plugin-react-remove-properties': ^13.0.0
     '@swc/plugin-styled-jsx': ^14.0.0
