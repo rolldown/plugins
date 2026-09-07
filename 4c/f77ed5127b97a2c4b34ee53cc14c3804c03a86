@@ -1,0 +1,19 @@
+pnpm-workspace.yaml
+  s_3b3ee6d41ab9d3::t_cb51a0e51fb386 14-16
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "4cf77ed5127b97a2c4b34ee53cc14c3804c03a86",
+  "prompts": {},
+  "sessions": {
+    "s_3b3ee6d41ab9d3": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a07a07-03d5-7e81-8bc0-4e7b80102d50",
+        "model": "unknown"
+      },
+      "human_author": "sapphi-red <green@sapphi.red>"
+    }
+  }
+}
