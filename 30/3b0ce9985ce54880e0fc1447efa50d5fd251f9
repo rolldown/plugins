@@ -1,0 +1,21 @@
+packages/babel/src/options.ts
+  s_d1ffedbe1a249c::t_8261e9b31a531d 194-195
+packages/babel/src/rolldownPreset.test.ts
+  s_d1ffedbe1a249c::t_4b31590e0d928b 37-42
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "303b0ce9985ce54880e0fc1447efa50d5fd251f9",
+  "prompts": {},
+  "sessions": {
+    "s_d1ffedbe1a249c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a079ce-84d6-7610-9c41-1033316d2b00",
+        "model": "unknown"
+      },
+      "human_author": "sapphi-red <green@sapphi.red>"
+    }
+  }
+}
