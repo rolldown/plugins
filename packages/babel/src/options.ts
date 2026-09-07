@@ -191,6 +191,9 @@ export function createBabelOptionsConverter(options: ResolvedPluginOptions) {
     const { runtimeVersion: _, ...babelOptions } = options
     return {
       ...babelOptions,
+      // sourcemap collapsing is handled by Rolldown
+      // @ts-ignore babel v7 types does not allow `false` but it is actually supported
+      inputSourceMap: false,
       presets: options.presets
         ? filterMap(options.presets, (preset, i) =>
             convertToBabelPresetItem(ctx, preset, presetFilters![i]),
