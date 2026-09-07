@@ -1,3 +1,24 @@
+## <small>[0.2.4](https://github.com/rolldown/plugins/compare/plugin-babel%400.2.3...plugin-babel%400.2.4) (2026-09-07)</small>
+### Bug Fixes
+
+* **babel:** set `inputSourceMap: false` to avoid combining source map twice ([#131](https://github.com/rolldown/plugins/issues/131)) ([249a7d2](https://github.com/rolldown/plugins/commit/249a7d237cb0fc7cae4bb52086bba28df31798d3))
+* **deps:** update all non-major dependencies ([#124](https://github.com/rolldown/plugins/issues/124)) ([6373896](https://github.com/rolldown/plugins/commit/6373896fc628e5b156a68ffddbaf2ea4bd4bcf71)), references [#8203](https://github.com/rolldown/plugins/issues/8203)
+* **deps:** update all non-major dependencies ([#65](https://github.com/rolldown/plugins/issues/65)) ([465fb38](https://github.com/rolldown/plugins/commit/465fb3860ef37ac916e67c76c518c24298a7712d))
+* **deps:** update all non-major dependencies ([#88](https://github.com/rolldown/plugins/issues/88)) ([0032957](https://github.com/rolldown/plugins/commit/0032957d949511d815308a8d60345f826f993c96)), references [#8203](https://github.com/rolldown/plugins/issues/8203) [#8203](https://github.com/rolldown/plugins/issues/8203) [#8203](https://github.com/rolldown/plugins/issues/8203) [#8203](https://github.com/rolldown/plugins/issues/8203)
+* **deps:** update all non-major dependencies ([#99](https://github.com/rolldown/plugins/issues/99)) ([fa5b6df](https://github.com/rolldown/plugins/commit/fa5b6df52a03a284a3c0950b56f50b8bae9305cb)), references [#8203](https://github.com/rolldown/plugins/issues/8203) [#8203](https://github.com/rolldown/plugins/issues/8203) [#8203](https://github.com/rolldown/plugins/issues/8203) [#8203](https://github.com/rolldown/plugins/issues/8203) [#8203](https://github.com/rolldown/plugins/issues/8203) [#8203](https://github.com/rolldown/plugins/issues/8203) [#8203](https://github.com/rolldown/plugins/issues/8203)
+* **deps:** update rolldown-related dependencies ([#59](https://github.com/rolldown/plugins/issues/59)) ([e0e474c](https://github.com/rolldown/plugins/commit/e0e474c00f1fcc237b81c3c64ad71de488227db7))
+* **deps:** update rolldown-related dependencies ([#66](https://github.com/rolldown/plugins/issues/66)) ([717a2a6](https://github.com/rolldown/plugins/commit/717a2a6ee1b3f43ae9a0f63bed0e3c031500d2ba))
+* **deps:** update rolldown-related dependencies ([#78](https://github.com/rolldown/plugins/issues/78)) ([6a57129](https://github.com/rolldown/plugins/commit/6a57129a927c1fd548d03644114801c0f1e2c424))
+
+### Miscellaneous Chores
+
+* **deps:** update all non-major dependencies ([#106](https://github.com/rolldown/plugins/issues/106)) ([6b89bca](https://github.com/rolldown/plugins/commit/6b89bcaa8ee477f0471697e04a55f10683f13702)), references [#8203](https://github.com/rolldown/plugins/issues/8203) [#8203](https://github.com/rolldown/plugins/issues/8203)
+* **deps:** update all non-major dependencies ([#77](https://github.com/rolldown/plugins/issues/77)) ([0b70858](https://github.com/rolldown/plugins/commit/0b70858300ac4b7227611303f036b3684256fb31))
+* **deps:** update all non-major dependencies ([#90](https://github.com/rolldown/plugins/issues/90)) ([b73d0dd](https://github.com/rolldown/plugins/commit/b73d0dda75d5b013daf03ebf9636a69aa372c7b4)), references [#8203](https://github.com/rolldown/plugins/issues/8203) [#8203](https://github.com/rolldown/plugins/issues/8203)
+* **deps:** update all non-major dependencies ([#92](https://github.com/rolldown/plugins/issues/92)) ([59dcaf4](https://github.com/rolldown/plugins/commit/59dcaf442a7d5613b415f7d101d9c0ca63c5b1b4)), references [#8203](https://github.com/rolldown/plugins/issues/8203) [#8203](https://github.com/rolldown/plugins/issues/8203) [#8203](https://github.com/rolldown/plugins/issues/8203) [#8203](https://github.com/rolldown/plugins/issues/8203)
+* **deps:** update rolldown-related dependencies ([#128](https://github.com/rolldown/plugins/issues/128)) ([c0365e0](https://github.com/rolldown/plugins/commit/c0365e08c01018491108da62944b9869bb795c53))
+* use pnpm catalog for some packages ([#82](https://github.com/rolldown/plugins/issues/82)) ([d717e25](https://github.com/rolldown/plugins/commit/d717e2507bce0250702674a138801141d453e4d6))
+
 ## <small>[0.2.3](https://github.com/rolldown/plugins/compare/plugin-babel@0.2.2...plugin-babel@0.2.3) (2026-04-13)</small>
 ### Bug Fixes
 
