@@ -1,4 +1,4 @@
-import { bench, describe } from 'vitest'
+import { describe, test } from 'vitest'
 import { execSync } from 'node:child_process'
 import { existsSync, readdirSync, rmSync } from 'node:fs'
 import { resolve } from 'node:path'
@@ -24,27 +24,17 @@ function cleanDist(name: string) {
 }
 
 describe('Transform Imports Benchmark', () => {
-  bench(
-    '@rolldown/plugin-transform-imports',
-    () => {
-      runBuild('custom', baseDir)
-    },
-    { teardown: () => cleanDist('custom') },
-  )
-
-  bench(
-    'babel-plugin-transform-imports',
-    () => {
-      runBuild('babel', baseDir)
-    },
-    { teardown: () => cleanDist('babel') },
-  )
-
-  bench(
-    '@swc/plugin-transform-imports',
-    () => {
-      runBuild('swc', baseDir)
-    },
-    { teardown: () => cleanDist('swc') },
-  )
+  test('comparison', async ({ bench }) => {
+    await bench.compare(
+      bench('@rolldown/plugin-transform-imports', { afterAll: () => cleanDist('custom') }, () => {
+        runBuild('custom', baseDir)
+      }),
+      bench('babel-plugin-transform-imports', { afterAll: () => cleanDist('babel') }, () => {
+        runBuild('babel', baseDir)
+      }),
+      bench('@swc/plugin-transform-imports', { afterAll: () => cleanDist('swc') }, () => {
+        runBuild('swc', baseDir)
+      }),
+    )
+  })
 })

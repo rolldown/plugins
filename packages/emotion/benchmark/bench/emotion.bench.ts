@@ -1,4 +1,4 @@
-import { bench, describe } from 'vitest'
+import { describe, test } from 'vitest'
 import { execSync } from 'node:child_process'
 import { existsSync, readdirSync, rmSync } from 'node:fs'
 import { resolve } from 'node:path'
@@ -24,27 +24,17 @@ function cleanDist(name: string) {
 }
 
 describe('Emotion Benchmark', () => {
-  bench(
-    '@rolldown/plugin-emotion',
-    () => {
-      runBuild('custom', baseDir)
-    },
-    { teardown: () => cleanDist('custom') },
-  )
-
-  bench(
-    '@rolldown/plugin-babel',
-    () => {
-      runBuild('babel', baseDir)
-    },
-    { teardown: () => cleanDist('babel') },
-  )
-
-  bench(
-    '@rollup/plugin-swc',
-    () => {
-      runBuild('swc', baseDir)
-    },
-    { teardown: () => cleanDist('swc') },
-  )
+  test('comparison', async ({ bench }) => {
+    await bench.compare(
+      bench('@rolldown/plugin-emotion', { afterAll: () => cleanDist('custom') }, () => {
+        runBuild('custom', baseDir)
+      }),
+      bench('@rolldown/plugin-babel', { afterAll: () => cleanDist('babel') }, () => {
+        runBuild('babel', baseDir)
+      }),
+      bench('@rollup/plugin-swc', { afterAll: () => cleanDist('swc') }, () => {
+        runBuild('swc', baseDir)
+      }),
+    )
+  })
 })

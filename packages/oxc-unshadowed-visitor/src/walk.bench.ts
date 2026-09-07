@@ -1,4 +1,4 @@
-import { bench, describe } from 'vitest'
+import { describe, test } from 'vitest'
 import { parseSync, Visitor } from 'rolldown/utils'
 import { walk, ScopeTracker } from 'oxc-walker'
 import { ScopedVisitor } from './index.js'
@@ -31,106 +31,115 @@ const mediumProgram = parseSync('test.js', generateFixture(100)).program
 const largeProgram = parseSync('test.js', generateFixture(500)).program
 
 describe('small (10)', () => {
-  bench('single-pass (ScopedVisitor)', () => {
-    const sv = new ScopedVisitor<string>({
-      trackedNames: ['React'],
-      walk: (program, visitor) => new Visitor(visitor).visit(program),
-      visitor: {
-        Identifier(node, ctx) {
-          if (node.name === 'React') {
-            ctx.record({ name: 'React', node, data: 'ref' })
-          }
-        },
-      },
-    })
-    sv.walk(smallProgram)
-  })
-
-  bench('two-pass (oxc-walker)', () => {
-    const scopeTracker = new ScopeTracker({ preserveExitedScopes: true })
-    walk(smallProgram, { scopeTracker, enter() {} })
-    scopeTracker.freeze()
-    const results: { name: string; node: any }[] = []
-    walk(smallProgram, {
-      scopeTracker,
-      enter(node) {
-        if (node.type === 'Identifier' && 'name' in node && node.name === 'React') {
-          const decl = scopeTracker.getDeclaration('React')
-          if (!decl) {
-            results.push({ name: 'React', node })
-          }
-        }
-      },
-    })
+  test('comparison', async ({ bench }) => {
+    await bench.compare(
+      bench('single-pass (ScopedVisitor)', () => {
+        const sv = new ScopedVisitor<string>({
+          trackedNames: ['React'],
+          walk: (program, visitor) => new Visitor(visitor).visit(program),
+          visitor: {
+            Identifier(node, ctx) {
+              if (node.name === 'React') {
+                ctx.record({ name: 'React', node, data: 'ref' })
+              }
+            },
+          },
+        })
+        sv.walk(smallProgram)
+      }),
+      bench('two-pass (oxc-walker)', () => {
+        const scopeTracker = new ScopeTracker({ preserveExitedScopes: true })
+        walk(smallProgram, { scopeTracker, enter() {} })
+        scopeTracker.freeze()
+        const results: { name: string; node: any }[] = []
+        walk(smallProgram, {
+          scopeTracker,
+          enter(node) {
+            if (node.type === 'Identifier' && 'name' in node && node.name === 'React') {
+              const decl = scopeTracker.getDeclaration('React')
+              if (!decl) {
+                results.push({ name: 'React', node })
+              }
+            }
+          },
+        })
+      }),
+    )
   })
 })
 
 describe('medium (100)', () => {
-  bench('single-pass (ScopedVisitor)', () => {
-    const sv = new ScopedVisitor<string>({
-      trackedNames: ['React'],
-      walk: (program, visitor) => new Visitor(visitor).visit(program),
-      visitor: {
-        Identifier(node, ctx) {
-          if (node.name === 'React') {
-            ctx.record({ name: 'React', node, data: 'ref' })
-          }
-        },
-      },
-    })
-    sv.walk(mediumProgram)
-  })
-
-  bench('two-pass (oxc-walker)', () => {
-    const scopeTracker = new ScopeTracker({ preserveExitedScopes: true })
-    walk(mediumProgram, { scopeTracker, enter() {} })
-    scopeTracker.freeze()
-    const results: { name: string; node: any }[] = []
-    walk(mediumProgram, {
-      scopeTracker,
-      enter(node) {
-        if (node.type === 'Identifier' && 'name' in node && node.name === 'React') {
-          const decl = scopeTracker.getDeclaration('React')
-          if (!decl) {
-            results.push({ name: 'React', node })
-          }
-        }
-      },
-    })
+  test('comparison', async ({ bench }) => {
+    await bench.compare(
+      bench('single-pass (ScopedVisitor)', () => {
+        const sv = new ScopedVisitor<string>({
+          trackedNames: ['React'],
+          walk: (program, visitor) => new Visitor(visitor).visit(program),
+          visitor: {
+            Identifier(node, ctx) {
+              if (node.name === 'React') {
+                ctx.record({ name: 'React', node, data: 'ref' })
+              }
+            },
+          },
+        })
+        sv.walk(mediumProgram)
+      }),
+      bench('two-pass (oxc-walker)', () => {
+        const scopeTracker = new ScopeTracker({ preserveExitedScopes: true })
+        walk(mediumProgram, { scopeTracker, enter() {} })
+        scopeTracker.freeze()
+        const results: { name: string; node: any }[] = []
+        walk(mediumProgram, {
+          scopeTracker,
+          enter(node) {
+            if (node.type === 'Identifier' && 'name' in node && node.name === 'React') {
+              const decl = scopeTracker.getDeclaration('React')
+              if (!decl) {
+                results.push({ name: 'React', node })
+              }
+            }
+          },
+        })
+      }),
+    )
   })
 })
 
 describe('large (500)', () => {
-  bench('single-pass (ScopedVisitor)', () => {
-    const sv = new ScopedVisitor<string>({
-      trackedNames: ['React'],
-      walk: (program, visitor) => new Visitor(visitor).visit(program),
-      visitor: {
-        Identifier(node, ctx) {
-          if (node.name === 'React') {
-            ctx.record({ name: 'React', node, data: 'ref' })
-          }
-        },
-      },
-    })
-    sv.walk(largeProgram)
-  })
-
-  bench('two-pass (oxc-walker)', () => {
-    const scopeTracker = new ScopeTracker({ preserveExitedScopes: true })
-    walk(largeProgram, { scopeTracker, enter() {} })
-    scopeTracker.freeze()
-    const results: { name: string; node: any }[] = []
-    walk(largeProgram, {
-      scopeTracker,
-      enter(node) {
-        if (node.type === 'Identifier' && 'name' in node && node.name === 'React') {
-          const decl = scopeTracker.getDeclaration('React')
-          if (!decl) {
-            results.push({ name: 'React', node })
-          }
-        }
-      },
-    })
+  test('comparison', async ({ bench }) => {
+    await bench.compare(
+      bench('single-pass (ScopedVisitor)', () => {
+        const sv = new ScopedVisitor<string>({
+          trackedNames: ['React'],
+          walk: (program, visitor) => new Visitor(visitor).visit(program),
+          visitor: {
+            Identifier(node, ctx) {
+              if (node.name === 'React') {
+                ctx.record({ name: 'React', node, data: 'ref' })
+              }
+            },
+          },
+        })
+        sv.walk(largeProgram)
+      }),
+      bench('two-pass (oxc-walker)', () => {
+        const scopeTracker = new ScopeTracker({ preserveExitedScopes: true })
+        walk(largeProgram, { scopeTracker, enter() {} })
+        scopeTracker.freeze()
+        const results: { name: string; node: any }[] = []
+        walk(largeProgram, {
+          scopeTracker,
+          enter(node) {
+            if (node.type === 'Identifier' && 'name' in node && node.name === 'React') {
+              const decl = scopeTracker.getDeclaration('React')
+              if (!decl) {
+                results.push({ name: 'React', node })
+              }
+            }
+          },
+        })
+      }),
+    )
   })
 })
