@@ -7,6 +7,5 @@ export default defineConfig({
   },
   dts: {
     tsconfig: '../../tsconfig.common.json',
-    tsgo: true,
   },
 })
