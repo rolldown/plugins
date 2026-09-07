@@ -11,6 +11,9 @@ allowBuilds:
   esbuild: true
   playwright-chromium: true
 
+syncInjectedDepsAfterScripts:
+  - build
+
 catalogs:
   default:
     '@oxc-node/core': ^0.1.0
