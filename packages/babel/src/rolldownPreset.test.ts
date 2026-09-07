@@ -34,6 +34,12 @@ function makeRolldownPreset(
 }
 
 describe('createBabelOptionsConverter', () => {
+  test('disables Babel input source map processing', () => {
+    const convert = createBabelOptionsConverter(resolveOptions({}))
+
+    expect(convert(makeCtx()).inputSourceMap).toBe(false)
+  })
+
   test('plain babel preset is always included', () => {
     const convert = createBabelOptionsConverter(resolveOptions({ presets: [presetA] }))
     const result = convert(makeCtx())

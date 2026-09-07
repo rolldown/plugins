@@ -15,6 +15,35 @@ test('plugin works', async () => {
   expect(result.code).toContain('const result = true')
 })
 
+test('input source maps do not change the generated source map', async () => {
+  const originalCode = '\n\n\n\nexport const answer = 42\n'
+  const inputMap = {
+    version: 3,
+    file: 'foo.js',
+    names: [],
+    sources: ['original.js'],
+    sourcesContent: [originalCode],
+    mappings: 'AAIA',
+  }
+  const inlineMap = Buffer.from(JSON.stringify(inputMap)).toString('base64')
+  const code = 'export const answer = 42\n'
+  const codeWithInputMap = [
+    code,
+    `//# sourceMappingURL=data:application/json;base64,${inlineMap}`,
+  ].join('\n')
+  const options: PluginOptions = { plugins: [() => ({ visitor: {} })] }
+  const outputOptions = { sourcemap: true, sourcemapExcludeSources: true }
+
+  const [withInputMap, withoutInputMap] = await Promise.all([
+    build('foo.js', codeWithInputMap, options, outputOptions),
+    build('foo.js', code, options, outputOptions),
+  ])
+
+  assert(withInputMap.map)
+  assert(withoutInputMap.map)
+  expect(withInputMap.map.toString()).toBe(withoutInputMap.map.toString())
+})
+
 test('presets option applies preset transformations', async () => {
   const myPreset = (): babel.InputOptions => ({
     plugins: [identifierReplaceBabelPlugin('foo', true)],
@@ -792,7 +821,18 @@ async function buildWithVite(
   return chunk
 }
 
-async function build(filename: string, code: string, options: PluginOptions): Promise<OutputChunk> {
+async function build(
+  filename: string,
+  code: string,
+  options: PluginOptions,
+  {
+    sourcemap,
+    sourcemapExcludeSources,
+  }: {
+    sourcemap?: boolean
+    sourcemapExcludeSources?: boolean
+  } = {},
+): Promise<OutputChunk> {
   const bundle = await rolldown({
     input: filename,
     external: [/^react\/jsx-runtime$/],
@@ -817,7 +857,7 @@ async function build(filename: string, code: string, options: PluginOptions): Pr
       babelPlugin(options),
     ],
   })
-  const { output } = await bundle.generate()
+  const { output } = await bundle.generate({ sourcemap, sourcemapExcludeSources })
   assert(output[0].type === 'chunk')
   return output[0]
 }
