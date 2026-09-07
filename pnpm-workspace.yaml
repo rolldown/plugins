@@ -10,7 +10,7 @@ allowBuilds:
   '@swc/core': true
   esbuild: true
   playwright-chromium: true
-
+dedupeInjectedDeps: false
 catalogs:
   default:
     '@oxc-node/core': ^0.1.0
