@@ -13,7 +13,7 @@
   "devDependencies": {
     "@oxc-node/cli": "catalog:",
     "@rolldown/benchmark-utils": "workspace:*",
-    "@rolldown/plugin-babel": "file:../../babel",
+    "@rolldown/plugin-babel": "workspace:*",
     "@rolldown/plugin-transform-imports": "workspace:*",
     "@rollup/plugin-swc": "catalog:",
     "@swc/core": "catalog:",

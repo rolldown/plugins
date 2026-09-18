@@ -18,7 +18,7 @@
     "@babel/core": "^8.0.5",
     "@oxc-node/cli": "catalog:",
     "@rolldown/benchmark-utils": "workspace:*",
-    "@rolldown/plugin-babel": "file:../../babel",
+    "@rolldown/plugin-babel": "workspace:*",
     "@rolldown/plugin-jsx-remove-attributes": "workspace:*",
     "@rollup/plugin-swc": "catalog:",
     "@swc/core": "catalog:",

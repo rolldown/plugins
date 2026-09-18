@@ -17,11 +17,11 @@
     "react-dom": "^19.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.29.7",
+    "@babel/core": "^8.0.5",
     "@emotion/babel-plugin": "^11.13.5",
     "@oxc-node/cli": "catalog:",
     "@rolldown/benchmark-utils": "workspace:*",
-    "@rolldown/plugin-babel": "file:../../babel",
+    "@rolldown/plugin-babel": "workspace:*",
     "@rolldown/plugin-emotion": "workspace:*",
     "@rollup/plugin-swc": "catalog:",
     "@swc/core": "catalog:",

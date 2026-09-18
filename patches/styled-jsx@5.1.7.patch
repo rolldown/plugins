@@ -1,0 +1,13 @@
+diff --git a/dist/babel/index.js b/dist/babel/index.js
+index ece0fd62fa168f667d1498c8a54fdfed6d2ac093..d71f530021ae596357125b18aab057ab45f3409f 100644
+--- a/dist/babel/index.js
++++ b/dist/babel/index.js
+@@ -117,7 +117,7 @@ Object.defineProperty(lib$3, "__esModule", {
+ var default_1 = lib$3.default = void 0;
+ var _helperPluginUtils = lib$2;
+ var _default$5 = (0, _helperPluginUtils.declare)(function(api) {
+-    api.assertVersion(7);
++    api.assertVersion("^7.0.0-0 || ^8.0.0-0");
+     return {
+         name: "syntax-jsx",
+         manipulateOptions: function manipulateOptions(opts, parserOpts) {
