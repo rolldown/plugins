@@ -1,0 +1,43 @@
+packages/transform-imports/benchmark/package.json
+  s_63cba7f8f02f37::t_07fd117c3afd77 16
+patches/styled-jsx@5.1.7.patch
+  s_63cba7f8f02f37::t_22703422701998 1-13
+pnpm-lock.yaml
+  s_bdf6d60f465855::t_d57f944cca4170 40-43,142,277-278,281,289-290,351,443,446-447,455-456,507,3217,3252,3278,4665
+patches/@emotion__babel-plugin@11.13.5.patch
+  s_ad60c65563c87d::t_cf5406635ba0cb 1-132
+pnpm-workspace.yaml
+  s_ad60c65563c87d::t_6c335a3ce6adf0 30-33
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "24018e80649fb82b1a2932b2c6265217c9085227",
+  "prompts": {},
+  "sessions": {
+    "s_63cba7f8f02f37": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0b259-eec7-79c0-93d0-2e2577ee269d",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "sapphi-red <green@sapphi.red>"
+    },
+    "s_ad60c65563c87d": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0b25f-3bd0-75d3-bedc-2ed731ab78bc",
+        "model": "unknown"
+      },
+      "human_author": "sapphi-red <green@sapphi.red>"
+    },
+    "s_bdf6d60f465855": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0b25f-3b7c-71d2-847a-4364881acd8b",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "sapphi-red <green@sapphi.red>"
+    }
+  }
+}
