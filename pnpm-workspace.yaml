@@ -13,8 +13,8 @@ allowBuilds:
 
 catalogs:
   default:
-    '@oxc-node/core': ^0.1.0
-    '@oxc-node/cli': ^0.1.0
+    '@oxc-node/core': ^0.1.2
+    '@oxc-node/cli': ^0.1.2
     '@rollup/plugin-swc': ^0.4.1
     '@swc/core': ^1.16.2
     '@swc/plugin-emotion': ^15.0.0

@@ -11,11 +11,11 @@
     "build:swc": "rolldown -c configs/swc.ts"
   },
   "dependencies": {
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^8.0.1",
+    "@babel/core": "^8.0.5",
     "@oxc-node/cli": "catalog:",
     "@rolldown/benchmark-utils": "workspace:*",
     "@rolldown/plugin-babel": "file:../../babel",
@@ -23,9 +23,9 @@
     "@rollup/plugin-swc": "catalog:",
     "@swc/core": "catalog:",
     "@swc/plugin-react-remove-properties": "catalog:",
-    "@types/node": "^24.13.3",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.7",
+    "@types/node": "^24.13.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "babel-plugin-react-remove-properties": "^0.3.1",
     "rolldown": "catalog:"
   }
