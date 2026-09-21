@@ -17,10 +17,10 @@ catalogs:
     '@oxc-node/cli': ^0.1.2
     '@rollup/plugin-swc': ^0.4.1
     '@swc/core': ^1.16.2
-    '@swc/plugin-emotion': ^15.0.0
-    '@swc/plugin-react-remove-properties': ^13.0.0
-    '@swc/plugin-styled-jsx': ^14.0.0
-    '@swc/plugin-transform-imports': ^13.0.0
+    '@swc/plugin-emotion': ^16.0.0
+    '@swc/plugin-react-remove-properties': ^14.0.0
+    '@swc/plugin-styled-jsx': ^15.0.0
+    '@swc/plugin-transform-imports': ^14.0.0
     rolldown: ^1.2.9
     vite: ^8.3.0
   babel7:
