@@ -16,7 +16,7 @@
     "styled-jsx": "^5.1.7"
   },
   "devDependencies": {
-    "@babel/core": "^8.0.5",
+    "@babel/core": "^8.0.6",
     "@oxc-node/cli": "catalog:",
     "@rolldown/benchmark-utils": "workspace:*",
     "@rolldown/plugin-babel": "workspace:*",
@@ -24,7 +24,7 @@
     "@rollup/plugin-swc": "catalog:",
     "@swc/core": "catalog:",
     "@swc/plugin-styled-jsx": "catalog:",
-    "@types/node": "^24.13.5",
+    "@types/node": "^24.13.6",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "rolldown": "catalog:"
