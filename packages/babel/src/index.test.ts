@@ -4,6 +4,7 @@ import * as babel from './babelCompat.ts'
 import { rolldown, type OutputChunk } from 'rolldown'
 import { build as viteBuild, createBuilder, type Rollup } from 'vite'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { collectOptimizeDepsInclude, type PluginOptions } from './options.ts'
 import type { RolldownBabelPreset } from './rolldownPreset.ts'
 import { stripVTControlCharacters } from 'node:util'
@@ -720,6 +721,66 @@ export const decorated = new Dep()
   expect(chunk.code).toContain('@babel/runtime')
 })
 
+describe('parallel', () => {
+  const replacePluginPath = fileURLToPath(
+    new URL('./fixtures/identifier-replace-plugin.mjs', import.meta.url),
+  )
+  const replacePresetPath = fileURLToPath(
+    new URL('./fixtures/identifier-replace-preset.mjs', import.meta.url),
+  )
+
+  test('transforms files in worker threads', async () => {
+    const result = await build('foo.ts', 'export const result: boolean = foo', {
+      parallel: 2,
+      plugins: [[replacePluginPath, { name: 'foo', value: true }]],
+    })
+    expect(result.code).toContain('const result = true')
+  })
+
+  test('keeps rolldown preset filters and hooks in the main thread', async () => {
+    const preset: RolldownBabelPreset = {
+      preset: [replacePresetPath, { name: 'foo', value: true }],
+      rolldown: {
+        filter: { code: /foo/ },
+        applyToEnvironmentHook: () => true,
+      },
+    }
+    const result = await build('foo.js', 'export const result = foo', {
+      parallel: true,
+      presets: [preset],
+    })
+    expect(result.code).toContain('const result = true')
+  })
+
+  test('passes babel errors from the worker to rolldown', async () => {
+    const err = await build('foo.js', 'export const = ;', {
+      parallel: 1,
+      plugins: [[replacePluginPath, { name: 'foo', value: true }]],
+    }).catch((e) => e)
+    const message = stripVTControlCharacters(err.message)
+    expect(message).toContain('foo.js:1:13')
+    expect(message).toContain('[BabelError]')
+    expect(message).toContain('Unexpected token (1:13)')
+  })
+
+  test('rejects options that cannot be sent to a worker', async () => {
+    await expect(
+      babelPlugin({ parallel: true, plugins: [identifierReplaceBabelPlugin('foo', true)] }),
+    ).rejects.toThrow('"plugins" cannot be sent to a worker thread')
+    await expect(
+      babelPlugin({
+        parallel: true,
+        overrides: [{ presets: [{ preset: () => ({}), rolldown: {} }] }],
+      }),
+    ).rejects.toThrow('"overrides[0].presets[0]" cannot be sent to a worker thread')
+  })
+
+  test('rejects a worker count that is not a positive integer', async () => {
+    await expect(babelPlugin({ parallel: 0 })).rejects.toThrow('positive integer')
+    await expect(babelPlugin({ parallel: 1.5 })).rejects.toThrow('positive integer')
+  })
+})
+
 describe('optimizeDeps.include', () => {
   test('collectOptimizeDepsInclude merges from presets and overrides', () => {
     const topPreset: RolldownBabelPreset = {
@@ -858,6 +919,7 @@ async function build(
     ],
   })
   const { output } = await bundle.generate({ sourcemap, sourcemapExcludeSources })
+  await bundle.close()
   assert(output[0].type === 'chunk')
   return output[0]
 }
