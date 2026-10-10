@@ -1,0 +1,21 @@
+{
+  "name": "@rolldown/benchmark-babel",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "oxnode scripts/generate-app.ts",
+    "bench": "vitest bench --run",
+    "build:serial": "rolldown -c configs/serial.ts",
+    "build:parallel": "rolldown -c configs/parallel.ts"
+  },
+  "devDependencies": {
+    "@babel/core": "^8.0.6",
+    "@babel/plugin-proposal-decorators": "^8.0.2",
+    "@oxc-node/cli": "catalog:",
+    "@rolldown/benchmark-utils": "workspace:*",
+    "@rolldown/plugin-babel": "workspace:*",
+    "@types/node": "^24.19.1",
+    "rolldown": "catalog:"
+  }
+}
