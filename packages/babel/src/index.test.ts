@@ -765,10 +765,13 @@ describe('parallel', () => {
 
   test('rejects options that cannot be sent to a worker', async () => {
     await expect(
-      babelPlugin({ parallel: true, plugins: [identifierReplaceBabelPlugin('foo', true)] }),
+      build('foo.js', 'export const result = foo', {
+        parallel: true,
+        plugins: [identifierReplaceBabelPlugin('foo', true)],
+      }),
     ).rejects.toThrow('"plugins" cannot be sent to a worker thread')
     await expect(
-      babelPlugin({
+      build('foo.js', 'export const result = foo', {
         parallel: true,
         overrides: [{ presets: [{ preset: () => ({}), rolldown: {} }] }],
       }),

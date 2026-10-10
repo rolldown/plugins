@@ -7,8 +7,12 @@ import {
   resolveOptions,
   type PluginOptions,
 } from './options.ts'
-import type { Pool } from 'workerpool'
-import { createWorkerPool, resolveParallelOption } from './parallel.ts'
+import {
+  createWorkerPool,
+  describeCloneError,
+  resolveParallelOption,
+  type WorkerPool,
+} from './parallel.ts'
 import { transformWithBabel, type TransformResult } from './transform.ts'
 import type { PartialEnvironment, PresetConversionContext } from './rolldownPreset.ts'
 import { calculatePluginFilters } from './filter.ts'
@@ -28,11 +32,10 @@ async function babelPlugin(rawOptions: PluginOptions): Promise<Plugin> {
 
   const maxWorkers = resolveParallelOption(rawOptions)
   // Created on first use, so that builds with no babel work do not start workers.
-  let workerPool: Pool | undefined
-  async function terminateWorkerPool() {
-    const pool = workerPool
+  let workerPool: WorkerPool | undefined
+  function stopWorkerPool() {
+    workerPool?.stop()
     workerPool = undefined
-    await pool?.terminate()
   }
 
   let configFilteredOptions: PluginOptions | undefined
@@ -88,16 +91,13 @@ async function babelPlugin(rawOptions: PluginOptions): Promise<Plugin> {
         try {
           if (maxWorkers) {
             workerPool ??= createWorkerPool(maxWorkers)
-            result = await workerPool.exec('transform', [
-              code,
-              id,
-              babelOptions,
-              rawOptions.runtimeVersion,
-            ])
+            result = await workerPool.run(code, id, babelOptions, rawOptions.runtimeVersion)
           } else {
             result = await transformWithBabel(code, id, babelOptions, rawOptions.runtimeVersion)
           }
         } catch (err: any) {
+          const cloneError = describeCloneError(err, rawOptions)
+          if (cloneError) this.error({ message: cloneError, cause: err })
           this.error({
             message: `[BabelError] ${err.message}`,
             loc: err.loc,
@@ -115,11 +115,11 @@ async function babelPlugin(rawOptions: PluginOptions): Promise<Plugin> {
         }
       },
     },
-    async closeBundle() {
-      if (!this.meta.watchMode) await terminateWorkerPool()
+    closeBundle() {
+      if (!this.meta.watchMode) stopWorkerPool()
     },
-    async closeWatcher() {
-      await terminateWorkerPool()
+    closeWatcher() {
+      stopWorkerPool()
     },
   } satisfies VitePlugin
 

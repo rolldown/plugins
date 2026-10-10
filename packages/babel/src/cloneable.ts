@@ -2,31 +2,12 @@ import type { PluginOptions } from './options.ts'
 import type { RolldownBabelPresetItem } from './rolldownPreset.ts'
 
 function isCloneable(value: unknown): boolean {
-  if (value === null) return true
-  switch (typeof value) {
-    case 'undefined':
-    case 'string':
-    case 'number':
-    case 'boolean':
-      return true
-    case 'object':
-      break
-    default:
-      return false
-  }
-  if (value instanceof RegExp) return true
-  if (Array.isArray(value)) {
-    for (const item of value) {
-      if (!isCloneable(item)) return false
-    }
+  try {
+    structuredClone(value)
     return true
+  } catch {
+    return false
   }
-  const proto = Object.getPrototypeOf(value)
-  if (proto !== Object.prototype && proto !== null) return false
-  for (const item of Object.values(value)) {
-    if (!isCloneable(item)) return false
-  }
-  return true
 }
 
 function findUncloneablePreset(
