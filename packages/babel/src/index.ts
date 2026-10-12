@@ -7,7 +7,13 @@ import {
   resolveOptions,
   type PluginOptions,
 } from './options.ts'
-import * as babel from './babelCompat.ts'
+import {
+  createWorkerPool,
+  describeCloneError,
+  resolveParallelOption,
+  type WorkerPool,
+} from './parallel.ts'
+import { transformWithBabel, type TransformResult } from './transform.ts'
 import type { PartialEnvironment, PresetConversionContext } from './rolldownPreset.ts'
 import { calculatePluginFilters } from './filter.ts'
 import type { ResolvedConfig, Plugin as VitePlugin } from 'vite'
@@ -22,6 +28,14 @@ async function babelPlugin(rawOptions: PluginOptions): Promise<Plugin> {
         { cause: err },
       )
     }
+  }
+
+  const maxWorkers = resolveParallelOption(rawOptions)
+  // Created on first use, so that builds with no babel work do not start workers.
+  let workerPool: WorkerPool | undefined
+  function stopWorkerPool() {
+    workerPool?.stop()
+    workerPool = undefined
   }
 
   let configFilteredOptions: PluginOptions | undefined
@@ -72,50 +86,18 @@ async function babelPlugin(rawOptions: PluginOptions): Promise<Plugin> {
           code,
         }
         const babelOptions = convertToBabelOptions(conversionContext)
-        const loadedOptions = await babel.loadOptionsAsync({
-          ...babelOptions,
-          babelrc: false,
-          configFile: false,
-          parserOpts: {
-            sourceType: 'module',
-            allowAwaitOutsideFunction: true,
-            ...babelOptions.parserOpts,
-          },
-          overrides: [
-            {
-              test: /\.jsx(?:$|\?)/,
-              parserOpts: { plugins: ['jsx'] },
-            },
-            {
-              test: /\.ts(?:$|\?)/,
-              parserOpts: { plugins: ['typescript'] },
-            },
-            {
-              test: /\.tsx(?:$|\?)/,
-              parserOpts: { plugins: ['typescript', 'jsx'] },
-            },
-            ...(babelOptions.overrides ?? []),
-          ],
-          filename: id,
-        })
-        if (!loadedOptions || loadedOptions.plugins.length === 0) {
-          // No plugins to run — @babel/plugin-transform-runtime only affects
-          // how other plugins' helpers are emitted, so skip it too.
-          return
-        }
 
-        if (rawOptions.runtimeVersion) {
-          loadedOptions.plugins ??= []
-          loadedOptions.plugins.push([
-            '@babel/plugin-transform-runtime',
-            { version: rawOptions.runtimeVersion },
-          ])
-        }
-
-        let result: babel.FileResult | null
+        let result: TransformResult | undefined
         try {
-          result = await babel.transformAsync(code, loadedOptions)
+          if (maxWorkers) {
+            workerPool ??= createWorkerPool(maxWorkers)
+            result = await workerPool.run(code, id, babelOptions, rawOptions.runtimeVersion)
+          } else {
+            result = await transformWithBabel(code, id, babelOptions, rawOptions.runtimeVersion)
+          }
         } catch (err: any) {
+          const cloneError = describeCloneError(err, rawOptions)
+          if (cloneError) this.error({ message: cloneError, cause: err })
           this.error({
             message: `[BabelError] ${err.message}`,
             loc: err.loc,
@@ -126,12 +108,18 @@ async function babelPlugin(rawOptions: PluginOptions): Promise<Plugin> {
         }
         if (result) {
           return {
-            code: result.code ?? undefined,
+            code: result.code,
             // oxlint-disable-next-line typescript/no-unsafe-type-assertion
             map: result.map as SourceMapInput,
           }
         }
       },
+    },
+    closeBundle() {
+      if (!this.meta.watchMode) stopWorkerPool()
+    },
+    closeWatcher() {
+      stopWorkerPool()
     },
   } satisfies VitePlugin
 

@@ -1,0 +1,5 @@
+# Build outputs
+dist/
+
+# Generated app (regenerated with pnpm generate)
+shared-app/

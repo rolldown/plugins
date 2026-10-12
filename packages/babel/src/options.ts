@@ -49,6 +49,18 @@ export interface PluginOptions extends Omit<InnerTransformOptions, 'include' | '
   runtimeVersion?: string
 
   /**
+   * Transform files in worker threads.
+   * Pass a number to set the worker count.
+   * `true` uses the number of CPU cores, with a maximum of 4.
+   *
+   * All babel options must be structured-cloneable:
+   * refer to plugins and presets by name, not by function.
+   * Rolldown preset filters and hooks stay in the main thread.
+   * @default false
+   */
+  parallel?: boolean | number
+
+  /**
    * If specified, only files matching the pattern will be processed by babel.
    * @default `/\.(?:[jt]sx?|[cm][jt]s)(?:$|\?)/`
    *
@@ -188,7 +200,7 @@ export function createBabelOptionsConverter(options: ResolvedPluginOptions) {
 
   return function (ctx: PresetConversionContext): babel.InputOptions {
     // Strip plugin-level options that babel doesn't understand
-    const { runtimeVersion: _, ...babelOptions } = options
+    const { runtimeVersion: _, parallel: __, ...babelOptions } = options
     return {
       ...babelOptions,
       // sourcemap collapsing is handled by Rolldown
