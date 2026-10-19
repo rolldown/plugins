@@ -1,2 +1,1 @@
-import defaultExport from "my-default";
-export { defaultExport };
+export { default as defaultExport } from "my-default";
