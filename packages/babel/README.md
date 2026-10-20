@@ -114,6 +114,24 @@ export default {
 }
 ```
 
+### `parallel`
+
+- **Type:** `boolean | number`
+- **Default:** `false`
+
+Transform files in worker threads. Set `true` to use one worker per CPU core, with a maximum of 4. Set a number to choose the worker count.
+
+Workers take time to start, so this option helps large projects most.
+
+All Babel options must be able to go to a worker thread. Refer to plugins and presets by module name, not by function or object. The `rolldown` part of a [Rolldown Babel Preset](#rolldown-babel-presets) stays in the main thread, so its filters and hooks can be functions.
+
+```js
+babel({
+  parallel: true,
+  plugins: [['@babel/plugin-proposal-decorators', { version: '2023-11' }]],
+})
+```
+
 ### Other Babel options
 
 The following [Babel options](https://babeljs.io/docs/options) are forwarded directly:

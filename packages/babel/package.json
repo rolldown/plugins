@@ -30,6 +30,7 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
+    "artichokie": "^0.4.5",
     "picomatch": "^4.0.7"
   },
   "devDependencies": {
