@@ -16,7 +16,7 @@
     "styled-jsx": "^5.1.7"
   },
   "devDependencies": {
-    "@babel/core": "^8.0.7",
+    "@babel/core": "^8.0.9",
     "@oxc-node/cli": "catalog:",
     "@rolldown/benchmark-utils": "workspace:*",
     "@rolldown/plugin-babel": "workspace:*",

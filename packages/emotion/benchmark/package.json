@@ -17,7 +17,7 @@
     "react-dom": "^19.3.1"
   },
   "devDependencies": {
-    "@babel/core": "^8.0.7",
+    "@babel/core": "^8.0.9",
     "@emotion/babel-plugin": "^11.13.5",
     "@oxc-node/cli": "catalog:",
     "@rolldown/benchmark-utils": "workspace:*",
