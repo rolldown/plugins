@@ -21,8 +21,8 @@ catalogs:
     '@swc/plugin-react-remove-properties': ^17.0.0
     '@swc/plugin-styled-jsx': ^19.0.0
     '@swc/plugin-transform-imports': ^17.0.0
-    rolldown: ^1.2.14
-    vite: ^8.3.4
+    rolldown: ^1.2.15
+    vite: ^8.3.5
   babel7:
     '@babel/core': ^7.29.7
     '@babel/plugin-transform-runtime': ^7.29.7
