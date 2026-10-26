@@ -1,0 +1,41 @@
+tsconfig.common.json
+  s_19f610e3ca7c2a::t_2c8e53ee7847b5 12-13
+tsconfig.src.json
+  s_19f610e3ca7c2a::t_cb3dc8c78d83fb 1-14
+packages/babel/src/options.ts
+  s_19f610e3ca7c2a::t_3d18bc627ea8a3 85,87
+packages/babel/tsdown.config.ts
+  s_19f610e3ca7c2a::t_47345e603df301 6
+packages/emotion/tsdown.config.ts
+  s_19f610e3ca7c2a::t_a2cff3f9fddce5 6
+packages/jsx-remove-attributes/tsdown.config.ts
+  s_19f610e3ca7c2a::t_3b358311a5b8eb 6
+packages/oxc-unshadowed-visitor/tsdown.config.ts
+  s_19f610e3ca7c2a::t_f30801c99fb6c3 6
+packages/pluginutils/tsdown.config.ts
+  s_19f610e3ca7c2a::t_f726dd5f04401d 9
+packages/styled-jsx/tsdown.config.ts
+  s_19f610e3ca7c2a::t_eea4470064bba6 6
+packages/transform-imports/tsdown.config.ts
+  s_19f610e3ca7c2a::t_498f80b8c7ab59 6
+tsconfig.json
+  s_19f610e3ca7c2a::t_43dc4aa97a8160 3-4
+tsconfig.others.json
+  s_19f610e3ca7c2a::t_64f7f8cde6e1de 1-13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "31b78c1e33067d70a161f8bc6d6bd27c45a7c4a6",
+  "prompts": {},
+  "sessions": {
+    "s_19f610e3ca7c2a": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1767a-d100-7ca1-bd15-31c94e423fb8",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "sapphi-red <green@sapphi.red>"
+    }
+  }
+}
