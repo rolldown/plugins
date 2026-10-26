@@ -9,8 +9,6 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "allowImportingTsExtensions": true,
-    "isolatedModules": true,
-    "declaration": true
-  },
-  "exclude": ["./examples", "./packages/babel/src/babelCompat.typetest.ts"]
+    "isolatedModules": true
+  }
 }

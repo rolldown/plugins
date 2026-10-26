@@ -6,6 +6,6 @@ export default defineConfig({
     'filter/index': './src/filter/index.ts',
   },
   dts: {
-    tsconfig: '../../tsconfig.common.json',
+    tsconfig: '../../tsconfig.src.json',
   },
 })

@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.common.json",
+  "compilerOptions": {
+    "declaration": true,
+    "isolatedDeclarations": true
+  },
+  "include": ["packages/*/src/**/*.ts"],
+  "exclude": [
+    "**/*.test.ts",
+    "**/*.test-d.ts",
+    "**/*.bench.ts",
+    "packages/babel/src/babelCompat.typetest.ts"
+  ]
+}

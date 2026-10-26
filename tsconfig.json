@@ -1,6 +1,7 @@
 {
   "references": [
-    { "path": "./tsconfig.common.json" },
+    { "path": "./tsconfig.src.json" },
+    { "path": "./tsconfig.others.json" },
     { "path": "./examples/tsconfig.json" },
     { "path": "./packages/babel/src/tsconfig.typetest.json" }
   ],

@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.common.json",
+  "include": [
+    "*.ts",
+    "scripts/**/*.ts",
+    "internal-packages/*/src/**/*.ts",
+    "packages/*/*.ts",
+    "packages/*/src/**/*.test.ts",
+    "packages/*/src/**/*.test-d.ts",
+    "packages/*/src/**/*.bench.ts",
+    "packages/*/tests/**/*.test.ts"
+  ]
+}
