@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 const globalStyles = /* @__PURE__ */ new String("body{margin:0;padding:0}");
 globalStyles.__hash = "525d340193bd62ff";
 function App() {
@@ -9,5 +9,4 @@ function App() {
 		children: globalStyles
 	})] });
 }
-//#endregion
 export { App as default };

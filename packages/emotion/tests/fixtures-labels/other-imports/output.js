@@ -1,4 +1,3 @@
 import { nonExistantImport } from "@emotion/react";
-//#region virtual:entry.ts
+// virtual:entry.ts
 nonExistantImport();
-//#endregion

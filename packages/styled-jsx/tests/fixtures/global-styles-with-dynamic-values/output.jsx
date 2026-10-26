@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 function Component() {
 	const id = "theme-1";
 	const cssVariables = {
@@ -51,5 +51,4 @@ function Component() {
 		]
 	});
 }
-//#endregion
 export { Component as default };

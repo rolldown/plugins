@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { jsx } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 const Red = ({ Component = "button" }) => {
 	return /* @__PURE__ */ jsx(Component, {
 		className: _JSXStyle.dynamic([["550b31da1c6edadf", [
@@ -43,5 +43,4 @@ const Red = ({ Component = "button" }) => {
 		})
 	});
 };
-//#endregion
 export { Red };

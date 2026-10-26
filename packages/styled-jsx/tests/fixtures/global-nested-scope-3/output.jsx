@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 const Test = () => /* @__PURE__ */ jsxs("div", {
 	className: "jsx-3764bfb262001774",
 	children: [/* @__PURE__ */ jsx("span", {
@@ -11,5 +11,4 @@ const Test = () => /* @__PURE__ */ jsxs("div", {
 		children: ".parent.jsx-3764bfb262001774 div .child>.child2{background:orange}"
 	})]
 });
-//#endregion
 export { Test };

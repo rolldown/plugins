@@ -1,7 +1,7 @@
 import _JSXStyle from "styled-jsx/style";
 import React from "react";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 var virtual_entry_default = () => /* @__PURE__ */ jsxs(Fragment, { children: [
 	/* @__PURE__ */ jsx("p", {
 		className: "jsx-9da872362bca41c1",
@@ -49,5 +49,4 @@ function Component2() {
 		})
 	});
 }
-//#endregion
 export { Component1, Component2, virtual_entry_default as default };

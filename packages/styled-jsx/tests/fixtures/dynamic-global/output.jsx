@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 function DynamicGlobal({ bgColor }) {
 	return /* @__PURE__ */ jsxs("div", {
 		className: _JSXStyle.dynamic([["7d606c04400a9dc6", [bgColor]]]),
@@ -14,5 +14,4 @@ function DynamicGlobal({ bgColor }) {
 		})]
 	});
 }
-//#endregion
 export { DynamicGlobal as default };

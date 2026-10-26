@@ -1,7 +1,7 @@
 import _JSXStyle from "styled-jsx/style";
 import styles from "./styles2";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 var virtual_entry_default = ({ level = 1 }) => {
 	const Element = `h${level}`;
 	return /* @__PURE__ */ jsxs(Element, {
@@ -15,5 +15,4 @@ var virtual_entry_default = ({ level = 1 }) => {
 		})]
 	});
 };
-//#endregion
 export { virtual_entry_default as default };

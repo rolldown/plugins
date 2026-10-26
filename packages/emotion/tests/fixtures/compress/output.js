@@ -16,5 +16,4 @@ const StyledInput = /* @__PURE__ */ styled("input", {
 	color: "red",
 	width: "4px"
 }), "/*# sourceMappingURL=[sourcemap] */");
-//#endregion
 export { Animated, Example, StyledInput, shadowBorder };

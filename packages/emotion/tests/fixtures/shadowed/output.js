@@ -1,4 +1,4 @@
-//#region virtual:entry.tsx
+// virtual:entry.tsx
 function foo() {
 	const a = styled.div`
   color: red;
@@ -14,5 +14,4 @@ function foo() {
 	console.log(a);
 	var styled;
 }
-//#endregion
 export { foo };

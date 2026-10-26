@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 const darken = (c) => c;
 const color = "red";
 const otherColor = "green";
@@ -99,5 +99,4 @@ var virtual_entry_default = ({ display }) => /* @__PURE__ */ jsxs("div", {
 		})
 	]
 });
-//#endregion
 export { virtual_entry_default as default };

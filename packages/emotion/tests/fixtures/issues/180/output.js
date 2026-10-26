@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.tsx
+// virtual:entry.tsx
 function myStyled(Component) {
 	return /* @__PURE__ */ styled(Component, {
 		target: "et92jda0",
@@ -27,5 +27,4 @@ const App2 = () => /* @__PURE__ */ jsx("div", {
 	classname: styles.keyA,
 	children: "hello world"
 });
-//#endregion
 export { App, App2 };

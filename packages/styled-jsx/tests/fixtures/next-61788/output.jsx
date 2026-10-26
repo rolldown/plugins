@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 const MOBILE_MAX = 767;
 function Home() {
 	return /* @__PURE__ */ jsxs("div", {
@@ -14,5 +14,4 @@ function Home() {
 		})]
 	});
 }
-//#endregion
 export { Home as default };

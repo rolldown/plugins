@@ -2,7 +2,7 @@ import * as emotionReact from "@emotion/react";
 import { PureComponent } from "react";
 import ReactDOM from "react-dom";
 import { jsx } from "react/jsx-runtime";
-//#region virtual:entry.tsx
+// virtual:entry.tsx
 const stylesInCallback = (props) => /* @__PURE__ */ emotionReact.css({
 	color: "red",
 	background: "yellow",
@@ -22,5 +22,4 @@ var SimpleComponent = class extends PureComponent {
 	}
 };
 ReactDOM.render(/* @__PURE__ */ jsx(SimpleComponent, {}), document.querySelector("#app"));
-//#endregion
 export { SimpleComponent, styles, styles2, stylesInCallback };

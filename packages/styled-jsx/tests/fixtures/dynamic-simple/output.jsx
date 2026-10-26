@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 function DynamicSimple({ color }) {
 	return /* @__PURE__ */ jsxs("div", {
 		className: _JSXStyle.dynamic([["5754aa843832dc02", [color]]]),
@@ -14,5 +14,4 @@ function DynamicSimple({ color }) {
 		})]
 	});
 }
-//#endregion
 export { DynamicSimple as default };

@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 function IndexPage() {
 	return /* @__PURE__ */ jsxs("div", {
 		className: "jsx-a1b5f91c7a196e78",
@@ -13,5 +13,4 @@ function IndexPage() {
 		})]
 	});
 }
-//#endregion
 export { IndexPage as default };

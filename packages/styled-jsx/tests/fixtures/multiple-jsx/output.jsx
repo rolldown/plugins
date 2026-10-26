@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 const attrs = { id: "test" };
 const Test1 = () => /* @__PURE__ */ jsxs("div", {
 	className: "jsx-775a8a7a8a08c4e8",
@@ -43,5 +43,4 @@ var virtual_entry_default = class {
 		});
 	}
 };
-//#endregion
 export { Test1, Test2, Test3, virtual_entry_default as default };

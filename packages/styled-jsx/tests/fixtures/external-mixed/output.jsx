@@ -1,7 +1,7 @@
 import _JSXStyle from "styled-jsx/style";
 import { externalStyles } from "./styles";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 function App() {
 	return /* @__PURE__ */ jsxs("div", {
 		className: `jsx-ea672cdc862d9536 jsx-${externalStyles.__hash}`,
@@ -21,5 +21,4 @@ function App() {
 		]
 	});
 }
-//#endregion
 export { App as default };

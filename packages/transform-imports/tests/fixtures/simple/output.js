@@ -4,6 +4,5 @@ import Col1 from "react-bootstrap/lib/Col";
 import { MyModule } from "my-library-2/myModule";
 import { Widget } from "my-library-2/widget";
 import { AnotherModule } from "my-library-3/another-module";
-//#region virtual:entry.ts
+// virtual:entry.ts
 console.log(Grid, Row, Col1, MyModule, Widget, AnotherModule);
-//#endregion

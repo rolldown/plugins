@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 function StringLiteral() {
 	return /* @__PURE__ */ jsxs("div", {
 		className: "jsx-ea672cdc862d9536",
@@ -13,5 +13,4 @@ function StringLiteral() {
 		})]
 	});
 }
-//#endregion
 export { StringLiteral as default };

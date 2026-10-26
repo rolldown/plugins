@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 function Component() {
 	const dynamicValue = "\"dynamic content\"";
 	const color1 = "#FF0000";
@@ -17,5 +17,4 @@ function Component() {
 		})]
 	});
 }
-//#endregion
 export { Component as default };

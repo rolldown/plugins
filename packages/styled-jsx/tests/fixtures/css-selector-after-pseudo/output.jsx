@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { jsx } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 function NavigationItem({ active, className }) {
 	return /* @__PURE__ */ jsx("span", {
 		className: "jsx-ef555c6982df9e5b " + (cn({ active }, className, "navigation-item") || ""),
@@ -10,5 +10,4 @@ function NavigationItem({ active, className }) {
 		})
 	});
 }
-//#endregion
 export { NavigationItem as default };

@@ -1,4 +1,4 @@
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 const s1 = /* @__PURE__ */ new String(".jsx-15793d61bc2fad0f.active{color:#00f}");
 s1.__hash = "15793d61bc2fad0f";
 const s2 = /* @__PURE__ */ new String(".jsx-440b5f13169269c4:hover{opacity:.8}");
@@ -15,5 +15,4 @@ const s7 = /* @__PURE__ */ new String(".jsx-a67efca2ae41cf84+.sibling.jsx-a67efc
 s7.__hash = "a67efca2ae41cf84";
 const s8 = /* @__PURE__ */ new String(".jsx-98cce0331566d37e{display:block}");
 s8.__hash = "98cce0331566d37e";
-//#endregion
 export { s1, s2, s3, s4, s5, s6, s7, s8 };

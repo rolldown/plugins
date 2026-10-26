@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import * as emotion from "@emotion/react";
 import { css, keyframes } from "@emotion/react";
-//#region virtual:entry.tsx
+// virtual:entry.tsx
 const Component = "div";
 const StyledMemberTag = /* @__PURE__ */ styled("button", {
 	target: "e1r3sr4i0",
@@ -34,5 +34,4 @@ const namespaceKeyframesCall = /* @__PURE__ */ emotion.keyframes({
 	from: { opacity: 0 },
 	to: { opacity: 1 }
 }, ...process.env.NODE_ENV === "production" ? [] : ["virtual-entry-namespaceKeyframesCall"], "/*# sourceMappingURL=[sourcemap] */");
-//#endregion
 export { StyledComponentTag, StyledMemberCall, StyledMemberTag, StyledNestedCall, cssCall, cssTag, keyframesCall, keyframesTag, namespaceCssCall, namespaceCssTag, namespaceKeyframesCall, namespaceKeyframesTag };

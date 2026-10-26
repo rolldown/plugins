@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 function SelfClosing() {
 	return /* @__PURE__ */ jsxs("div", {
 		className: "jsx-f453ed22ae30f54b",
@@ -18,5 +18,4 @@ function SelfClosing() {
 		]
 	});
 }
-//#endregion
 export { SelfClosing as default };

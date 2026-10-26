@@ -1,5 +1,5 @@
 import { jsx } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 function Home() {
 	return /* @__PURE__ */ jsx("div", {
 		"data-custom": "1a",
@@ -9,5 +9,4 @@ function Home() {
 		})
 	});
 }
-//#endregion
 export { Home as default };

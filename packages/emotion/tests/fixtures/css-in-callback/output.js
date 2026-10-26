@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { PureComponent } from "react";
 import ReactDOM from "react-dom";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.tsx
+// virtual:entry.tsx
 const stylesInCallback = (props) => /* @__PURE__ */ css({
 	color: "red",
 	background: "yellow",
@@ -56,5 +56,4 @@ var SimpleComponent = class extends PureComponent {
 	}
 };
 ReactDOM.render(/* @__PURE__ */ jsx(SimpleComponent, {}), document.querySelector("#app"));
-//#endregion
 export { Container2, ContainerWithOptions, DivContainer2, DivContainerExtended, DivContainerExtended2, SimpleComponent, SpanContainer, styles, styles2 };

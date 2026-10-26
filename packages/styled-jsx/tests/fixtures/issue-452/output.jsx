@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 function Home() {
 	return /* @__PURE__ */ jsxs(Fragment, { children: [/* @__PURE__ */ jsxs("div", {
 		className: "jsx-c3d7bdab3d70d870 container",
@@ -13,5 +13,4 @@ function Home() {
 		children: ".container.jsx-c3d7bdab3d70d870{color:#00f;padding:3rem}div.child{color:green}"
 	})] });
 }
-//#endregion
 export { Home as default };

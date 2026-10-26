@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 const COLOR = "red";
 var virtual_entry_default = () => /* @__PURE__ */ jsxs("div", {
 	className: "jsx-172b3b1f8f267540",
@@ -19,5 +19,4 @@ var virtual_entry_default = () => /* @__PURE__ */ jsxs("div", {
 		})
 	]
 });
-//#endregion
 export { virtual_entry_default as default };

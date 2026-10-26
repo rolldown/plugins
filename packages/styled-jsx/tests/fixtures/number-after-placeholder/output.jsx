@@ -1,7 +1,7 @@
 import _JSXStyle from "styled-jsx/style";
 import Link from "next/link";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 function IndexPage() {
 	return /* @__PURE__ */ jsxs("div", {
 		className: "jsx-38aea2b98e40317a",
@@ -22,5 +22,4 @@ function IndexPage() {
 		]
 	});
 }
-//#endregion
 export { IndexPage as default };

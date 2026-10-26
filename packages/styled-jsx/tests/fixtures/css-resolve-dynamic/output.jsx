@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 function App({ color }) {
 	const { className, styles } = {
 		styles: /* @__PURE__ */ jsx(_JSXStyle, {
@@ -15,5 +15,4 @@ function App({ color }) {
 		children: "Link"
 	}), styles] });
 }
-//#endregion
 export { App as default };

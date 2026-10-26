@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 const Test = () => /* @__PURE__ */ jsxs(Fragment, { children: [/* @__PURE__ */ jsxs("div", {
 	className: "jsx-9e744f33d59a4019 container",
 	children: [
@@ -31,5 +31,4 @@ const Test = () => /* @__PURE__ */ jsxs(Fragment, { children: [/* @__PURE__ */ j
 	id: "9e744f33d59a4019",
 	children: "#css-test-page-id.jsx-9e744f33d59a4019{color:red}.p1.jsx-9e744f33d59a4019{background:purple!important}.c2.jsx-9e744f33d59a4019,.c1{background:orange!important}.container.jsx-9e744f33d59a4019{max-width:1000px;margin:0 auto;padding:1rem}"
 })] });
-//#endregion
 export { Test };

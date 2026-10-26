@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { jsx } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 function Home({ fontFamily }) {
 	return /* @__PURE__ */ jsx("div", {
 		className: _JSXStyle.dynamic([["865a6bd831a74dc6", [fontFamily]]]),
@@ -11,5 +11,4 @@ function Home({ fontFamily }) {
 		})
 	});
 }
-//#endregion
 export { Home as default };

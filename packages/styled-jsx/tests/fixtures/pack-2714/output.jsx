@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { jsx } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 const { className: cardClassName, styles } = {
 	styles: /* @__PURE__ */ jsx(_JSXStyle, {
 		id: "33fd7439cfee20dc",
@@ -8,4 +8,3 @@ const { className: cardClassName, styles } = {
 	}),
 	className: "jsx-33fd7439cfee20dc"
 };
-//#endregion

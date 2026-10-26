@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 var virtual_entry_default = () => /* @__PURE__ */ jsxs("div", {
 	className: "jsx-8128ed790964648a",
 	children: [/* @__PURE__ */ jsx("p", {
@@ -11,5 +11,4 @@ var virtual_entry_default = () => /* @__PURE__ */ jsxs("div", {
 		children: "li.jsx-8128ed790964648a:nth-child(2){color:#0f0}"
 	})]
 });
-//#endregion
 export { virtual_entry_default as default };

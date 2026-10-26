@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 function DynamicMultiple({ color, size }) {
 	return /* @__PURE__ */ jsxs("div", {
 		className: _JSXStyle.dynamic([["88dd35d5da83dde7", [color, size]]]),
@@ -14,5 +14,4 @@ function DynamicMultiple({ color, size }) {
 		})]
 	});
 }
-//#endregion
 export { DynamicMultiple as default };

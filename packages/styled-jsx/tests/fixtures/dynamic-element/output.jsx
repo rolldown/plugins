@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 var virtual_entry_default = ({ level = 1 }) => {
 	const Element = `h${level}`;
 	return /* @__PURE__ */ jsxs(Element, {
@@ -52,5 +52,4 @@ const Test3 = ({ Component = "div" }) => {
 		})]
 	});
 };
-//#endregion
 export { Test2, Test3, TestLowerCase, virtual_entry_default as default };

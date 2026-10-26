@@ -1,6 +1,6 @@
 import css from "hell";
 import { jsx } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 const color = "red";
 const uh = css`
   div {
@@ -27,5 +27,4 @@ const AnotherTitle = styled.h1`
   color: blue;
 `;
 const Component = () => /* @__PURE__ */ jsx(AnotherTitle, { children: "My page" });
-//#endregion
 export { Component, virtual_entry_default as default, foo, uh };

@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 const buttonStyles = /* @__PURE__ */ new String("button.jsx-71a07331e660d371{color:red;padding:10px}");
 buttonStyles.__hash = "71a07331e660d371";
 function App() {
@@ -15,5 +15,4 @@ function App() {
 		})]
 	});
 }
-//#endregion
 export { App as default };

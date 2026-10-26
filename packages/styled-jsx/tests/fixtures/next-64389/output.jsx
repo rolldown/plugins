@@ -1,7 +1,7 @@
 "use client";
 import _JSXStyle from "styled-jsx/style";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 const color = "color: red;";
 function RootLayout({ children }) {
 	return /* @__PURE__ */ jsxs("html", {
@@ -19,5 +19,4 @@ function RootLayout({ children }) {
 		]
 	});
 }
-//#endregion
 export { RootLayout as default };

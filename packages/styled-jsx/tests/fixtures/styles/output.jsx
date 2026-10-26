@@ -1,7 +1,7 @@
 import _JSXStyle from "styled-jsx/style";
 import colors, { size } from "./constants";
 import { jsx } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 const color = "red";
 const bar = /* @__PURE__ */ new String("div.jsx-e289522b703d9d97{font-size:3em}");
 bar.__hash = "e289522b703d9d97";
@@ -30,5 +30,4 @@ var virtual_entry_default = {
 	}),
 	className: "jsx-9217daf919c42513"
 };
-//#endregion
 export { a, b, baz, virtual_entry_default as default, dynamic, foo, uh };

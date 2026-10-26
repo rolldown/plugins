@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 function Component() {
 	return /* @__PURE__ */ jsxs("div", {
 		className: "jsx-e542efffb0da4acc parent",
@@ -20,5 +20,4 @@ function Component() {
 		]
 	});
 }
-//#endregion
 export { Component as default };

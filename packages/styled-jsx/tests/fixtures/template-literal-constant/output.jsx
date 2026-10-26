@@ -1,6 +1,6 @@
 import _JSXStyle from "styled-jsx/style";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 const color = `red`;
 const size = `680px`;
 function TemplateLiteralConstant() {
@@ -22,5 +22,4 @@ function TemplateLiteralConstant() {
 		]
 	});
 }
-//#endregion
 export { TemplateLiteralConstant as default };

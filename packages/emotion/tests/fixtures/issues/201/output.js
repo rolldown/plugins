@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-//#region virtual:entry.tsx
+// virtual:entry.tsx
 function makeOptions() {
 	return { shouldForwardProp: (propertyName) => !propertyName.startsWith("$") };
 }
@@ -13,5 +13,4 @@ const ContainerWithOptions2 = /* @__PURE__ */ styled("div", {
 	label: "ContainerWithOptions2",
 	...makeOptions()
 })({ color: "hotpink" }, "/*# sourceMappingURL=[sourcemap] */");
-//#endregion
 export { ContainerWithOptions, ContainerWithOptions2 };

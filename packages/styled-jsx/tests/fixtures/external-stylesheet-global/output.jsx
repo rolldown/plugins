@@ -1,8 +1,7 @@
 import _JSXStyle from "styled-jsx/style";
 import styles, { foo } from "./styles";
 import { jsx, jsxs } from "react/jsx-runtime";
-//#endregion
-//#region virtual:entry.jsx
+// virtual:entry.jsx
 const styles2 = (/* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, { get: (a, b) => (typeof require !== "undefined" ? require : a)[b] }) : x)(function(x) {
 	if (typeof require !== "undefined") return require.apply(this, arguments);
 	throw Error("Calling `require` for \"" + x + "\" in an environment that doesn't expose the `require` function. See https://rolldown.rs/in-depth/bundling-cjs#require-external-modules for more details.");
@@ -24,5 +23,4 @@ var virtual_entry_default = () => /* @__PURE__ */ jsxs("div", { children: [
 		children: styles
 	})
 ] });
-//#endregion
 export { virtual_entry_default as default };
