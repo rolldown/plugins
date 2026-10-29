@@ -1,0 +1,31 @@
+packages/babel/vitest.config.ts
+  s_3b216f3ddd5a62::t_6484fe095c98c1 1,6
+packages/emotion/vitest.config.ts
+  s_3b216f3ddd5a62::t_b80ee87fc76aec 1,6
+packages/jsx-remove-attributes/vitest.config.ts
+  s_3b216f3ddd5a62::t_d7051cd05af1bb 1,6
+packages/oxc-unshadowed-visitor/vitest.config.ts
+  s_3b216f3ddd5a62::t_c79091cd6ccf5f 1,6
+packages/pluginutils/vitest.config.ts
+  s_3b216f3ddd5a62::t_3ab89e12698242 1,6
+packages/styled-jsx/vitest.config.ts
+  s_3b216f3ddd5a62::t_ad6fd9b71db36e 1,6
+packages/transform-imports/vitest.config.ts
+  s_3b216f3ddd5a62::t_e3ed5e57affda8 1,6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "f3822802f70d18e79a52f7f855e366af49343c06",
+  "prompts": {},
+  "sessions": {
+    "s_3b216f3ddd5a62": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a18726-2573-74e0-8b12-beccd42ec50b",
+        "model": "unknown"
+      },
+      "human_author": "sapphi-red <green@sapphi.red>"
+    }
+  }
+}
