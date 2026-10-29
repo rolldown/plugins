@@ -1,0 +1,19 @@
+packages/babel/tsdown.config.ts
+  s_30442c1d77155a::t_f37c2ed7beca86 4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "3dd353d2ad5877f717133c075249a9347b7bee87",
+  "prompts": {},
+  "sessions": {
+    "s_30442c1d77155a": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a186f1-a36d-7323-9c69-25b80ee53a49",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "sapphi-red <green@sapphi.red>"
+    }
+  }
+}
