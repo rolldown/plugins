@@ -1,0 +1,19 @@
+packages/babel/README.md
+  s_2a09bef384e592::t_b430e7a9a9883d 134
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "b2b539145dcd16e4183221afa9fb096edfb170d3",
+  "prompts": {},
+  "sessions": {
+    "s_2a09bef384e592": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1870f-15fb-7b72-938a-cd594a0ce61e",
+        "model": "unknown"
+      },
+      "human_author": "sapphi-red <green@sapphi.red>"
+    }
+  }
+}
