@@ -1,0 +1,19 @@
+vitest.config.ts
+  s_241ea94efe60f7::t_8cc3c5425cbc15 4-9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "e4afabc02096d634edb92445b73ef01323273e21",
+  "prompts": {},
+  "sessions": {
+    "s_241ea94efe60f7": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1872f-c306-7c71-898c-ed6ac1c81a54",
+        "model": "unknown"
+      },
+      "human_author": "sapphi-red <green@sapphi.red>"
+    }
+  }
+}
