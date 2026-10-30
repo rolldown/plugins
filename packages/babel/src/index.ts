@@ -62,6 +62,7 @@ async function babelPlugin(rawOptions: PluginOptions): Promise<Plugin> {
     applyToEnvironment(environment: PartialEnvironment) {
       const envOptions = filterPresetsWithEnvironment(configFilteredOptions!, environment)
       if (
+        !envOptions.configFile &&
         !envOptions.presets?.length &&
         !envOptions.plugins?.length &&
         !envOptions.overrides?.some((o) => o.presets?.length || o.plugins?.length)
