@@ -102,6 +102,18 @@ describe('calculatePluginFilters', () => {
         id: { include: [/\.js$/], exclude: DEFAULT_EXCLUDE },
       })
     })
+
+    test('returns baseFilter only when a config file is set', () => {
+      const { transformFilter } = calculatePluginFilters(
+        resolveOptions({
+          configFile: '/path/to/babel.config.js',
+          presets: [makeRolldownPreset({ id: /\.tsx$/ })],
+        }),
+      )
+      expect(transformFilter).toStrictEqual({
+        id: { include: DEFAULT_INCLUDE, exclude: DEFAULT_EXCLUDE },
+      })
+    })
   })
 
   describe('with no presets', () => {

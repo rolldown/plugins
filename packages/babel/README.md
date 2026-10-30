@@ -30,7 +30,7 @@ export default {
 
 The plugin automatically configures Babel's parser for `.jsx`, `.ts`, and `.tsx` files.
 
-> **Note:** This plugin does not load Babel configuration files (e.g., `babel.config.js`, `.babelrc`). All Babel options must be passed directly through the plugin options.
+> **Note:** This plugin does not look up Babel configuration files (e.g., `babel.config.js`, `.babelrc`). Pass Babel options through the plugin options, or name a config file with the [`configFile`](#configfile) option.
 
 ## Options
 
@@ -123,7 +123,7 @@ Transform files in worker threads. Set `true` to use one worker per CPU core, wi
 
 Workers take time to start, so this option helps large projects most.
 
-All Babel options must be able to go to a worker thread. Refer to plugins and presets by module name, not by function or object. The `rolldown` part of a [Rolldown Babel Preset](#rolldown-babel-presets) stays in the main thread, so its filters and hooks can be functions.
+All Babel options must be able to go to a worker thread. Refer to plugins and presets by module name, not by function or object. The `rolldown` part of a [Rolldown Babel Preset](#rolldown-babel-presets) stays in the main thread, so its filters and hooks can be functions. If your plugins must be functions, put them in a [`configFile`](#configfile).
 
 ```js
 export default {
@@ -135,6 +135,30 @@ export default {
   ],
 }
 ```
+
+### `configFile`
+
+- **Type:** `string | false`
+- **Default:** `false`
+
+The path to a [Babel configuration file](https://babeljs.io/docs/config-files) to load. Babel merges the plugin options on top of it. `.babelrc` files are not loaded.
+
+With `parallel`, each worker loads the config file itself, so the config can contain plugins and presets that are functions or objects.
+
+```js
+import path from 'node:path'
+
+export default {
+  plugins: [
+    babel({
+      parallel: true,
+      configFile: path.resolve(import.meta.dirname, 'babel.config.js'),
+    }),
+  ],
+}
+```
+
+When `configFile` is set, the [Rolldown Babel Preset](#rolldown-babel-presets) filters do not narrow the files that the plugin transforms, because the config file can apply to any file. Use `include` and `exclude` to choose the files.
 
 ### Other Babel options
 
