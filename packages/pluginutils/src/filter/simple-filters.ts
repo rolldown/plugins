@@ -46,6 +46,31 @@ export function prefixRegex(str: string, flags?: string): RegExp {
   return new RegExp(`^${escapeRegex(str)}`, flags)
 }
 
+/**
+ * Constructs a RegExp that matches the specified string with word boundaries.
+ *
+ * This is useful for plugin hook filters when you want to match a complete word-like token,
+ * such as matching `node_modules` but not `node_modulesa`.
+ *
+ * @param str the string to match.
+ * @param flags flags for the RegExp.
+ *
+ * @example
+ * ```ts
+ * import { wordRegex } from '@rolldown/pluginutils';
+ * const plugin = {
+ *   name: 'plugin',
+ *   resolveId: {
+ *     filter: { id: wordRegex('node_modules') },
+ *     handler(id) {} // called for IDs containing `node_modules` as a standalone token
+ *   }
+ * }
+ * ```
+ */
+export function wordRegex(str: string, flags?: string): RegExp {
+  return new RegExp(`\\b${escapeRegex(str)}\\b`, flags)
+}
+
 const escapeRegexRE = /[-/\\^$*+?.()|[\]{}]/g
 function escapeRegex(str: string): string {
   return str.replace(escapeRegexRE, '\\$&')
