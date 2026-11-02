@@ -52,6 +52,35 @@ Files matching the pattern will be skipped. The default also excludes Rolldown's
 
 Note that this option receives [the syntax supported by babel](https://babeljs.io/docs/options#matchpattern) instead of picomatch.
 
+### `filter`
+
+- **Type:** `HookFilter | TopLevelFilterExpression[]`
+
+The filter for the transform hook. Rolldown applies it natively, so files that do not match never go to JS.
+
+When set, it replaces the filter that the plugin makes from `include`, `exclude`, and the [Rolldown Babel Preset](#rolldown-babel-presets) filters. You cannot use it with `include` or `exclude`. The default `exclude` does not apply, so exclude `node_modules` and `\0rolldown/runtime.js` yourself if you need to.
+
+The filter can be the object form (`{ id, moduleType, code }`) or [composable filter expressions](https://rolldown.rs/apis/plugin-api/hook-filters#composable-filters):
+
+```js
+import babel from '@rolldown/plugin-babel'
+import { and, code, id, include, not } from '@rolldown/pluginutils'
+
+export default {
+  plugins: [
+    babel({
+      plugins: ['@babel/plugin-proposal-decorators'],
+      // only source files that contain `@` go to babel
+      filter: [include(and(not(id(/[/\\]node_modules[/\\]/)), code('@')))],
+    }),
+  ],
+}
+```
+
+The Vite dev server does not apply composable filter expressions ([vitejs/vite#21956](https://github.com/vitejs/vite/issues/21956)). During `vite dev`, the plugin also checks them in JS.
+
+The [Rolldown Babel Preset](#rolldown-babel-presets) filters still choose which presets apply to each file.
+
 ### `sourceMap`
 
 - **Type:** `boolean`
