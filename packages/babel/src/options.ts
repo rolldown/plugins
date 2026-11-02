@@ -61,6 +61,17 @@ export interface PluginOptions extends Omit<InnerTransformOptions, 'include' | '
   parallel?: boolean | number
 
   /**
+   * Path to a babel config file (e.g. `babel.config.js`) to load.
+   * Options passed to this plugin are merged on top of it.
+   *
+   * Each worker loads the file itself when `parallel` is set,
+   * so the config may contain functions.
+   * @default false
+   * @see https://babeljs.io/docs/options#configfile
+   */
+  configFile?: string | false
+
+  /**
    * If specified, only files matching the pattern will be processed by babel.
    * @default `/\.(?:[jt]sx?|[cm][jt]s)(?:$|\?)/`
    *
