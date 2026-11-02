@@ -1,4 +1,5 @@
 import * as babel from './babelCompat'
+import type { HookFilterExtension } from 'rolldown'
 import type { ResolvedConfig } from 'vite'
 import {
   compilePresetFilter,
@@ -61,6 +62,19 @@ export interface PluginOptions extends Omit<InnerTransformOptions, 'include' | '
   parallel?: boolean | number
 
   /**
+   * The filter for the transform hook.
+   * When set, it replaces the filter built from `include`, `exclude`, and the preset filters,
+   * so it cannot be used with `include` or `exclude`.
+   *
+   * Accepts the object form (`{ id, moduleType, code }`)
+   * and the composable filter expressions from `@rolldown/pluginutils`.
+   * Vite's dev server does not apply composable filter expressions,
+   * so the plugin also checks them in JS during `vite dev`.
+   * @see https://rolldown.rs/apis/plugin-api/hook-filters
+   */
+  filter?: TransformHookFilter
+
+  /**
    * If specified, only files matching the pattern will be processed by babel.
    * @default `/\.(?:[jt]sx?|[cm][jt]s)(?:$|\?)/`
    *
@@ -91,18 +105,26 @@ export interface PluginOptions extends Omit<InnerTransformOptions, 'include' | '
   overrides?: InnerTransformOptions[] | undefined
 }
 
-export type ResolvedPluginOptions = PluginOptions &
-  Required<Pick<PluginOptions, 'include' | 'exclude' | 'sourceMap'>>
+export type TransformHookFilter = NonNullable<HookFilterExtension<'transform'>['filter']>
+
+// `include` and `exclude` stay unset when `filter` is set,
+// because babel would also apply the defaults and skip files that `filter` allows.
+export type ResolvedPluginOptions = PluginOptions & Required<Pick<PluginOptions, 'sourceMap'>>
 
 export const DEFAULT_INCLUDE: RegExp[] = [/\.(?:[jt]sx?|[cm][jt]s)(?:$|\?)/]
 // oxlint-disable-next-line no-control-regex
 export const DEFAULT_EXCLUDE: RegExp[] = [/[/\\]node_modules[/\\]|^\0rolldown\/runtime\.js$/]
 
 export function resolveOptions(options: PluginOptions): ResolvedPluginOptions {
+  if (options.filter && (options.include || options.exclude)) {
+    throw new Error(
+      '[@rolldown/plugin-babel] `filter` replaces `include` and `exclude`. Set `filter` alone, or use `include` and `exclude` without it.',
+    )
+  }
   return {
     ...options,
-    include: options.include ?? DEFAULT_INCLUDE,
-    exclude: options.exclude ?? DEFAULT_EXCLUDE,
+    include: options.filter ? undefined : (options.include ?? DEFAULT_INCLUDE),
+    exclude: options.filter ? undefined : (options.exclude ?? DEFAULT_EXCLUDE),
     sourceMap: options.sourceMap ?? true,
   }
 }
@@ -200,7 +222,7 @@ export function createBabelOptionsConverter(options: ResolvedPluginOptions) {
 
   return function (ctx: PresetConversionContext): babel.InputOptions {
     // Strip plugin-level options that babel doesn't understand
-    const { runtimeVersion: _, parallel: __, ...babelOptions } = options
+    const { runtimeVersion: _, parallel: __, filter: ___, ...babelOptions } = options
     return {
       ...babelOptions,
       // sourcemap collapsing is handled by Rolldown
