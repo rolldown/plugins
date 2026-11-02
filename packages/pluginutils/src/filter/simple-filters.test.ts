@@ -1,6 +1,6 @@
 import picomatch from 'picomatch'
 import { describe, expect, test } from 'vitest'
-import { exactRegex, makeIdFiltersToMatchWithQuery, prefixRegex } from './simple-filters.js'
+import { exactRegex, makeIdFiltersToMatchWithQuery, prefixRegex, wordRegex } from './simple-filters.js'
 
 describe('exactRegex', () => {
   test('supports without flag parameter', () => {
@@ -80,6 +80,35 @@ describe('makeIdFiltersToMatchWithQuery', () => {
     expectWithAnyQuery(matcher, '/foo/bar.js', true)
     expectWithAnyQuery(matcher, '/foo/bar.ts', false)
     expect(matcher('/foo/bar.txt?.js')).toBe(true)
+  })
+
+  describe('wordRegex', () => {
+    test('matches word-like token but not suffix extension', () => {
+      const regex = wordRegex('node_modules')
+      expect(regex).toStrictEqual(/\bnode_modules\b/)
+
+      expect(regex.test('node_modules')).toBe(true)
+      expect(regex.test('/node_modules/')).toBe(true)
+      expect(regex.test('foo/node_modules/bar')).toBe(true)
+      expect(regex.test('node_modulesa')).toBe(false)
+      expect(regex.test('anode_modules')).toBe(false)
+    })
+
+    test('supports with flag parameter', () => {
+      const regex = wordRegex('node_modules', 'i')
+      expect(regex).toStrictEqual(/\bnode_modules\b/i)
+
+      expect(regex.test('NODE_MODULES')).toBe(true)
+      expect(regex.test('NODE_MODULESa')).toBe(false)
+    })
+
+    test('escapes special characters for Regex', () => {
+      const regex = wordRegex('foo.bar')
+      expect(regex).toStrictEqual(/\bfoo\.bar\b/)
+
+      expect(regex.test('foo.bar')).toBe(true)
+      expect(regex.test('foo.barx')).toBe(false)
+    })
   })
 
   test('supports regex patterns without `$`', () => {
