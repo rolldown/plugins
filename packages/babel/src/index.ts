@@ -1,4 +1,5 @@
 import { Plugin, type HookFilter, type SourceMapInput } from 'rolldown'
+import { interpreter, type TopLevelFilterExpression } from 'rolldown/filter'
 import {
   collectOptimizeDepsInclude,
   createBabelOptionsConverter,
@@ -6,6 +7,7 @@ import {
   filterPresetsWithEnvironment,
   resolveOptions,
   type PluginOptions,
+  type ResolvedPluginOptions,
 } from './options.ts'
 import {
   createWorkerPool,
@@ -20,6 +22,15 @@ import type { ResolvedConfig, Plugin as VitePlugin } from 'vite'
 
 type TransformModule = typeof import('./transform.ts')
 let transformModule: TransformModule | Promise<TransformModule> | undefined
+
+function transformFilter(resolved: ResolvedPluginOptions): HookFilter {
+  // SAFETY: Vite's plugin type does not include filter expressions yet (vitejs/vite#21956).
+  // Rolldown applies them, and the handler checks them during `vite dev`.
+  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+  return (
+    (resolved.filter as HookFilter | undefined) ?? calculatePluginFilters(resolved).transformFilter
+  )
+}
 
 async function babelPlugin(rawOptions: PluginOptions): Promise<Plugin> {
   if (rawOptions.runtimeVersion) {
@@ -42,6 +53,9 @@ async function babelPlugin(rawOptions: PluginOptions): Promise<Plugin> {
   }
 
   let configFilteredOptions: PluginOptions | undefined
+  // Vite's dev server does not apply composable filter expressions (vitejs/vite#21956),
+  // so the handler checks them itself.
+  let filterExpressionsToCheck: TopLevelFilterExpression[] | undefined
   const envState = new Map<string | undefined, ReturnType<typeof createBabelOptionsConverter>>()
 
   const plugin = {
@@ -57,7 +71,10 @@ async function babelPlugin(rawOptions: PluginOptions): Promise<Plugin> {
     configResolved(config: ResolvedConfig) {
       configFilteredOptions = filterPresetsWithConfigResolved(rawOptions, config)
       const resolved = resolveOptions(configFilteredOptions)
-      plugin.transform.filter = calculatePluginFilters(resolved).transformFilter
+      plugin.transform.filter = transformFilter(resolved)
+      if (config.command === 'serve' && Array.isArray(rawOptions.filter)) {
+        filterExpressionsToCheck = rawOptions.filter
+      }
     },
     applyToEnvironment(environment: PartialEnvironment) {
       const envOptions = filterPresetsWithEnvironment(configFilteredOptions!, environment)
@@ -76,11 +93,17 @@ async function babelPlugin(rawOptions: PluginOptions): Promise<Plugin> {
       if (this.meta.viteVersion) return
       const resolved = resolveOptions(rawOptions)
       envState.set(undefined, createBabelOptionsConverter(resolved))
-      plugin.transform.filter = calculatePluginFilters(resolved).transformFilter
+      plugin.transform.filter = transformFilter(resolved)
     },
     transform: {
       filter: undefined as HookFilter | undefined,
       async handler(code, id, opts) {
+        if (
+          filterExpressionsToCheck &&
+          !interpreter(filterExpressionsToCheck, code, id, opts?.moduleType)
+        ) {
+          return
+        }
         const convertToBabelOptions = envState.get(this.environment?.name)
         if (!convertToBabelOptions) return
         const conversionContext: PresetConversionContext = {
