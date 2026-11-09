@@ -10,7 +10,7 @@
     "build:parallel": "rolldown -c configs/parallel.ts"
   },
   "devDependencies": {
-    "@babel/core": "^8.0.10",
+    "@babel/core": "^8.1.0",
     "@babel/plugin-proposal-decorators": "^8.0.2",
     "@oxc-node/cli": "catalog:",
     "@rolldown/benchmark-utils": "workspace:*",

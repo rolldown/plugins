@@ -16,7 +16,7 @@ catalogs:
     '@oxc-node/core': ^1.0.1
     '@oxc-node/cli': ^1.0.1
     '@rollup/plugin-swc': ^0.4.1
-    '@swc/core': ^1.16.21
+    '@swc/core': ^1.16.22
     '@swc/plugin-emotion': ^19.0.0
     '@swc/plugin-react-remove-properties': ^17.0.0
     '@swc/plugin-styled-jsx': ^19.0.0
@@ -24,9 +24,9 @@ catalogs:
     rolldown: ^1.2.16
     vite: ^8.3.5
   babel7:
-    '@babel/core': ^7.29.7
+    '@babel/core': ^7.29.13
     '@babel/plugin-transform-runtime': ^7.29.7
-    '@babel/runtime': ^7.29.10
+    '@babel/runtime': ^7.29.13
 
 patchedDependencies:
   '@emotion/babel-plugin@11.13.5': patches/@emotion__babel-plugin@11.13.5.patch
