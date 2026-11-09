@@ -13,7 +13,12 @@ pnpm add -D @rolldown/pluginutils
 ## Usage
 
 ```ts
-import { exactRegex, prefixRegex, makeIdFiltersToMatchWithQuery } from '@rolldown/pluginutils'
+import {
+  exactRegex,
+  prefixRegex,
+  wordRegex,
+  makeIdFiltersToMatchWithQuery,
+} from '@rolldown/pluginutils'
 ```
 
 All filter helpers are also exposed via the `/filter` subpath:
@@ -56,6 +61,25 @@ const plugin = {
   resolveId: {
     filter: { id: prefixRegex('foo') },
     handler(id) {}, // called for IDs starting with `foo`
+  },
+}
+```
+
+### `wordRegex`
+
+- **Type:** `(str: string, flags?: string) => RegExp`
+
+Constructs a `RegExp` that matches a standalone word-like token.
+Useful when you want to match `node_modules` but not `node_modulesa`.
+
+```ts
+import { wordRegex } from '@rolldown/pluginutils'
+
+const plugin = {
+  name: 'plugin',
+  resolveId: {
+    filter: { id: wordRegex('node_modules') },
+    handler(id) {}, // called for IDs containing standalone `node_modules`
   },
 }
 ```
