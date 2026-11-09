@@ -1,6 +1,11 @@
 import picomatch from 'picomatch'
 import { describe, expect, test } from 'vitest'
-import { exactRegex, makeIdFiltersToMatchWithQuery, prefixRegex, wordRegex } from './simple-filters.js'
+import {
+  exactRegex,
+  makeIdFiltersToMatchWithQuery,
+  prefixRegex,
+  wordRegex,
+} from './simple-filters.js'
 
 describe('exactRegex', () => {
   test('supports without flag parameter', () => {

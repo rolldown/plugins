@@ -13,7 +13,12 @@ pnpm add -D @rolldown/pluginutils
 ## Usage
 
 ```ts
-import { exactRegex, prefixRegex, wordRegex, makeIdFiltersToMatchWithQuery } from '@rolldown/pluginutils'
+import {
+  exactRegex,
+  prefixRegex,
+  wordRegex,
+  makeIdFiltersToMatchWithQuery,
+} from '@rolldown/pluginutils'
 ```
 
 All filter helpers are also exposed via the `/filter` subpath:
