@@ -27,6 +27,12 @@ describe('exactRegex', () => {
     expect(regex.test('aFoo')).toBe(false)
   })
 
+  test('supports hyphens with the Unicode flag', () => {
+    const regex = exactRegex('foo-bar', 'u')
+    expect(regex.test('foo-bar')).toBe(true)
+    expect(regex.test('fooXbar')).toBe(false)
+  })
+
   test('escapes special characters for Regex', () => {
     const regex = exactRegex('foo(bar)')
     expect(regex).toStrictEqual(/^foo\(bar\)$/)
@@ -56,6 +62,12 @@ describe('prefixRegex', () => {
     expect(regex.test('Foo')).toBe(true)
     expect(regex.test('Fooa')).toBe(true)
     expect(regex.test('aFoo')).toBe(false)
+  })
+
+  test('supports hyphens with the Unicode flag', () => {
+    const regex = prefixRegex('foo-bar', 'u')
+    expect(regex.test('foo-bar')).toBe(true)
+    expect(regex.test('fooXbar')).toBe(false)
   })
 
   test('escapes special characters for Regex', () => {
@@ -105,6 +117,12 @@ describe('makeIdFiltersToMatchWithQuery', () => {
 
       expect(regex.test('NODE_MODULES')).toBe(true)
       expect(regex.test('NODE_MODULESa')).toBe(false)
+    })
+
+    test('supports hyphens with the Unicode flag', () => {
+      const regex = wordRegex('foo-bar', 'u')
+      expect(regex.test('foo-bar')).toBe(true)
+      expect(regex.test('fooXbar')).toBe(false)
     })
 
     test('escapes special characters for Regex', () => {
