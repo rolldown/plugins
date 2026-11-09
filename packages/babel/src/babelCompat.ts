@@ -17,20 +17,20 @@ type InputOptionsFallback = {
   presets?: unknown[]
 }
 
-// @ts-ignore -- InputOptions doesn't exist in Babel 7
+/** @ts-ignore -- InputOptions doesn't exist in Babel 7 */
 type InputOptions8 = babel.InputOptions
-// @ts-ignore -- PresetItem doesn't exist in Babel 7
+/** @ts-ignore -- PresetItem doesn't exist in Babel 7 */
 type PresetItem8 = babel.PresetItem
-// @ts-ignore -- PluginObject doesn't exist in Babel 7
+/** @ts-ignore -- PluginObject doesn't exist in Babel 7 */
 type PluginObject8<T> = babel.PluginObject<T>
-// @ts-ignore -- FileResult doesn't exist in Babel 7
+/** @ts-ignore -- FileResult doesn't exist in Babel 7 */
 type FileResult8 = babel.FileResult
 
-// @ts-ignore -- TransformOptions doesn't exist in Babel 8
+/** @ts-ignore -- TransformOptions doesn't exist in Babel 8 */
 type TransformOptions = babel.TransformOptions
-// @ts-ignore -- PluginObj doesn't exist in Babel 8
+/** @ts-ignore -- PluginObj doesn't exist in Babel 8 */
 type PluginObj<T> = babel.PluginObj<T>
-// @ts-ignore -- BabelFileResult doesn't exist in Babel 8
+/** @ts-ignore -- BabelFileResult doesn't exist in Babel 8 */
 type BabelFileResult = babel.BabelFileResult
 
 export type InputOptions =
