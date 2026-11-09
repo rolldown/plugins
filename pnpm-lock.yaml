@@ -177,17 +177,17 @@ catalogs:
       specifier: ^1.16.22
       version: 1.16.22
     '@swc/plugin-emotion':
-      specifier: ^19.0.0
-      version: 19.0.0
+      specifier: ^20.0.2
+      version: 20.0.2
     '@swc/plugin-react-remove-properties':
-      specifier: ^17.0.0
-      version: 17.0.0
+      specifier: ^18.0.2
+      version: 18.0.2
     '@swc/plugin-styled-jsx':
-      specifier: ^19.0.0
-      version: 19.0.0
+      specifier: ^20.0.2
+      version: 20.0.2
     '@swc/plugin-transform-imports':
-      specifier: ^17.0.0
-      version: 17.0.0
+      specifier: ^18.0.2
+      version: 18.0.2
     rolldown:
       specifier: ^1.2.16
       version: 1.2.16
@@ -343,16 +343,16 @@ importers:
         version: 1.16.22
       '@swc/plugin-emotion':
         specifier: 'catalog:'
-        version: 19.0.0
+        version: 20.0.2
       '@swc/plugin-react-remove-properties':
         specifier: 'catalog:'
-        version: 17.0.0
+        version: 18.0.2
       '@swc/plugin-styled-jsx':
         specifier: 'catalog:'
-        version: 19.0.0
+        version: 20.0.2
       '@swc/plugin-transform-imports':
         specifier: 'catalog:'
-        version: 17.0.0
+        version: 18.0.2
       rolldown:
         specifier: 'catalog:'
         version: 1.2.16
@@ -484,7 +484,7 @@ importers:
         version: 1.16.22
       '@swc/plugin-emotion':
         specifier: 'catalog:'
-        version: 19.0.0
+        version: 20.0.2
       '@types/node':
         specifier: ^24.19.2
         version: 24.19.2
@@ -546,7 +546,7 @@ importers:
         version: 1.16.22
       '@swc/plugin-react-remove-properties':
         specifier: 'catalog:'
-        version: 17.0.0
+        version: 18.0.2
       '@types/node':
         specifier: ^24.19.2
         version: 24.19.2
@@ -650,7 +650,7 @@ importers:
         version: 1.16.22
       '@swc/plugin-styled-jsx':
         specifier: 'catalog:'
-        version: 19.0.0
+        version: 20.0.2
       '@types/node':
         specifier: ^24.19.2
         version: 24.19.2
@@ -702,7 +702,7 @@ importers:
         version: 1.16.22
       '@swc/plugin-transform-imports':
         specifier: 'catalog:'
-        version: 17.0.0
+        version: 18.0.2
       '@types/node':
         specifier: ^24.19.2
         version: 24.19.2
@@ -1994,17 +1994,17 @@ packages:
   '@swc/counter@0.1.3':
     resolution: {integrity: sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==}
 
-  '@swc/plugin-emotion@19.0.0':
-    resolution: {integrity: sha512-vJz6CR+Me+M5KP2KclDWckWcJFv7+PJUc6O9fIOFXGKy1i7BS+2eeA1LUtYq+wzYhDVp/FRvYItu73ZGplSgNw==}
+  '@swc/plugin-emotion@20.0.2':
+    resolution: {integrity: sha512-wU9iRHn2IBNTD5iTfCkrk4/wVv6YCsvxA6I3d9xaiE1zTIvlnd1R5c0tGYZO5hBQ4STSm47faNCk451dT6JNzQ==}
 
-  '@swc/plugin-react-remove-properties@17.0.0':
-    resolution: {integrity: sha512-Us2RUi++XIQw33aqZ45EU492SeDJhTIz5wb+HWHtfGb9zRrmAMgpxjK+JmVy+1+VXIdK6NrpGBAoF2yFIGG7Xw==}
+  '@swc/plugin-react-remove-properties@18.0.2':
+    resolution: {integrity: sha512-wdbyQUiSWF9C2oZfA508QNXD5RrNovxDpC27CdFx6Ezby38AXfgMVCZ6x71b7jfrsaUj23hsLl+zTemN+7ItiQ==}
 
-  '@swc/plugin-styled-jsx@19.0.0':
-    resolution: {integrity: sha512-JhvtUiZz4l3Vq0kAW4jkcDkmf+xHf99JnYcORES5jvLBcfgSm/EhNMdGMv5x7a2Q2POWRnEIOuQid5P0NqvezQ==}
+  '@swc/plugin-styled-jsx@20.0.2':
+    resolution: {integrity: sha512-zT8pGOlGiQYxbb9fclHyuVqY54S/+jwS+135ZpAJeJedkXNgWi3VXeYy9bJT8ABQFmMCyNqZy54hX+c43RwzWA==}
 
-  '@swc/plugin-transform-imports@17.0.0':
-    resolution: {integrity: sha512-VnPnOfYA04zjoSGQDOOB4zezwSwVrzThDTdPCsw+Udwe7uTbtmdKchmvNfZOq9Z50vmqwjYM9Kgo2LfIZThhww==}
+  '@swc/plugin-transform-imports@18.0.2':
+    resolution: {integrity: sha512-Kt+e+/voSObczQn4a0QV4hIVnflogg9TkTcTe0pTUXjBks8Qib7OLhar6DAJAXNKfnMdABkL8Vxn+LGPNCUcnA==}
 
   '@swc/types@0.1.28':
     resolution: {integrity: sha512-V6Mnml8v09QALx6K0elJ7o9K/MkVDtW3t6L+7Ou/JcWtb3xwId2AH4FeOceySd2JaO87IMw4+6vSZxLm34LPbw==}
@@ -3993,19 +3993,19 @@ snapshots:
 
   '@swc/counter@0.1.3': {}
 
-  '@swc/plugin-emotion@19.0.0':
+  '@swc/plugin-emotion@20.0.2':
     dependencies:
       '@swc/counter': 0.1.3
 
-  '@swc/plugin-react-remove-properties@17.0.0':
+  '@swc/plugin-react-remove-properties@18.0.2':
     dependencies:
       '@swc/counter': 0.1.3
 
-  '@swc/plugin-styled-jsx@19.0.0':
+  '@swc/plugin-styled-jsx@20.0.2':
     dependencies:
       '@swc/counter': 0.1.3
 
-  '@swc/plugin-transform-imports@17.0.0':
+  '@swc/plugin-transform-imports@18.0.2':
     dependencies:
       '@swc/counter': 0.1.3
 
