@@ -15,7 +15,7 @@
     "@oxc-node/cli": "catalog:",
     "@rolldown/benchmark-utils": "workspace:*",
     "@rolldown/plugin-babel": "workspace:*",
-    "@types/node": "^24.19.2",
+    "@types/node": "^26.6.6",
     "rolldown": "catalog:"
   }
 }
