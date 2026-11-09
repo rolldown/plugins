@@ -1,3 +1,14 @@
+## <small>[0.3.1](https://github.com/rolldown/plugins/compare/plugin-babel%400.3.0...plugin-babel%400.3.1) (2026-11-09)</small>
+### Bug Fixes
+
+* **babel:** keep `ts-ignore` comment in output ([#170](https://github.com/rolldown/plugins/issues/170)) ([715a621](https://github.com/rolldown/plugins/commit/715a621f38670c750c12650b3f29f2187e6f5f41)), closes [#155](https://github.com/rolldown/plugins/issues/155) [#164](https://github.com/rolldown/plugins/issues/164)
+
+### Miscellaneous Chores
+
+* **deps:** update all non-major dependencies ([#158](https://github.com/rolldown/plugins/issues/158)) ([d35d19f](https://github.com/rolldown/plugins/commit/d35d19f04526aae5df23a2bf1d4f1a1a70a0664d)), references [#8203](https://github.com/rolldown/plugins/issues/8203) [#8203](https://github.com/rolldown/plugins/issues/8203)
+* **deps:** update all non-major dependencies ([#166](https://github.com/rolldown/plugins/issues/166)) ([1a0abb0](https://github.com/rolldown/plugins/commit/1a0abb062e20934f7af646db8a88dcdd40fc4ffe)), references [#8203](https://github.com/rolldown/plugins/issues/8203) [#x](https://github.com/rolldown/plugins/issues/x) [#8203](https://github.com/rolldown/plugins/issues/8203) [#8203](https://github.com/rolldown/plugins/issues/8203)
+* **deps:** update to Node 26 ([#171](https://github.com/rolldown/plugins/issues/171)) ([fdab933](https://github.com/rolldown/plugins/commit/fdab9331b156f2440036dc1b73e8bc1aec3f3c34))
+
 ## [0.3.0](https://github.com/rolldown/plugins/compare/plugin-babel%400.2.4...plugin-babel%400.3.0) (2026-10-29)
 ### Features
 
