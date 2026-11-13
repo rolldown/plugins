@@ -1,3 +1,8 @@
+## <small>[1.1.1](https://github.com/rolldown/plugins/compare/pluginutils%401.1.0...pluginutils%401.1.1) (2026-11-13)</small>
+### Bug Fixes
+
+* **pluginutils:** avoid escaping hyphens in Unicode regexes ([#172](https://github.com/rolldown/plugins/issues/172)) ([48f49ff](https://github.com/rolldown/plugins/commit/48f49ffb28671061b352f6695f6072a26a419187))
+
 ## [1.1.0](https://github.com/rolldown/plugins/compare/pluginutils%401.0.1...pluginutils%401.1.0) (2026-11-09)
 ### Features
 
