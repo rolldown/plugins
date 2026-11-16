@@ -13,8 +13,8 @@ allowBuilds:
 
 catalogs:
   default:
-    '@oxc-node/core': ^1.0.1
-    '@oxc-node/cli': ^1.0.1
+    '@oxc-node/core': ^1.0.2
+    '@oxc-node/cli': ^1.0.2
     '@rollup/plugin-swc': ^0.4.1
     '@swc/core': ^1.16.22
     '@swc/plugin-emotion': ^20.0.2
@@ -26,7 +26,7 @@ catalogs:
   babel7:
     '@babel/core': ^7.29.13
     '@babel/plugin-transform-runtime': ^7.29.7
-    '@babel/runtime': ^7.29.13
+    '@babel/runtime': ^7.29.14
 
 patchedDependencies:
   '@emotion/babel-plugin@11.13.5': patches/@emotion__babel-plugin@11.13.5.patch
