@@ -66,6 +66,44 @@ test('overrides option merges additional transformations', async () => {
   expect(result.code).toContain('const result = true')
 })
 
+describe('configFile', () => {
+  const configFile = fileURLToPath(new URL('./fixtures/babel.config.mjs', import.meta.url))
+
+  test('loads plugins from the config file', async () => {
+    const result = await build('foo.js', 'export const result = foo', { configFile })
+    expect(result.code).toContain('const result = true')
+  })
+
+  test('merges plugin options on top of the config file', async () => {
+    const result = await build('foo.js', 'export const result = [foo, bar]', {
+      configFile,
+      plugins: [identifierReplaceBabelPlugin('bar', false)],
+    })
+    expect(result.code).toContain('const result = [true, false]')
+  })
+
+  test('runs in vite environments when the config file is the only source of plugins', async () => {
+    const result = await buildWithVite('foo.js', 'console.log(foo)', { configFile })
+    expect(result.code).toContain('console.log(true)')
+  })
+
+  test('loads a config file with functions in each worker', async () => {
+    const result = await build('foo.js', 'export const result = foo', {
+      configFile,
+      parallel: 2,
+    })
+    expect(result.code).toContain('const result = true')
+  })
+
+  test('does not load babel.config.* files when unset', async () => {
+    const result = await build('foo.js', 'export const result = foo', {
+      cwd: path.dirname(configFile),
+      plugins: [() => ({ visitor: {} })],
+    })
+    expect(result.code).toContain('const result = foo')
+  })
+})
+
 test('comments false strips comments from output', async () => {
   const result = await build('foo.js', '/* strip-me */\nexport const result = 42', {
     comments: false,

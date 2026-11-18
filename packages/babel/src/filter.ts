@@ -147,8 +147,9 @@ function unionFilters<F, T>(
  *   across presets (OR), excludes are intersected (only patterns in ALL presets).
  * - The result uses user includes when present, otherwise falls back to preset
  *   includes. Excludes are combined from both (excluded by either → excluded).
- * - If the user has explicit plugins, presetFilter is skipped (plugins can match
- *   any file). Same if any preset is a plain babel preset without rolldown filters.
+ * - If the user has explicit plugins or a config file, presetFilter is skipped
+ *   (plugins can match any file). Same if any preset is a plain babel preset
+ *   without rolldown filters.
  */
 function calculateTransformFilter(options: ResolvedPluginOptions): HookFilter {
   const userInclude = extractStringOrRegExp(options.include)
@@ -157,9 +158,9 @@ function calculateTransformFilter(options: ResolvedPluginOptions): HookFilter {
     id: { include: userInclude, exclude: userExclude },
   }
 
-  // If user has explicit plugins, only use base filter
+  // If user has explicit plugins or a config file, only use base filter
   // (plugins can match any file, so preset filters don't apply)
-  if (options.plugins && options.plugins.length > 0) {
+  if (options.configFile || (options.plugins && options.plugins.length > 0)) {
     return baseFilter
   }
 
