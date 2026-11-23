@@ -160,7 +160,7 @@ export default function emotionPlugin(options: EmotionPluginOptions = {}): Plugi
             if (index % 2 === 0) {
               // Template quasi (static text)
               const raw = quasis[i].value.raw
-              const unescaped = unescapeTemplateRaw(raw)
+              const unescaped = quasis[i].value.cooked ?? unescapeTemplateRaw(raw)
               const minified = minifyCSSString(unescaped, index === 0, index === argsLen - 1)
               // Compress one more spaces into one space
               if (minified.replaceAll(' ', '') === '') {
