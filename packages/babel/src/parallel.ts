@@ -74,7 +74,13 @@ export function createWorkerPool(maxWorkers: number): WorkerPool {
         }
       }
     },
-    { max: maxWorkers, parentFunctions: { getTransformUrl } },
+    {
+      max: maxWorkers,
+      parentFunctions: { getTransformUrl },
+      // The default runs the worker as CommonJS (`eval: true`), where `require`, `module` and
+      // `__dirname` are globals that babel plugins can see. Module workers match the main thread.
+      type: 'module',
+    },
   )
 
   return {
