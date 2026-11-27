@@ -737,6 +737,17 @@ describe('parallel', () => {
     expect(result.code).toContain('const result = true')
   })
 
+  test('runs babel plugins without CommonJS globals, like the main thread', async () => {
+    const globalsPluginPath = fileURLToPath(
+      new URL('./fixtures/commonjs-globals-plugin.mjs', import.meta.url),
+    )
+    const result = await build('foo.js', 'export const result = commonjsGlobals', {
+      parallel: 1,
+      plugins: [globalsPluginPath],
+    })
+    expect(result.code).toContain('"undefined,undefined,undefined,undefined"')
+  })
+
   test('keeps rolldown preset filters and hooks in the main thread', async () => {
     const preset: RolldownBabelPreset = {
       preset: [replacePresetPath, { name: 'foo', value: true }],
