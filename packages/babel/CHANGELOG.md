@@ -1,3 +1,13 @@
+## <small>[0.3.2](https://github.com/rolldown/plugins/compare/plugin-babel%400.3.1...plugin-babel%400.3.2) (2026-11-27)</small>
+### Bug Fixes
+
+* **babel:** run parallel workers as ES modules ([#176](https://github.com/rolldown/plugins/issues/176)) ([725040d](https://github.com/rolldown/plugins/commit/725040dfcc2e8b2bddfac3a37d0a35a10661b657)), references [emberjs/babel-plugin-ember-template-compilation#129](https://github.com/emberjs/babel-plugin-ember-template-compilation/issues/129) [NullVoxPopuli/ember.nvp#241](https://github.com/NullVoxPopuli/ember.nvp/issues/241)
+
+### Miscellaneous Chores
+
+* **deps:** update all non-major dependencies ([#173](https://github.com/rolldown/plugins/issues/173)) ([1c91db0](https://github.com/rolldown/plugins/commit/1c91db0424f0e71552323cd02aa34b60d5a98547)), references [#8203](https://github.com/rolldown/plugins/issues/8203) [#8203](https://github.com/rolldown/plugins/issues/8203) [#8203](https://github.com/rolldown/plugins/issues/8203) [owner/repo#v1](https://github.com/owner/repo/issues/v1)
+* **deps:** update all non-major dependencies ([#174](https://github.com/rolldown/plugins/issues/174)) ([0f204f0](https://github.com/rolldown/plugins/commit/0f204f02601954039272a2843e0b129318c4c8f1)), references [#8203](https://github.com/rolldown/plugins/issues/8203) [#8203](https://github.com/rolldown/plugins/issues/8203) [#8203](https://github.com/rolldown/plugins/issues/8203)
+
 ## <small>[0.3.1](https://github.com/rolldown/plugins/compare/plugin-babel%400.3.0...plugin-babel%400.3.1) (2026-11-09)</small>
 ### Bug Fixes
 
