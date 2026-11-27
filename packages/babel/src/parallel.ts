@@ -77,8 +77,11 @@ export function createWorkerPool(maxWorkers: number): WorkerPool {
     {
       max: maxWorkers,
       parentFunctions: { getTransformUrl },
-      // The default runs the worker as CommonJS (`eval: true`), where `require`, `module` and
-      // `__dirname` are globals that babel plugins can see. Module workers match the main thread.
+      // By default, artichokie starts the worker with `eval: true`. Node's CommonJS eval
+      // setup puts `require`, `module`, `__dirname`, and `__filename` on the worker's
+      // `globalThis`, where Babel plugins loaded as ES modules can see them. In a regular
+      // CommonJS file on the main thread, those names are local wrapper parameters.
+      // Starting the worker as an ES module keeps plugin behavior consistent with the main thread.
       type: 'module',
     },
   )
