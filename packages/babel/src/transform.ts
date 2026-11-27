@@ -18,7 +18,7 @@ export async function transformWithBabel(
   const loadedOptions = await babel.loadOptionsAsync({
     ...babelOptions,
     babelrc: false,
-    configFile: false,
+    configFile: babelOptions.configFile ?? false,
     parserOpts: {
       sourceType: 'module',
       allowAwaitOutsideFunction: true,
