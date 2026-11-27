@@ -40,6 +40,15 @@ describe('createBabelOptionsConverter', () => {
     expect(convert(makeCtx()).inputSourceMap).toBe(false)
   })
 
+  test('does not pass filter or the default include and exclude to babel', () => {
+    const convert = createBabelOptionsConverter(resolveOptions({ filter: { id: /\.gjs$/ } }))
+    const result = convert(makeCtx())
+
+    expect(result).not.toHaveProperty('filter')
+    expect(result.include).toBeUndefined()
+    expect(result.exclude).toBeUndefined()
+  })
+
   test('plain babel preset is always included', () => {
     const convert = createBabelOptionsConverter(resolveOptions({ presets: [presetA] }))
     const result = convert(makeCtx())

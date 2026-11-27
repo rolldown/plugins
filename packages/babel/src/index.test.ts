@@ -2,7 +2,10 @@ import { assert, describe, expect, test } from 'vitest'
 import babelPlugin from './index.ts'
 import * as babel from './babelCompat.ts'
 import { rolldown, type OutputChunk } from 'rolldown'
-import { build as viteBuild, createBuilder, type Rollup } from 'vite'
+import { build as viteBuild, createBuilder, createServer, type Rollup } from 'vite'
+import { code, include } from 'rolldown/filter'
+import fs from 'node:fs/promises'
+import os from 'node:os'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { collectOptimizeDepsInclude, type PluginOptions } from './options.ts'
@@ -64,6 +67,60 @@ test('overrides option merges additional transformations', async () => {
     ],
   })
   expect(result.code).toContain('const result = true')
+})
+
+describe('filter', () => {
+  const plugins = [identifierReplaceBabelPlugin('foo', true)]
+  const filter = [include(code('needs-babel'))]
+
+  test('expressions select the files in a rolldown build', async () => {
+    const matched = await build('a.js', '// needs-babel\nexport const result = foo', {
+      plugins,
+      filter,
+    })
+    expect(matched.code).toContain('const result = true')
+
+    const skipped = await build('b.js', 'export const result = foo', { plugins, filter })
+    expect(skipped.code).toContain('const result = foo')
+  })
+
+  test('expressions select the files in vite dev', async () => {
+    const root = await fs.mkdtemp(path.join(os.tmpdir(), 'plugin-babel-filter-'))
+    await fs.writeFile(path.join(root, 'a.js'), '// needs-babel\nexport const result = foo')
+    await fs.writeFile(path.join(root, 'b.js'), 'export const result = foo')
+    const server = await createServer({
+      configFile: false,
+      root,
+      logLevel: 'silent',
+      server: { middlewareMode: true, ws: false },
+      optimizeDeps: { noDiscovery: true },
+      plugins: [babelPlugin({ plugins, filter })],
+    })
+    try {
+      expect((await server.transformRequest('/a.js'))?.code).toContain('const result = true')
+      expect((await server.transformRequest('/b.js'))?.code).toContain('const result = foo')
+    } finally {
+      await server.close()
+      await fs.rm(root, { recursive: true, force: true })
+    }
+  })
+
+  test('throws when combined with include or exclude', async () => {
+    await expect(build('a.js', '', { filter, include: /\.js$/ })).rejects.toThrow(
+      '`filter` replaces `include` and `exclude`',
+    )
+    await expect(build('a.js', '', { filter, exclude: /\.ts$/ })).rejects.toThrow(
+      '`filter` replaces `include` and `exclude`',
+    )
+  })
+
+  test('babel transforms files outside the default include', async () => {
+    const result = await build('foo.js.custom', 'export const result = foo', {
+      plugins,
+      filter: { id: /\.custom$/ },
+    })
+    expect(result.code).toContain('const result = true')
+  })
 })
 
 test('comments false strips comments from output', async () => {
